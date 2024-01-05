@@ -13,7 +13,7 @@ const Home = () => {
 
     <section className='h-full flex flex-col items-center space-y-5'>
         <div className='pt-16'>
-          <img src={logo} alt="logo"  className="w-28 h-28"/>
+          <img src={logo} alt="logo" className="w-28 h-28"/>
         </div>
         <div>
           <h1 className="text-5xl font-bold  text-center">
