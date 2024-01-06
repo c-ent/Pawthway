@@ -6,7 +6,7 @@ import pet2 from  '../../images/images/pet-banner-2.png'
 import pet3 from  '../../images/images/pet-banner-3.png'
 import { Link } from 'react-router-dom'
 
-
+ 
 const Home = () => {
   return (
     <div> 
