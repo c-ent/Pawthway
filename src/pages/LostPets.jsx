@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react'
 import LostPetcard from './LostPetcard'
-import lostdogimg from '../../images/images/lostdog.png'
+import lostdogimg from '../../images/images/lostdog2.jpg'
 
 const LostPets = () => {
   const dog = {
@@ -13,18 +13,29 @@ const LostPets = () => {
     lastSeenLocation: 'Park Street',
     dateLost: '2021-09-01',
     contact: '123-456-7890',
+    placeLost: 'New York, NY',
+    reward:'$100',
   };
 
   return (
-<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+<div className='pt-10' >
+    <h1 className="text-5xl font-bold pb-5">Lost Pets</h1>
 
-    <LostPetcard dog={dog} />
-    <LostPetcard dog={dog} />
-    <LostPetcard dog={dog} />
-    <LostPetcard dog={dog} />
-    <LostPetcard dog={dog} />
-    <LostPetcard dog={dog} />
-    <LostPetcard dog={dog} />
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+    <Suspense fallback={<div>Loading...</div>}>
+      <LostPetcard dog={dog} />
+      <LostPetcard dog={dog} />
+      <LostPetcard dog={dog} />
+      <LostPetcard dog={dog} />
+      <LostPetcard dog={dog} />
+      <LostPetcard dog={dog} />
+      <LostPetcard dog={dog} /> 
+      </Suspense>
+    </div>
+
+
+    
+    
 
 
 </div>
