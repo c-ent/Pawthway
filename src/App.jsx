@@ -2,9 +2,10 @@ import { Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import NoPage from './pages/NoPage';
 import Layout from './pages/Layout';
-import LostPets from './pages/LostPets';
-import FoundPets from './pages/FoundPets';
 import LostPet from './pages/LosttPet';
+import AllLostPets from './pages/AllLostPets';
+import AllFoundPets from './pages/AllFoundPets';
+import FoundPet from './pages/FoundPet';
 
 function App() {
   return (
@@ -12,9 +13,10 @@ function App() {
     <Routes>
       <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="lostpets" element={<LostPets />} />
-          <Route path="lostpets/:petId" element={<LostPet />} />
-          <Route path="foundpets" element={<FoundPets />} />
+          <Route path="lostpets" element={<AllLostPets />} />
+          <Route path="lostpets/:petId"  element={<LostPet /> }  />
+          <Route path="foundpets" element={<AllFoundPets />} />
+          <Route path="foundpets/:petId"  element={<FoundPet /> }  />
           <Route path="*" element={<NoPage />} />
         </Route>
     </Routes>

@@ -9,11 +9,13 @@ const LostPetcard = ({ dog }) => {
   };
   return (
     
-<div className="rounded-md p-4 bg-[#F5F5F5] space-y-2 text-sm group hover:border-2">
+
+  <div className="rounded-md p-4 bg-[#F5F5F5] space-y-2 text-sm group border border-transparent hover:border-black">
       <div className="relative">
         <img   loading="lazy" src={dog.image} alt={dog.name} className="w-full h-64 object-cover rounded-b-md overflow-hidden" />
-        <button className="absolute top-[-10px] left-[-10px] bg-black text-white px-3 py-1 font-bold rounded-md">Missing</button>
+        <button className="absolute top-[-10px] left-[-10px] bg-red-600 text-white px-3 py-1 font-bold rounded-md">Missing</button>
       </div>
+      
       <h2 className="text-2xl font-bold">{dog.name}</h2>
 
       <div className="grid grid-cols-2 gap-4 items-start">

@@ -1,8 +1,9 @@
 import React, { Suspense } from 'react'
-import LostPetcard from './LostPetcard'
+import LostPetcard from '../components/LostPetCard'
 import lostdogimg from '../../images/images/lostdog2.jpg'
+import { Link } from 'react-router-dom';
 
-const LostPets = () => {
+const AllLostPets = () => {
   const dog = {
     image: lostdogimg,
     name: 'Rorie',
@@ -23,13 +24,23 @@ const LostPets = () => {
 
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
     <Suspense fallback={<div>Loading...</div>}>
+    <Link to={`/lostpets/${dog.id}`}>
       <LostPetcard dog={dog} />
+    </Link>
+
+    <Link to={`/lostpets/${dog.id}`}>
       <LostPetcard dog={dog} />
+    </Link>
+
+    <Link to={`/lostpets/${dog.id}`}>
       <LostPetcard dog={dog} />
+    </Link>
+
+    <Link to={`/lostpets/${dog.id}`}>
       <LostPetcard dog={dog} />
-      <LostPetcard dog={dog} />
-      <LostPetcard dog={dog} />
-      <LostPetcard dog={dog} /> 
+    </Link>
+
+     
       </Suspense>
     </div>
 
@@ -45,7 +56,7 @@ const LostPets = () => {
 
 
 
-export default LostPets
+export default AllLostPets
 
 
 {/* <div className="flex flex-wrap justify-between">
