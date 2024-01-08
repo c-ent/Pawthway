@@ -7,11 +7,16 @@ import AllLostPets from './pages/AllLostPets';
 import AllFoundPets from './pages/AllFoundPets';
 import FoundPet from './pages/FoundPet';
 
+
+
 function App() {
+ 
   return (
+   
     <div className="mx-auto max-w-screen-xl p-5">
+ 
     <Routes>
-      <Route path="/" element={<Layout />}>
+      <Route path="/" element={<Layout  />}>
           <Route index element={<Home />} />
           <Route path="lostpets" element={<AllLostPets />} />
           <Route path="lostpets/:petId"  element={<LostPet /> }  />
@@ -20,7 +25,9 @@ function App() {
           <Route path="*" element={<NoPage />} />
         </Route>
     </Routes>
+
   </div>
+ 
   );
 }
 

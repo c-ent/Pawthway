@@ -4,7 +4,7 @@ const FoundPetCard = ({ dog }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   return (
-<div className="rounded-md p-4 bg-[#F5F5F5] space-y-2 text-sm group hover:border-2">
+    <div className="rounded-md p-4 bg-[#F5F5F5] space-y-2 text-sm group hover:bg-[#C1C1C1]">
       <div className="relative">
         <img src={dog.image} alt={dog.name} className="w-full h-64 object-cover rounded-b-md overflow-hidden" />
       

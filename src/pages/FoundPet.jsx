@@ -1,6 +1,7 @@
 import { useLocation } from 'react-router-dom';
 import React from 'react'
 import foundpetimg from '../../images/images/lostdog.png'
+import Comments from '../components/Comments';
 const FoundPet = () => {
   
   const dog = {
@@ -119,6 +120,9 @@ const FoundPet = () => {
         </div>
 
       </div>
+
+
+      <Comments/>
     </div>
   )
 }
