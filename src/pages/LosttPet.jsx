@@ -1,10 +1,9 @@
-import React, { useState } from 'react'
-import lostdogimg from '../../images/images/lostdog2.jpg'
-import lostdogimg2 from '../../images/images/lostdog.png'
-import Comments from 'src/components/Comments';
-import { useParams } from 'react-router-dom';
-import { useEffect } from 'react';
-import { supabase } from 'src/supabaseClient';
+import React, { useState, useEffect } from 'react'
+import lostdogimg from '@images/images/lostdog2.jpg'
+import lostdogimg2 from '@images/images/lostdog.png'
+import Comments from '@components/Comments'
+import { useParams } from 'react-router-dom'
+import { supabase } from './../supabaseClient';
 
 const LosttPet = () => {
   const { petId } = useParams();

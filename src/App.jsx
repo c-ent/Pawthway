@@ -1,13 +1,11 @@
 import { Route, Routes } from 'react-router-dom';
-import Home from 'src/pages/Home';
-import NoPage from 'src/pages/NoPage';
-import Layout from 'src/pages/Layout';
-import LostPet from 'src/pages/LosttPet';
-import AllLostPets from 'src/pages/AllLostPets';
-import AllFoundPets from 'src/pages/AllFoundPets';
-import FoundPet from 'src/pages/FoundPet';
-
-
+import Home from '@pages/Home';
+import NoPage from '@pages/NoPage';
+import Layout from '@pages/Layout';
+import LostPet from '@pages/LosttPet';
+import AllLostPets from '@pages/AllLostPets';
+import AllFoundPets from '@pages/AllFoundPets';
+import FoundPet from '@pages/FoundPet';
 
 function App() {
  
