@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import { supabase } from '../supabaseClient';
 
 const style = {
   position: 'absolute',
@@ -20,6 +21,41 @@ const LostPetForm = () => {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+
+
+    async function handleSubmit(e) {
+      e.preventDefault();
+      const { 
+        imageURL, reward, name, animalType, color, size, age, 
+        lastSeenLocation, placeLost, dateLost, contact, description 
+      } = e.target.elements;
+    
+      const { data, error } = await supabase
+        .from('missingPets')
+        .insert([
+          { 
+            imageURL: imageURL ? imageURL.value : null,
+            reward: reward ? reward.value : null,
+            name: name ? name.value : null, 
+            animalType: animalType ? animalType.value : null,
+            color: color ? color.value : null, 
+            size: size ? size.value : null,
+            age: age ? age.value : null,
+            lastSeenLocation: lastSeenLocation ? lastSeenLocation.value : null,
+            placeLost: placeLost ? placeLost.value : null,
+            dateLost: dateLost ? dateLost.value : null,
+            contact: contact ? contact.value : null,
+            description: description ? description.value : null,
+
+          },
+        ]);
+      if (error) {
+        console.error('Error inserting data:', error);
+      } else {
+        handleClose();
+      }
+    }
+
 
 
     const [uploadedImages, setUploadedImages] = React.useState([]);
@@ -50,67 +86,105 @@ const LostPetForm = () => {
         </button>
 
         <Modal
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
+  open={open}
+  onClose={handleClose}
+  aria-labelledby="modal-modal-title"
+  aria-describedby="modal-modal-description"
+>
+  <Box sx={style}>
+    <div className="bg-white p-4 rounded-md">
+      <div className='flex-1'>
+        {uploadedImages.map((image, index) => (
+          <img 
+            key={index} 
+            src={image} 
+            alt={`Uploaded ${index + 1}`} 
+            className='w-24' 
+            onClick={() => setMainImage(image)} 
+          />
+        ))}
+        <input 
+          type="file" 
+          accept="image/*" 
+          multiple 
+          onChange={(e) => handleImageUpload(e)}
+          className="w-full p-2 border rounded-md"
+        />
+      </div>
+      <h2 id="modal-modal-title" className="text-xl font-bold mb-2">
+        Lost Pet Form
+      </h2>
+      <form className="space-y-4" onSubmit={handleSubmit}>
+        <input
+          name="name"
+          placeholder="Pet's Name"
+          className="w-full p-2 border rounded-md"
+        />
+         <input
+          name="reward"
+          placeholder="Pet's Reward"
+          className="w-full p-2 border rounded-md"
+        />
+        <input
+          name="breed"
+          placeholder="Breed"
+          className="w-full p-2 border rounded-md"
+        />
+        <input
+          name="color"
+          placeholder="Color"
+          className="w-full p-2 border rounded-md"
+        />
+        <input
+          name="lastSeenLocation"
+          placeholder="Last Seen Location"
+          className="w-full p-2 border rounded-md"
+        />
+        <input
+          name="animalType"
+          placeholder="Animal Type"
+          className="w-full p-2 border rounded-md"
+        />
+        <input
+          name="size"
+          placeholder="Size"
+          className="w-full p-2 border rounded-md"
+        />
+        <input
+          name="age"
+          placeholder="Age"
+          className="w-full p-2 border rounded-md"
+        />
+        <input
+          name="placeLost"
+          placeholder="Place Lost"
+          className="w-full p-2 border rounded-md"
+        />
+        <input
+          name="dateLost"
+          placeholder="Date Lost"
+          className="w-full p-2 border rounded-md"
+        />
+        <input
+          name="contact"
+          placeholder="Contact"
+          className="w-full p-2 border rounded-md"
+        />
+        <textarea
+          name="description"
+          placeholder="Description"
+          className="w-full p-2 border rounded-md"
+        />
+        <button
+          type="submit"
+          className="w-full py-2 px-4 bg-blue-500 text-white rounded-md"
         >
-          <Box sx={style}>
-          <div className="bg-white p-4 rounded-md">
-
-          <div className='flex-1'>
-  {uploadedImages.map((image, index) => (
-    <img 
-      key={index} 
-      src={image} 
-      alt={`Uploaded ${index + 1}`} 
-      className='w-24' 
-      onClick={() => setMainImage(image)} 
-    />
-  ))}
-  <input 
-    type="file" 
-    accept="image/*" 
-    multiple 
-    onChange={(e) => handleImageUpload(e)}
-    className="w-full p-2 border rounded-md"
-  />
-</div>
-            
-    <h2 id="modal-modal-title" className="text-xl font-bold mb-2">
-      Lost Pet Form
-    </h2>
-    <form className="space-y-4">
-      <input
-        name="name"
-        placeholder="Pet's Name"
-        className="w-full p-2 border rounded-md"
-      />
-      <input
-        name="breed"
-        placeholder="Breed"
-        className="w-full p-2 border rounded-md"
-      />
-      <input
-        name="color"
-        placeholder="Color"
-        className="w-full p-2 border rounded-md"
-      />
-      <input
-        name="lastSeen"
-        placeholder="Last Seen Location"
-        className="w-full p-2 border rounded-md"
-      />
-      <button
-        type="submit"
-        className="w-full py-2 px-4 bg-blue-500 text-white rounded-md"
-      >
-        Submit
-      </button>
-    </form>
-  </div>
-          </Box>
-        </Modal>
+          Submit
+        </button>
+      </form>
+    </div>
+  </Box>
+</Modal>
       </div>
     );
 }
