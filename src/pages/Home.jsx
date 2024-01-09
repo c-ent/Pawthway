@@ -11,12 +11,12 @@ const Home = () => {
   return (
     <div> 
 
-    <section className='h-full flex flex-col items-center space-y-5'>
+    <section className='h-full flex flex-col items-center space-y-7'>
         <div className='pt-16'>
           <img src={logo} alt="logo" className="w-20 h-20 md:w-28 md:h-28"/>
         </div>
         <div>
-          <h1 className="text-2xl md:text-5xl font-bold  text-center">
+          <h1 className="text-3xl md:text-5xl font-bold  text-center">
             Helping Lost Pets <br></br> Finds Their Way Home
           </h1>
         </div>
@@ -28,7 +28,7 @@ const Home = () => {
             <Link to="/foundpets">List of Lost Pets</Link>
           </button>
         </div>
-        <div  className='flex'>
+        <div className='flex '>
           <img src={pet1} alt="logo"  className="h-20 sm:h-40"/>
           <img src={pet2} alt="logo"  className="h-20 sm:h-40"/>
           <img src={pet3} alt="logo"  className="h-20 sm:h-40"/>

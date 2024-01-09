@@ -9,8 +9,16 @@ import FoundPet from '@pages/FoundPet';
 import SignUp from './components/SignUp';
 import Login from './components/Login';
 import SignOut from './components/SignOut';
+import { supabase } from './supabaseClient';
+import { useState } from 'react';
 
 function App() {
+  const [session, setSession] = useState(null);
+
+  async function getSession() {
+    const {data: { session },} = await supabase.auth.getSession()
+    setSession(session);
+  }
   return (
     <div className="mx-auto max-w-screen-xl p-5">
     <Routes>

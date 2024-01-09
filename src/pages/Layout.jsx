@@ -17,7 +17,6 @@ const Layout = () => {
     window.location.reload();
   }
 
-
   return (
     <>
     <header className="flex items-center justify-between ">
