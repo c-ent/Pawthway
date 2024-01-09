@@ -1,8 +1,8 @@
 import React from 'react'
-import FoundPetCard from '../components/FoundPetCard'
+import FoundPetCard from 'src/components/FoundPetCard'
 import foundpetimg from '../../images/images/lostdog.png'
 import { Link } from 'react-router-dom';
-import FoundPetForm from '../components/FoundPetForm';
+import FoundPetForm from 'src/components/FoundPetForm';
 const AllFoundPets = () => {
   const dog = {
     id:1,

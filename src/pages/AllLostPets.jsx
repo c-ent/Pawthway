@@ -1,9 +1,8 @@
 import React, { Suspense, useState, useEffect } from 'react'
-import LostPetcard from '../components/LostPetCard'
-import lostdogimg from '../../images/images/lostdog2.jpg'
+import LostPetcard from 'src/components/LostPetCard'
 import { Link } from 'react-router-dom';
-import LostPetForm from '../components/LostPetForm';
-import { supabase } from '../supabaseClient'
+import LostPetForm from 'src/components/LostPetForm';
+import { supabase } from 'src/supabaseClient'
 
 const AllLostPets = () => {
   const [missingPets, setmissingPets] = useState([]) // state to hold the dogs data
