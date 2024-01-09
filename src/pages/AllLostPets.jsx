@@ -11,6 +11,7 @@ const AllLostPets = () => {
   const [sortOption, setSortOption] = useState('id');
   const [sortDirection, setSortDirection] = useState(true); // Initialize as boolean true
   const [sortField, setSortField] = useState('id');
+  
   useEffect(() => {
     getmissingPets().then(() => setIsLoading(false));
     getSession()
@@ -36,7 +37,15 @@ const AllLostPets = () => {
   }
 
   const handleSortChange = (e) => {
-    setSortOption(e.target.value);
+    if (e.target.value === 'highest') {
+      setSortOption('reward');
+      setSortDirection(false); // false for descending order
+    } else if (e.target.value === 'lowest') {
+      setSortOption('reward');
+      setSortDirection(true); // true for ascending order
+    } else {
+      setSortOption(e.target.value);
+    }
   }
 
   const handleSortDirectionChange = (e) => {
@@ -48,8 +57,6 @@ const AllLostPets = () => {
     setSortDirection(false);
   }
 
-  
-  
   return (
     <div >
         {isLoading && 
@@ -63,11 +70,13 @@ const AllLostPets = () => {
         </div>
         
         <div className='flex flex-col justify-end'>
-          <select value={sortOption} onChange={handleSortChange}>
-            <option value="id">Sort by ID</option>
-            <option value="name">Sort by Name</option>
-            {/* Add more options as needed */}
-          </select>
+        <select value={sortOption} onChange={handleSortChange}>
+          <option value="id">Sort by ID</option>
+          <option value="name">Sort by Name</option>
+          <option value="highest">Highest Reward</option>
+          <option value="lowest">Lowest Reward</option>
+          {/* Add more options as needed */}
+        </select>
 
           <select value={sortDirection} onChange={handleSortDirectionChange}>
             <option value="false">Descending</option>

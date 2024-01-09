@@ -1,52 +1,35 @@
 import React, { useState, useEffect } from 'react'
-import lostdogimg from '@images/images/lostdog2.jpg'
-import lostdogimg2 from '@images/images/lostdog.png'
 import Comments from '@components/Comments'
 import { useParams } from 'react-router-dom'
 import { supabase } from './../supabaseClient';
 
 const LosttPet = () => {
   const { petId } = useParams();
-  const [pet, setPet] = useState([]) // state to hold the dogs data
-  const [mainImage, setMainImage] = useState(lostdogimg);
-  const additionalImages = [lostdogimg, lostdogimg2]; // replace these with actual image URLs
+  const [pet, setPet] = useState([])
   
   useEffect(() => {
     getPet();
   }, [petId]); // add id as a dependency
   
+
   async function getPet() {
-    // remove the useParams line from here
     let { data: missingPet, error } = await supabase
     .from('missingPets') // select the 'missingPets' table
     .select('*') // select all columns
     .eq('id', petId) // where the 'id' column equals the provided id
+
+
     if (error) {
       console.error('Error fetching pet: ', error);
     } else {
       setPet(missingPet[0])
     }
   }
-
-  console.log(pet)
-
   return (
     <div className='pt-10'>
        <div className='flex'>
-
        <div className='flex-1'>
         <img src={pet.imageURL} alt={pet.name} className='w-full h-96 object-cover'  onClick={() => setMainImage(pet.image)} />
-        {/* <div className='flex space-x-2 mt-2'>
-          {additionalImages.map((image, index) => (
-            <img 
-              key={index} 
-              src={image} 
-              alt={`Additional ${index + 1}`} 
-              className='w-24' 
-              onClick={() => setMainImage(image)} 
-            />
-          ))}
-        </div> */}
       </div>
 
         <div className='flex-1 p-7'>

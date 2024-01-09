@@ -4,6 +4,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { supabase } from '../supabaseClient';
+import { useState } from 'react';
 
 const style = {
   position: 'absolute',
@@ -21,20 +22,50 @@ const LostPetForm = () => {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+    const [imageURL, setImageURL] = useState(null);
+    const [selectedFile, setSelectedFile] = useState(null);
 
+    const handleFileChange = (e) => {
+      setSelectedFile(e.target.files[0]);
+    };
+    
+    
 
     async function handleSubmit(e) {
       e.preventDefault();
       const { 
-        imageURL, reward, name, animalType, color, size, age, 
+        reward, name, animalType, color, size, age, 
         lastSeenLocation, placeLost, dateLost, contact, description 
       } = e.target.elements;
     
-      const { data, error } = await supabase
+      let fileURL = null;
+    
+      // Handle file upload
+      if (selectedFile) {
+        const filePath = `missingPets/${selectedFile.name}`;
+        const { data: uploadData, error: uploadError } = await supabase
+          .storage
+          .from('petImages')
+          .upload(filePath, selectedFile, {
+            cacheControl: '3600',
+            upsert: false
+          });
+    
+        if (uploadError) {
+          console.error('Error uploading image: ', uploadError);
+          return;
+        } else {
+          console.log('Image uploaded successfully: ', uploadData);
+          fileURL = uploadData.path;
+        }
+      }
+    
+      // Insert data into database
+      const { data: insertData, error: insertError } = await supabase
         .from('missingPets')
         .insert([
           { 
-            imageURL: imageURL ? imageURL.value : null,
+            imageURL: fileURL ? `https://porojjoxqjqbgxlkxzmy.supabase.co/storage/v1/object/public/petImages/${fileURL}` : null,
             reward: reward ? reward.value : null,
             name: name ? name.value : null, 
             animalType: animalType ? animalType.value : null,
@@ -46,29 +77,17 @@ const LostPetForm = () => {
             dateLost: dateLost ? dateLost.value : null,
             contact: contact ? contact.value : null,
             description: description ? description.value : null,
-
           },
         ]);
-      if (error) {
-        console.error('Error inserting data:', error);
+      if (insertError) {
+        console.error('Error inserting data:', insertError);
       } else {
         handleClose();
       }
     }
 
+    
 
-
-    const [uploadedImages, setUploadedImages] = React.useState([]);
-    const handleImageUpload = (e) => {
-        if (uploadedImages.length >= 4) {
-          alert('You can only upload 4 images.');
-          return;
-        }
-      
-        const files = Array.from(e.target.files).slice(0, 4 - uploadedImages.length);
-        const images = files.map(file => URL.createObjectURL(file));
-        setUploadedImages(oldImages => [...oldImages, ...images]);
-      };
     
   
     return (
@@ -94,22 +113,20 @@ const LostPetForm = () => {
   <Box sx={style}>
     <div className="bg-white p-4 rounded-md">
       <div className='flex-1'>
-        {uploadedImages.map((image, index) => (
-          <img 
-            key={index} 
-            src={image} 
-            alt={`Uploaded ${index + 1}`} 
-            className='w-24' 
-            onClick={() => setMainImage(image)} 
-          />
-        ))}
-        <input 
-          type="file" 
-          accept="image/*" 
-          multiple 
-          onChange={(e) => handleImageUpload(e)}
-          className="w-full p-2 border rounded-md"
-        />
+      {/* <img 
+
+        src={preview} 
+        alt="preview" 
+        className='w-24' 
+      /> */}
+    
+    <input 
+        type="file" 
+        accept="image/*" 
+        multiple 
+        onChange={handleFileChange}
+        className="w-full p-2 border rounded-md"
+      />
       </div>
       <h2 id="modal-modal-title" className="text-xl font-bold mb-2">
         Lost Pet Form
