@@ -59,50 +59,60 @@ const AllLostPets = () => {
 
   return (
     <div >
-
       <div className='flex items-center justify-between pt-10'>
         <div>
           <h1 className="text-2xl md:text-5xl font-bold pb-5">Missing Pets</h1>
         </div>
         
         <div className='flex flex-col justify-end'>
-        <select value={sortOption} onChange={handleSortChange}>
-          <option value="id">Sort by ID</option>
-          <option value="name">Sort by Name</option>
-          <option value="highest">Highest Reward</option>
-          <option value="lowest">Lowest Reward</option>
-          {/* Add more options as needed */}
-        </select>
-
-          <select value={sortDirection} onChange={handleSortDirectionChange}>
-            <option value="false">Descending</option>
-            <option value="true">Ascending</option>
-          </select>
-
-          <button onClick={handleNewestClick}>Show Newest</button>
           <LostPetForm />
         </div>
       </div>
 
+      <div className='flex gap-5 pb-4'>
+        <button 
+          onClick={handleNewestClick} 
+          className='px-4 py-2 bg-gray-200 text-gray-700 rounded'
+        >
+          Show Newest
+        </button>
 
-      {isLoading && 
-            <div className='pt-40 flex justify-center items-center '>
-              <img src={loadingimg} className='animate-ping' alt='loading' />
-            </div>
-        }
+        <select 
+        value={sortOption} 
+        onChange={handleSortChange} 
+        className='px-2 py-2 bg-gray-200 text-gray-700 rounded'
+      >
+        <option value="id">Sort by ID</option>
+        <option value="name">Sort by Name</option>
+        <option value="highest">Highest Reward</option>
+        <option value="lowest">Lowest Reward</option>
+        {/* Add more options as needed */}
+      </select>
 
-    
-      
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-         
-          {missingPets.map((pet) => (
-            <Link key={pet.id} to={`/lostpets/${pet.id}`}>
-              <LostPetcard pet={pet} />
-            </Link>
-          ))}
- 
-      </div>
+      <select 
+        value={sortDirection} 
+        onChange={handleSortDirectionChange} 
+        className='px-2 py-2 bg-gray-200 text-gray-700 rounded'
+      >
+        <option value="false">Descending</option>
+        <option value="true">Ascending</option>
+      </select>
     </div>
+
+    {isLoading && 
+      <div className='flex justify-center items-center mt-20'>
+        <img src={loadingimg} className='animate-ping' alt='loading' />
+      </div>
+    }
+
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      {missingPets.map((pet) => (
+        <Link key={pet.id} to={`/lostpets/${pet.id}`}>
+          <LostPetcard pet={pet} />
+        </Link>
+      ))}
+    </div>
+  </div>
   )
 }
 
