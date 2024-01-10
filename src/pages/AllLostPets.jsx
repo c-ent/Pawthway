@@ -59,11 +59,7 @@ const AllLostPets = () => {
 
   return (
     <div >
-        {isLoading && 
-            <div className='h-screen flex justify-center items-center animate-ping'>
-              <img src={loadingimg} alt='loading' />
-            </div>
-        }
+
       <div className='flex items-center justify-between pt-10'>
         <div>
           <h1 className="text-2xl md:text-5xl font-bold pb-5">Missing Pets</h1>
@@ -87,6 +83,13 @@ const AllLostPets = () => {
           <LostPetForm />
         </div>
       </div>
+
+
+      {isLoading && 
+            <div className='pt-40 flex justify-center items-center '>
+              <img src={loadingimg} className='animate-ping' alt='loading' />
+            </div>
+        }
 
     
       
