@@ -12,6 +12,7 @@ const AllLostPets = () => {
   const [sortDirection, setSortDirection] = useState(true); // Initialize as boolean true
   const [sortField, setSortField] = useState('id');
   
+  
   useEffect(() => {
     getmissingPets().then(() => setIsLoading(false));
     getSession()

@@ -1,15 +1,28 @@
 import React, { useState, useEffect } from 'react'
 import Comments from '@components/Comments'
 import { useParams } from 'react-router-dom'
-import { supabase } from './../supabaseClient';
+import { supabase } from '../supabaseClient';
+import DeleteButton from '../components/DeleteButton';
 
 const LosttPet = () => {
   const { petId } = useParams();
   const [pet, setPet] = useState([])
-  
+  const [session, setSession] = useState(null);
+
+
+    
   useEffect(() => {
+    getSession();
     getPet();
   }, [petId]); // add id as a dependency
+
+
+  console.log(pet)
+  async function getSession() {
+    const {data: { session },} = await supabase.auth.getSession()
+    setSession(session);
+  }
+
   
 
   async function getPet() {
@@ -25,9 +38,18 @@ const LosttPet = () => {
       setPet(missingPet[0])
     }
   }
+
+
+
+  
+
+ 
+  console.log(pet.user_id)
+  console.log(session)
   return (
     <div className='pt-10'>
        <div className='flex'>
+        <DeleteButton pet_user_id={pet.user_id} session={session}/>
        <div className='flex-1'>
         <img src={pet.imageURL} alt={pet.name} className='w-full h-96 object-cover'  onClick={() => setMainImage(pet.image)} />
       </div>

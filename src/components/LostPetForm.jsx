@@ -25,12 +25,23 @@ const LostPetForm = () => {
     const [selectedFile, setSelectedFile] = useState(null);
     const [preview, setPreview] = useState(null);
 
+    const [session, setSession] = useState(null);
+
+    async function getSession() {
+    const {data: { session },} = await supabase.auth.getSession()
+    setSession(session);
+    }
+
+
+    
+
     const handleFileChange = (e) => {
       setSelectedFile(e.target.files[0]);
     };
 
     //use reader to convert the base64 string to an image url and else set preview to null
     useEffect(() => {
+      getSession()
       if (selectedFile) {
         const reader = new FileReader();
         reader.onloadend = () => {
@@ -73,10 +84,12 @@ const LostPetForm = () => {
     
       // Insert data into database
       const BUCKET_BASE_URL = "https://porojjoxqjqbgxlkxzmy.supabase.co/storage/v1/object/public/petImages/";
+      const user_id = session.user.id;
       const { data, error } = await supabase
         .from('missingPets')
         .insert([
           { 
+            user_id:user_id ? user_id : null,
             imageURL: fileURL ? `${BUCKET_BASE_URL}${fileURL}` : null,
             reward: reward ? reward.value : null,
             name: name ? name.value : null, 
