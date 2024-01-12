@@ -1,12 +1,13 @@
 import React from 'react'
 import { supabase } from '../supabaseClient';
-
+import { useNavigate } from 'react-router-dom';
 const DeleteButton = ({pet_user_id, pet_Id, session}) => {
   let user_id;
   if (session && session.user) {
     user_id = session.user.id;
   }
 
+  const navigate = useNavigate();
   console.log("pet_user_id: ", pet_user_id);
   console.log("user_id: ", user_id);
 
@@ -17,6 +18,7 @@ const DeleteButton = ({pet_user_id, pet_Id, session}) => {
       .eq('id', pet_Id)
 
     if (error) console.log("Error deleting pet: ", error);
+    navigate('/lostpets');
   }
 
   if (pet_user_id === user_id) {

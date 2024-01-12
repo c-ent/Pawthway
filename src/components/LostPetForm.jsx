@@ -114,7 +114,8 @@ const LostPetForm = () => {
           console.error('Error inserting data:', error);
       } else {
         setIsLoading(false);
-          handleClose();
+        handleClose();
+        window.location.reload();
       }
   
     }
