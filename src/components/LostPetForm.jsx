@@ -19,93 +19,104 @@ const style = {
 };
 
 const LostPetForm = () => {
-    const [open, setOpen] = useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
-    const [selectedFile, setSelectedFile] = useState(null);
-    const [preview, setPreview] = useState(null);
+  const [open, setOpen] = useState(false);
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [preview, setPreview] = useState(null);
+  const [session, setSession] = useState(null);
 
-    const [session, setSession] = useState(null);
-
-    async function getSession() {
-    const {data: { session },} = await supabase.auth.getSession()
-    setSession(session);
-    }
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const [isLoading, setIsLoading] = useState(false);
 
 
-    
+  const handleFileChange = (e) => setSelectedFile(e.target.files[0]);
 
-    const handleFileChange = (e) => {
-      setSelectedFile(e.target.files[0]);
-    };
+  const getSession = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      setSession(session);
+  }
 
-    //use reader to convert the base64 string to an image url and else set preview to null
-    useEffect(() => {
-      getSession()
+  const handleFilePreview = () => {
       if (selectedFile) {
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          setPreview(reader.result);
-        };
-        reader.readAsDataURL(selectedFile);
+          const reader = new FileReader();
+          reader.onloadend = () => setPreview(reader.result);
+          reader.readAsDataURL(selectedFile);
       } else {
-        setPreview(null);
+          setPreview(null);
       }
-    }, [selectedFile]);
-    
-    
+  }
 
-    async function handleSubmit(e) {
-      // Prevent default behavior of form submit
-      e.preventDefault();
+  useEffect(() => {
+      getSession();
+      handleFilePreview();
+  }, [selectedFile]);
 
-      // Get form data with the input name except the image
-      const { 
-        reward, name, animalType, color, size, age, 
-        lastSeenLocation, placeLost, dateLost, contact, description 
-      } = e.target.elements;
-    
-      let fileURL = null;
-
-      if (selectedFile) {
-        const filePath = `missingPets/${selectedFile.name}`;
-        // (storage, from(bucket name), upload(filePath, file, options)
+  const uploadFile = async () => {
+    let fileURL = null;
+    if (selectedFile) {
+        const uniqueName = `${Date.now()}.${selectedFile.name.split('.').pop()}`; // Generate a unique name
+        const filePath = `missingPets/${uniqueName}`;
         const { data: uploadData, error: uploadError } = await supabase
-          .storage
-          .from('petImages')
-          .upload(filePath, selectedFile, {
-            cacheControl: '3600',
-            upsert: false
-          });
-          
-        // Handle Error and set fileURL to the path of the uploaded file
-        uploadError ? console.error('Error uploading image: ', uploadError) : fileURL = uploadData.path;
-      }
-    
-      // Insert data into database
+            .storage
+            .from('petImages')
+            .upload(filePath, selectedFile, {
+                cacheControl: '3600',
+                upsert: false
+            });
+
+        if (uploadError) {
+            console.error('Error uploading image: ', uploadError);
+        } else {
+            fileURL = uploadData.path;
+        }
+    }
+    return fileURL;
+}
+
+  const handleSubmit = async (e) => {
+      e.preventDefault();
+      setIsLoading(true);
+      const { 
+          reward, name, animalType, color, size, age, 
+          lastSeenLocation, placeLost, dateLost, contact, description 
+      } = e.target.elements;
+
+      console.log("submitting start")
+      
+      console.log("now uploading image")
+      const fileURL = await uploadFile();
+      
+
       const BUCKET_BASE_URL = "https://porojjoxqjqbgxlkxzmy.supabase.co/storage/v1/object/public/petImages/";
       const user_id = session.user.id;
+      console.log("now uploading data")
       const { data, error } = await supabase
-        .from('missingPets')
-        .insert([
-          { 
-            user_id:user_id ? user_id : null,
-            imageURL: fileURL ? `${BUCKET_BASE_URL}${fileURL}` : null,
-            reward: reward ? reward.value : null,
-            name: name ? name.value : null, 
-            animalType: animalType ? animalType.value : null,
-            color: color ? color.value : null, 
-            size: size ? size.value : null,
-            age: age ? age.value : null,
-            lastSeenLocation: lastSeenLocation ? lastSeenLocation.value : null,
-            placeLost: placeLost ? placeLost.value : null,
-            dateLost: dateLost ? dateLost.value : null,
-            contact: contact ? contact.value : null,
-            description: description ? description.value : null,
-          },
-        ])
-        .select();
-        error ? console.error('Error inserting data:', error) :handleClose();
+          .from('missingPets')
+          .insert([
+              { 
+                  user_id: user_id ? user_id : null,
+                  imageURL: fileURL ? `${BUCKET_BASE_URL}${fileURL}` : null,
+                  reward: reward ? reward.value : null,
+                  name: name ? name.value : null, 
+                  animalType: animalType ? animalType.value : null,
+                  color: color ? color.value : null, 
+                  size: size ? size.value : null,
+                  age: age ? age.value : null,
+                  lastSeenLocation: lastSeenLocation ? lastSeenLocation.value : null,
+                  placeLost: placeLost ? placeLost.value : null,
+                  dateLost: dateLost ? dateLost.value : null,
+                  contact: contact ? contact.value : null,
+                  description: description ? description.value : null,
+              },
+          ])
+          .select();
+      if (error) {
+          console.error('Error inserting data:', error);
+      } else {
+        setIsLoading(false);
+          handleClose();
+      }
+  
     }
     return (
       <div>
@@ -128,6 +139,8 @@ const LostPetForm = () => {
           <Box sx={style}>
             <div className="flex bg-white p-4 rounded-md gap-20">
 
+
+                
               <div className='flex-1 flex items-center'>
                 <label className='w-full inline-block text-center cursor-pointer'>
                   {!preview && (
@@ -227,7 +240,7 @@ const LostPetForm = () => {
                     type="submit"
                     className="w-full py-2 px-4 bg-blue-500 text-white rounded-md"
                   >
-                    Post
+                    {isLoading ? 'Posting...' : 'Post'}
                   </button>
                 </form>
               </div>
