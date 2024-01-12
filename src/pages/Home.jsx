@@ -10,7 +10,6 @@ import { Link } from 'react-router-dom'
 const Home = () => {
   return (
     <div> 
-
     <section className='h-full flex flex-col items-center space-y-7'>
         <div className='pt-16'>
           <img src={logo} alt="logo" className="w-20 h-20 md:w-28 md:h-28"/>
