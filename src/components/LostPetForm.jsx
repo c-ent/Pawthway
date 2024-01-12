@@ -5,6 +5,7 @@ import uploadimgicon from '../../images/icons/uploadimgicon.svg'
 import { supabase } from '../supabaseClient';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const style = {
   position: 'absolute',
@@ -28,7 +29,7 @@ const LostPetForm = () => {
   const handleClose = () => setOpen(false);
   const [isLoading, setIsLoading] = useState(false);
 
-
+  const navigate = useNavigate();
   const handleFileChange = (e) => setSelectedFile(e.target.files[0]);
 
   const getSession = async () => {
@@ -115,7 +116,7 @@ const LostPetForm = () => {
       } else {
         setIsLoading(false);
         handleClose();
-        window.location.reload();
+        navigate('/lostpets');
       }
   
     }
