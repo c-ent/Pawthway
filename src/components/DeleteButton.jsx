@@ -1,7 +1,7 @@
 import React from 'react'
 import { supabase } from '../supabaseClient';
 
-const DeleteButton = ({pet_user_id, session}) => {
+const DeleteButton = ({pet_user_id, pet_Id, session}) => {
   let user_id;
   if (session && session.user) {
     user_id = session.user.id;
@@ -14,7 +14,7 @@ const DeleteButton = ({pet_user_id, session}) => {
     const { error } = await supabase
       .from('missingPets')
       .delete()
-      .eq('user_id', pet_user_id)
+      .eq('id', pet_Id)
 
     if (error) console.log("Error deleting pet: ", error);
   }

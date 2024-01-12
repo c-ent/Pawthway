@@ -44,12 +44,11 @@ const LosttPet = () => {
   
 
  
-  console.log(pet.user_id)
   console.log(session)
   return (
     <div className='pt-10'>
        <div className='flex'>
-        <DeleteButton pet_user_id={pet.user_id} session={session}/>
+        <DeleteButton pet_user_id={pet} pet_Id={pet.id} session={session}/>
        <div className='flex-1'>
         <img src={pet.imageURL} alt={pet.name} className='w-full h-96 object-cover'  onClick={() => setMainImage(pet.image)} />
       </div>
