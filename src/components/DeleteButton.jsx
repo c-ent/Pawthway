@@ -7,6 +7,8 @@ const DeleteButton = ({pet_user_id, session}) => {
     user_id = session.user.id;
   }
 
+  console.log("pet_user_id: ", pet_user_id);
+  console.log("user_id: ", user_id);
 
   const deletePet = async () => {
     const { error } = await supabase
