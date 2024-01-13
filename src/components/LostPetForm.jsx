@@ -74,7 +74,7 @@ const LostPetForm = () => {
     const BUCKET_BASE_URL = "https://porojjoxqjqbgxlkxzmy.supabase.co/storage/v1/object/public/petImages/";
     const user_id = session.user.id;
     console.log("now uploading data")
-    await supabase
+    const { data, error } = await supabase
           .from('missingPets')
           .insert([
               { 
