@@ -1,25 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { supabase } from '../supabaseClient'
 import logo from '../../images/icons/logo-blck.svg';
 import { useNavigate } from 'react-router-dom';
+import { SessionContext } from './SessionContext';
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [session, setSession] = useState(null);
+   const session = useContext(SessionContext);
 
     const navigate = useNavigate();
-    
-    async function getSession() {
-        const {data: { session },} = await supabase.auth.getSession()
-        setSession(session);
-    }
 
-    useEffect(() => {
-        getSession().then(() => {
-            if (session) navigate('/');
-        });
-    }, []);
+    if (session) navigate('/');
     
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -27,12 +19,9 @@ const Login = () => {
       email,
       password,
     });
-
     if (error) console.error(error);
     else {
-      console.log(data);
       navigate('/'); // navigate to dashboard
-      window.location.reload();
     }
   };
 

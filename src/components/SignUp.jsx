@@ -2,18 +2,32 @@ import React from 'react'
 import { supabase } from '../supabaseClient'
 import { useState } from 'react'
 import logo from '../../images/icons/logo-blck.svg'
+import { useNavigate } from 'react-router-dom';
 const SignUp = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-  
+    const navigate = useNavigate();
+
+    const handleLogin = async () => {
+        const { data, error } = await supabase.auth.signInWithPassword({
+          email,
+          password,
+        });
+        if (error) console.error(error);
+        else {
+          console.log(data);
+          navigate('/'); // navigate to dashboard
+        }
+      };
+
     const handleSignUp = async (e) => {
-      e.preventDefault()
-      const { user, error } = await supabase.auth.signUp({
-        email,
-        password,
-      })
-      if (error) console.error(error)
-      else console.log(user)
+        e.preventDefault()
+        const { error } = await supabase.auth.signUp({
+            email,
+            password,
+        })
+        if (error) console.error(error)
+        else handleLogin()
     }
   
     return (

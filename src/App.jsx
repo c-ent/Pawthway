@@ -10,9 +10,12 @@ import SignUp from './components/SignUp';
 import Login from './components/Login';
 import SignOut from './components/SignOut';
 
+
 function App() {
+  
+
   return (
-    <div className="mx-auto max-w-screen-xl p-5">
+    <div className="mx-auto max-w-screen-xl p-4 md:p-5">
     <Routes>
       <Route path="/" element={<Layout  />}>
           <Route index element={<Home />} />

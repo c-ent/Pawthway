@@ -1,27 +1,20 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import Comments from '@components/Comments'
 import { useParams } from 'react-router-dom'
 import { supabase } from '../supabaseClient';
 import DeleteButton from '../components/DeleteButton';
+import { SessionContext } from '../components/SessionContext';
 
 const LosttPet = () => {
   const { petId } = useParams();
   const [pet, setPet] = useState([])
-  const [session, setSession] = useState(null);
+  const session = useContext(SessionContext);
 
 
     
   useEffect(() => {
-    getSession();
     getPet();
   }, [petId]); // add id as a dependency
-
-
-  console.log(pet)
-  async function getSession() {
-    const {data: { session },} = await supabase.auth.getSession()
-    setSession(session);
-  }
 
   
 
@@ -39,20 +32,15 @@ const LosttPet = () => {
     }
   }
 
-
-
-  
-
-
   return (
     <div className='pt-10'>
-       <div className='flex'>
-        <DeleteButton pet_user_id={pet.user_id}  pet_Id={pet.id}  session={session}/>
-       <div className='flex-1'>
-        <img src={pet.imageURL} alt={pet.name} className='w-full h-96 object-cover'  onClick={() => setMainImage(pet.image)} />
-      </div>
+       <DeleteButton pet_user_id={pet.user_id}  pet_Id={pet.id}  session={session}/>
+       <div className='flex flex-col md:flex-row'>
+          <div className='flex-1 py-5'>
+            <img src={pet.imageURL} alt={pet.name} className='w-full h-96 object-cover'  onClick={() => setMainImage(pet.image)} />
+          </div>
 
-        <div className='flex-1 p-7'>
+        <div className='flex-1 p-0 md:p-7'>
           <div className='flex justify-between pb-7'>
             <div>
               <h1 className='font-bold text-4xl'>{pet.name}</h1>

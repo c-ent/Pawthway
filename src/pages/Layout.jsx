@@ -1,16 +1,16 @@
 import { Outlet, Link } from "react-router-dom";
 import { supabase } from '../supabaseClient';
-import { useEffect, useState } from "react";
+import { Auth } from '@supabase/auth-ui-react'
+import { ThemeSupa } from '@supabase/auth-ui-shared'
+import { useContext, useEffect, useState } from 'react';
+import { SessionContext } from "../components/SessionContext";
 
 const Layout = () => {
-  const [session, setSession] = useState(null);
+  const session = useContext(SessionContext);
 
-  async function getSession() {
-    const {data: { session },} = await supabase.auth.getSession()
-    setSession(session);
-  }
-
-  getSession()
+  // if (!session) {
+  //   return (<Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} />)
+  // }
 
   async function handleLogout() {
     const { error } = await supabase.auth.signOut()
