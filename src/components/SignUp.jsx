@@ -4,6 +4,7 @@ import { useState } from 'react'
 import logo from '../../images/icons/logo-blck.svg'
 import { useNavigate } from 'react-router-dom';
 const SignUp = () => {
+    const [firstName, setfirstName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const navigate = useNavigate();
@@ -20,15 +21,21 @@ const SignUp = () => {
         }
       };
 
-    const handleSignUp = async (e) => {
+      const handleSignUp = async (e) => {
         e.preventDefault()
-        const { error } = await supabase.auth.signUp({
+        const { data, error } = await supabase.auth.signUp({
             email,
             password,
-        })
+            options: {
+              data: {
+                first_name: firstName,
+              },
+            },
+          })
         if (error) console.error(error)
-        else handleLogin()
-    }
+        else console.log(data)
+        handleLogin()
+      }
   
     return (
         <div className=" flex flex-col items-center justify-center  py-10 px-4 sm:px-6 lg:px-8">
@@ -36,6 +43,10 @@ const SignUp = () => {
                 <img src={logo} alt="logo" className="w-20 h-20 md:w-28 md:h-28"/>
             </div>
             <form className="mt-8 space-y-6" onSubmit={handleSignUp}>
+            <div>
+                <label htmlFor="firstName" className="">Name</label>
+                <input id="firstName" name="firstName" type="firstName" value={firstName} onChange={(e) => setfirstName(e.target.value)} required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Display Name" />
+            </div>
             <div>
                 <label htmlFor="email-address" className="">Email</label>
                 <input id="email-address" name="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Email" />

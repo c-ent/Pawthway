@@ -19,7 +19,6 @@ const AllLostPets = () => {
   }, [sortOption, sortDirection]) // Add sortDirection as a dependency
 
 
-
   async function getmissingPets() {
     let { data: missingPets, error } = await supabase
       .from('missingPets')

@@ -9,6 +9,7 @@ import FoundPet from '@pages/FoundPet';
 import SignUp from './components/SignUp';
 import Login from './components/Login';
 import SignOut from './components/SignOut';
+import UserProfile from './pages/UserProfile';
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
           <Route path="lostpets/:petId"  element={<LostPet /> }  />
           <Route path="foundpets" element={<AllFoundPets />} />
           <Route path="foundpets/:petId"  element={<FoundPet /> }  />
+          <Route path="profile"  element={<UserProfile /> }  />
           <Route path="*" element={<NoPage />} />
         </Route>
     </Routes>

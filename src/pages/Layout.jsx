@@ -45,9 +45,17 @@ const Layout = () => {
         </>
       )}
       {session && (
+        <>
+          <li>
+            <Link to="/profile" className="text-md font-bold hover:text-purple-600">Profile</Link>
+          </li>
         <li>
           <button onClick={handleLogout} className="text-md font-bold hover:text-purple-600">Logout</button>
         </li>
+      
+        
+        </>
+        
       )}
         </ul>
       </nav>
