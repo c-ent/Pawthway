@@ -27,7 +27,8 @@ const Comments = ({petId}) => {
       text,
       user_id,
       users: user_id (first_name)
-    `);
+    `)
+    .eq('pet_id', petId);;
   
     if (error) {
       console.error('Error fetching comments: ', error);
