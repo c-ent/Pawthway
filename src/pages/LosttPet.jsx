@@ -46,7 +46,7 @@ const LosttPet = () => {
               <h1 className='font-bold text-4xl'>{pet.name}</h1>
             </div>
             <div className='flex justify-between space-x-3'>
-              <button className="flex  items-center bg-purple-700 text-white px-3  rounded-md ">
+              {/* <button className="flex  items-center bg-purple-700 text-white px-3  rounded-md ">
                 <svg xmlns="http://www.w3.org/2000/svg" width="33" height="33" viewBox="0 0 33 33" fill="none">
                 <path d="M4 17.4619C6.06627 11.7358 10.7515 7.18843 16.5992 8.9732C20.6796 10.2186 18.9678 12.5394 20.5535 14.0652C21.4481 14.7535 23.877 13.8296 24.5052 14.689C25.0606 15.449 24.6593 16.8354 24.5052 17.7456C23.8973 21.3343 19.7833 21.8626 16.2979 21.8626" stroke="white" strokeOpacity="0.9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 <path d="M24.7076 16.005C24.4203 15.4599 23.7648 14.9502 22.9751 14.52" stroke="white" strokeOpacity="0.9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -54,8 +54,8 @@ const LosttPet = () => {
                 <path d="M17.2002 13.8599V14.2724" stroke="white" strokeOpacity="0.9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
                 Found
-              </button>
-              <button className="bg-red-600 text-white px-3 font-bold py-1 rounded-md">Reward: {pet.reward}</button>
+              </button> */}
+              <button className="bg-red-600 text-white px-3 font-bold py-1 rounded-md">Reward: ₱ {pet.reward}</button>
             </div>
           </div>
 
