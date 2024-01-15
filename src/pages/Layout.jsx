@@ -33,7 +33,7 @@ const Layout = () => {
     <>
    <header className="flex items-center justify-between relative">
 
-            <Link to="/" className="text-md md:text-lg font-extrabold  hover:text-purple-600 pr-5">Pawthway</Link>
+    <Link to="/" className="text-md md:text-lg font-extrabold  hover:text-purple-600 md:pr-5">Pawthway</Link>
 
 
       <div className={`${isOpen ? 'translate-x-0' : '-translate-x-full'} absolute top-0 left-0 h-screen w-64 bg-white transition-transform duration-200 ease-in-out md:hidden z-50`}>
