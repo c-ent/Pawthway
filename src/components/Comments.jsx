@@ -10,10 +10,11 @@ const Comments = ({petId}) => {
   const navigate = useNavigate();
   // ...
 
+
   useEffect(() => {
     getComments(petId);
     getCurrentUser()
-  }, [petId,user]);
+  }, [petId,user,session]);
 
   async function getComments(petId) {
     if (petId === undefined) {
