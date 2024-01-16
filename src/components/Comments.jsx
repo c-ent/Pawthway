@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { SessionContext } from './SessionContext';
 import { supabase } from '../supabaseClient';
 import { useNavigate } from 'react-router-dom';
-const Comments = ({petId}) => {
+const Comments = ({petId,petType}) => {
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState({ user: '', text: '' });
   const session = useContext(SessionContext);
@@ -12,11 +12,11 @@ const Comments = ({petId}) => {
 
 
   useEffect(() => {
-    getComments(petId);
+    getComments(petId,petType);
     getCurrentUser()
   }, [petId,user,session]);
 
-  async function getComments(petId) {
+  async function getComments(petId,petType) {
     if (petId === undefined) {
       console.error('petId is undefined');
       return;
@@ -29,7 +29,9 @@ const Comments = ({petId}) => {
       user_id,
       users: user_id (first_name)
     `)
-    .eq('pet_id', petId);;
+    .eq('pet_id', petId)
+    .eq('pet_type', petType)
+    
   
     if (error) {
       console.error('Error fetching comments: ', error);
@@ -53,14 +55,14 @@ const Comments = ({petId}) => {
         { 
           text: newComment.text, 
           user_id: userId, 
-          pet_id: petId
+          pet_id: petId,
+          pet_type: petType
         },
       ]);
   
     if (error) {
       console.error('Error adding comment: ', error);
     } else {
-      console.log('Comment added: ', data);
       setNewComment({ user: '', text: '' }); // reset form
     }
   };

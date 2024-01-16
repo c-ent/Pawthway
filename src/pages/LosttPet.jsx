@@ -165,7 +165,7 @@ const LosttPet = () => {
       </div>
 
 
-      <Comments petId={pet.id}/>
+      <Comments petType={"missing"}petId={pet.id}/>
     </div>
   )
 }
