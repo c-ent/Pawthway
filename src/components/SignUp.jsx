@@ -8,7 +8,8 @@ const SignUp = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const navigate = useNavigate();
-
+    const [signUpError, setSignUpError] = useState(null);
+    
     const handleLogin = async () => {
         const { data, error } = await supabase.auth.signInWithPassword({
           email,
@@ -32,7 +33,10 @@ const SignUp = () => {
               },
             },
           })
-        if (error) console.error(error)
+          if (error) {
+            console.error(error);
+            setSignUpError(error.message);
+          } 
         else console.log(data)
         handleLogin()
       }
@@ -42,6 +46,7 @@ const SignUp = () => {
             <div className='pt-16'>
                 <img src={logo} alt="logo" className="w-20 h-20 md:w-28 md:h-28"/>
             </div>
+            {signUpError && <p className="text-red-500">{signUpError}</p>}
             <form className="mt-8 space-y-6" onSubmit={handleSignUp}>
             <div>
                 <label htmlFor="firstName" className="">Name</label>
