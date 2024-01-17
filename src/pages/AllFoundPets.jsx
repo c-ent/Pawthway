@@ -10,10 +10,12 @@ const AllFoundPets = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [sortOption, setSortOption] = useState('id');
   const [sortDirection, setSortDirection] = useState(true); // Initialize as boolean true
+  const [formsubmited, setFormSubmitted] = useState(false); // Initialize as boolean true
+  const [sortField, setSortField] = useState('id');
 
   useEffect(() => {
     getFoundPets().then(() => setIsLoading(false));
-  }, [sortOption, sortDirection]) // Add sortDirection as a dependency
+  }, [sortOption, sortDirection,formsubmited]) // Add sortDirection as a dependency
 
   async function getFoundPets() {
     let { data: foundPets, error } = await supabase
@@ -48,7 +50,7 @@ const AllFoundPets = () => {
     <div className='pt-10' >
       <div className='flex items-center justify-between'>
         <h1 className="text-5xl font-bold pb-5">Found Pets</h1>
-        <FoundPetForm />
+        <FoundPetForm setFormSubmitted={setFormSubmitted}/>
       </div>
 
       {isLoading && 
