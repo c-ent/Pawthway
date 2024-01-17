@@ -7,7 +7,7 @@ import { useContext,useState,useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SessionContext } from './SessionContext';
 
-const LostPetForm = () => {
+const LostPetForm = ({setFormSubmitted}) => {
   const [open, setOpen] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
   const [preview, setPreview] = useState(null);
@@ -99,7 +99,7 @@ const LostPetForm = () => {
       } else {
         setIsLoading(false);
         handleClose();
-        navigate('/lostpets');
+        setFormSubmitted(prevState => !prevState); 
       }
 
 
@@ -110,7 +110,6 @@ const LostPetForm = () => {
 
   
     }
-
   
     return (
       <div>

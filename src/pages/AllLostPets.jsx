@@ -11,13 +11,13 @@ const AllLostPets = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [sortOption, setSortOption] = useState('id');
   const [sortDirection, setSortDirection] = useState(true); // Initialize as boolean true
+  const [formsubmited, setFormSubmitted] = useState(false); // Initialize as boolean true
   const [sortField, setSortField] = useState('id');
   const session = useContext(SessionContext);
   
   useEffect(() => {
     getmissingPets().then(() => setIsLoading(false));
-  }, [sortOption, sortDirection]) // Add sortDirection as a dependency
-
+  }, [sortOption, sortDirection,formsubmited]) // Add sortDirection as a dependency
 
   async function getmissingPets() {
     let { data: missingPets, error } = await supabase
@@ -43,6 +43,7 @@ const AllLostPets = () => {
     }
   }
 
+  
   const handleSortDirectionChange = (e) => {
     setSortDirection(e.target.value === 'true'); // Convert string to boolean
   }
@@ -61,7 +62,7 @@ const AllLostPets = () => {
         </div>
         
         <div className='flex flex-col justify-end'>
-          <LostPetForm />
+          <LostPetForm  setFormSubmitted={setFormSubmitted}/>
         </div>
       </div>
 
