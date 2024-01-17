@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
 import Comments from '../components/Comments';
-
+import dogplaceholder from '../../images/icons/origami-dog.svg';
 const FoundPet = () => {
   const { petId } = useParams();
   const [pet, setPet] = useState(null);
@@ -30,7 +30,7 @@ const FoundPet = () => {
 
   return (
     <div className='pt-10'>
-    <img src={pet.imageURL} alt={pet.description} className='w-full h-96 object-cover' />
+    <img src={pet.imageURL?pet.imageURL : dogplaceholder} alt={pet.description} className='w-full h-96 object-cover' />
     <div className='flex-1 p-0 md:p-7'>
       <div className='flex justify-between pb-7'>
         <div>

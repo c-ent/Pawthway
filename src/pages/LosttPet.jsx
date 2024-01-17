@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'
 import { supabase } from '../supabaseClient';
 import DeleteButton from '../components/DeleteButton';
 import { SessionContext } from '../components/SessionContext';
+import dogplaceholder from '../../images/icons/origami-dog.svg';
 
 const LosttPet = () => {
   const { petId } = useParams();
@@ -35,7 +36,7 @@ const LosttPet = () => {
        <DeleteButton pet_user_id={pet.user_id}  pet_Id={pet.id}  session={session}/>
        <div className='flex flex-col md:flex-row'>
           <div className='flex-1 py-5'>
-            <img src={pet.imageURL} alt={pet.name} className='w-full h-96 object-cover'  onClick={() => setMainImage(pet.image)} />
+            <img src={pet.imageURL? pet.imageURL : dogplaceholder} alt={pet.name} className='w-full h-96 object-cover'  onClick={() => setMainImage(pet.image)} />
           </div>
 
         <div className='flex-1 p-0 md:p-7'>
