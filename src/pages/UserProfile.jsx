@@ -8,6 +8,7 @@ const UserProfile = () => {
     const session = useContext(SessionContext);
     const [user, setUser] = useState(null);
     const [missingPets, setMissingPets] = useState([]) // state to hold the dogs data
+    const [foundPets, setFoundPets] = useState([]) // state to hold the dogs data
     const [activeTab, setActiveTab] = useState('missing');
     const navigate = useNavigate();
         // useEffect(() => {
@@ -17,6 +18,7 @@ const UserProfile = () => {
             if (session && session.user) {
               getMissingPets();
               getCurrentUser();
+              getFoundPets();
             } else {
               navigate('/login')
             }
@@ -34,6 +36,20 @@ const UserProfile = () => {
               setMissingPets(missingPets)
             }
           }
+
+          async function getFoundPets() {
+            let { data: foundPets, error } = await supabase
+              .from('foundpets')
+              .select('*')
+              .eq('finder_id', session.user.id)
+            if (error) {
+              console.error('Error fetching dogs: ', error);
+              // handle error
+            } else {
+              setFoundPets(foundPets)
+            }
+          }
+
           
           async function getCurrentUser() {
             if (!session || !session.user) {
@@ -87,7 +103,7 @@ const UserProfile = () => {
 
         {activeTab === 'found' && (
             <div className="grid grid-cols-2  md:grid-cols-3 lg:grid-cols-4 gap-1 md:gap-4">
-                <UsersFoundPets missingPets={missingPets} />
+                <UsersFoundPets foundPets={foundPets} />
         </div>
         )}
     </div>
