@@ -16,8 +16,6 @@ const LosttPet = () => {
     getPet();
   }, [petId]); // add id as a dependency
 
-  
-
   async function getPet() {
     let { data: missingPet, error } = await supabase
     .from('missingPets') // select the 'missingPets' table
