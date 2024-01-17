@@ -8,6 +8,7 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
    const session = useContext(SessionContext);
+   const [loginError, setLoginError] = useState(null);
 
     const navigate = useNavigate();
 
@@ -19,7 +20,10 @@ const Login = () => {
       email,
       password,
     });
-    if (error) console.error(error);
+    if (error) {
+      console.error(error);
+      setLoginError(error.message);
+    } 
     else {
       navigate('/'); // navigate to dashboard
     }
@@ -30,6 +34,7 @@ const Login = () => {
     <div className='pt-16'>
         <img src={logo} alt="logo" className="w-20 h-20 md:w-28 md:h-28"/>
     </div>
+    {loginError && <p className="text-red-500">{loginError}</p>}
     <form className="mt-8 space-y-6" onSubmit={handleLogin}>
         <div>
             <label htmlFor="email-address" className="">Email</label>

@@ -27,7 +27,6 @@ const FoundPet = () => {
   if (!pet) {
     return <div>Loading...</div>;
   }
-
   return (
     <div className='pt-10'>
     <img src={pet.imageURL?pet.imageURL : dogplaceholder} alt={pet.description} className='w-full h-96 object-cover' />
