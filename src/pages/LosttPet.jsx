@@ -5,6 +5,7 @@ import { supabase } from '../supabaseClient';
 import DeleteButton from '../components/DeleteButton';
 import { SessionContext } from '../components/SessionContext';
 import dogplaceholder from '../../images/icons/origami-dog.svg';
+import { Helmet } from 'react-helmet';
 
 const LosttPet = () => {
   const { petId } = useParams();
@@ -33,6 +34,15 @@ const LosttPet = () => {
 
   return (
     <div className='pt-10'>
+      <Helmet>
+    <title>{pet.Name}</title>
+    <meta property="og:url" content={window.location.href} />
+    <meta property="og:type" content="missingdog" />
+    <meta property="og:title" content={pet.Name} />
+    <meta property="og:description" content={pet.description} />
+    <meta property="og:image" content={pet.imageURL} />
+    </Helmet>
+
        <DeleteButton pet_user_id={pet.user_id}  pet_Id={pet.id}  session={session}/>
        <div className='flex flex-col md:flex-row'>
           <div className='flex-1 py-5'>
