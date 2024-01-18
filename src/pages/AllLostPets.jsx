@@ -9,8 +9,8 @@ import { SessionContext } from '../components/SessionContext'
 const AllLostPets = () => {
   const [missingPets, setmissingPets] = useState([]) // state to hold the dogs data
   const [isLoading, setIsLoading] = useState(true);
-  const [sortOption, setSortOption] = useState('id');
-  const [sortDirection, setSortDirection] = useState(true); // Initialize as boolean true
+  const [sortOption, setSortOption] = useState('created_at');
+  const [sortDirection, setSortDirection] = useState(false); // Initialize as boolean true
   const [formsubmited, setFormSubmitted] = useState(false); // Initialize as boolean true
   const [sortField, setSortField] = useState('id');
   const session = useContext(SessionContext);
