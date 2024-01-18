@@ -12,7 +12,6 @@ const AllLostPets = () => {
   const [sortOption, setSortOption] = useState('created_at');
   const [sortDirection, setSortDirection] = useState(false); // Initialize as boolean true
   const [formsubmited, setFormSubmitted] = useState(false); // Initialize as boolean true
-  const [sortField, setSortField] = useState('id');
   const session = useContext(SessionContext);
   
   useEffect(() => {
@@ -34,24 +33,24 @@ const AllLostPets = () => {
   const handleSortChange = (e) => {
     if (e.target.value === 'highest') {
       setSortOption('reward');
-      setSortDirection(false); // false for descending order
+      setSortDirection(true); // false for descending order
     } else if (e.target.value === 'lowest') {
       setSortOption('reward');
-      setSortDirection(true); // true for ascending order
+      setSortDirection(false); // true for ascending order
     } else {
       setSortOption(e.target.value);
     }
   }
 
-  
   const handleSortDirectionChange = (e) => {
     setSortDirection(e.target.value === 'true'); // Convert string to boolean
   }
 
   const handleNewestClick = () => {
-    setSortField('dateAdded');
+    setSortOption('created_at');
     setSortDirection(false);
   }
+  
 
   return (
     <div >
@@ -90,8 +89,8 @@ const AllLostPets = () => {
         onChange={handleSortDirectionChange} 
         className='px-2 py-2 bg-violet-500 text-white rounded text-xs md:text-md'
       >
-        <option value="false">Descending</option>
-        <option value="true">Ascending</option>
+        <option value="false">Ascending</option>
+        <option value="true">Descending</option>
       </select>
     </div>
 
