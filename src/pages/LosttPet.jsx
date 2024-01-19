@@ -80,23 +80,25 @@ const LosttPet = () => {
             
              {/* Location */}
              {pet.placeLost && (    
-              <p className='text-md flex items-center gap-5 font-semibold'>
+              <p className='text-md flex items-center gap-3 font-semibold'>
                 <img src={pin} alt="pin" className='w-8 h-8' />
+                <p className='text-md text-[#363636]'>Place:</p>
                 {pet.placeLost}
               </p>
                )}
 
                  {/* Date Lost */}
               {pet.dateLost && (    
-              <p className='text-md flex items-center gap-5 font-semibold'>
+              <p className='text-md flex items-center gap-3 font-semibold'>
               <img src={calendar} alt="calendar" className='w-8 h-8' />
+                <p className='text-md text-[#363636]'>Date:</p>
                 {pet.dateLost}
               </p>
                )}
 
                 {/* Location */}
             {pet.contact && (    
-              <p className='text-md flex items-center gap-5 font-semibold'>
+              <p className='text-md flex items-center gap-3 font-semibold'>
                <img src={phone} alt="phone" className='w-8 h-8' />
                 {pet.contact}
               </p>
@@ -106,8 +108,9 @@ const LosttPet = () => {
                
                          {/* Reward */}
                          {pet.reward && (    
-              <p className='text-md flex items-center gap-5 font-semibold'>
+              <p className='text-md flex items-center gap-3 font-semibold'>
               <img src={coins} alt="coins" className='w-8 h-8' />
+              <p className='text-md text-[#363636]'>Reward:</p>
                 {pet.reward}
               </p>
                )}
@@ -121,24 +124,27 @@ const LosttPet = () => {
             <div className='w-1/2 my-12 flex flex-col justify-between '>
                {/* Animal Type */}
             {pet.animalType && (
-              <p className='text-sm flex items-center gap-5 font-semibold'>
+              <p className='text-sm flex items-center gap-3 font-semibold'>
                 <img src={circledot} alt="type" className='w-8 h-8' />
+                <p className='text-md text-[#363636]'>Type:</p>
                 {pet.animalType}
               </p>
             )}
 
             {/* Pet Color */}
             {pet.color && (
-              <p className='text-sm flex items-center gap-5 font-semibold'>
+              <p className='text-sm flex items-center gap-3 font-semibold'>
                 <img src={circle} alt="circle" className='w-8 h-8' />
+                <p className='text-md text-[#363636]'>Color:</p>
                 {pet.color}
               </p>
             )}
 
             {/* Pet Age */}
             {pet.age && (
-              <p className='text-sm flex items-center gap-5 font-semibold'>
+              <p className='text-sm flex items-center gap-3 font-semibold'>
              <img src={year} alt="year" className='w-8 h-8' />
+             <p className='text-md text-[#363636]'>Age:</p>
                 {pet.age}
               </p>
             )}
@@ -146,8 +152,9 @@ const LosttPet = () => {
 
             {/* Pet Size */}
             {pet.size && (
-              <p className='text-sm flex items-center gap-5 font-semibold'>
+              <p className='text-sm flex items-center gap-3 font-semibold'>
                  <img src={weight} alt="weight" className='w-8 h-8' />
+                 <p className='text-md text-[#363636]'>Size:</p>
                 {pet.size}
               </p>
             )}
@@ -162,7 +169,7 @@ const LosttPet = () => {
         
       </div>
 
-      <div className='py-8 gap-8 text-center'>
+      <div className='py-14  gap-8 text-center'>
         
         <p className=' text-sm text-[#5F5F5F]'>{pet.description}</p>
         <h1 className='font-bold'>-owner</h1>

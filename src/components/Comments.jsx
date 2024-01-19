@@ -112,7 +112,7 @@ const Comments = ({petId,petType}) => {
 //   };
 
   return (
-    <div className='my-10  mx-auto'>
+    <div className='mb-10  mx-auto'>
       <div className='bg-[#484848] mb-10 rounded-full w-32 flex justify-center items-center text-center'>
         <h2 className='text-lg font-bold py-1 text-white'>Comments</h2>
       </div>
