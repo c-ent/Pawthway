@@ -7,6 +7,7 @@ import { supabase } from '../supabaseClient'
 import { SessionContext } from '../components/SessionContext'
 import Pagination from '../components/Pagination';
 import SortControls from '../components/SortControls';
+import Loading from '../components/Loading';
 
 
 const AllLostPets = () => {
@@ -102,10 +103,7 @@ const AllLostPets = () => {
         
       </div>
       {isLoading && 
-        <div className='flex justify-center items-center mt-20 min-h-[300px]'>
-          <img src={loadingimg} className='animate-ping' alt='loading' />
-        
-        </div>
+       <Loading />
       }
 
       {

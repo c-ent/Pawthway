@@ -16,6 +16,7 @@ import circledot from '../../images/icons/petInfo/type.svg';
 import circle from '../../images/icons/petInfo/circle.svg';
 import year from '../../images/icons/petInfo/year.svg';
 import weight from '../../images/icons/petInfo/size.svg';
+import Loading from '../components/Loading';
 
 const LosttPet = () => {
   const { petId } = useParams();
@@ -46,7 +47,7 @@ const LosttPet = () => {
 
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
  
   if (!pet) {
