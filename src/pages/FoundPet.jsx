@@ -28,7 +28,7 @@ const FoundPet = () => {
     return <div>Loading...</div>;
   }
   return (
-    <div className='pt-10'>
+    <div className='pt-10 mx-auto max-w-screen-xl'>
     <img src={pet.imageURL?pet.imageURL : dogplaceholder} alt={pet.description} className='w-full h-96 object-cover' />
     <div className='flex-1 p-0 md:p-7'>
       <div className='flex justify-between pb-7'>

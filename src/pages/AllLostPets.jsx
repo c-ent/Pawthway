@@ -53,7 +53,7 @@ const AllLostPets = () => {
   
 
   return (
-    <div >
+    <div className='mx-auto max-w-screen-xl' >
       
       <div className='flex items-center justify-between pt-10'>
         <div>

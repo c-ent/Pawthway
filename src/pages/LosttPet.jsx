@@ -33,7 +33,7 @@ const LosttPet = () => {
   }
 
   return (
-    <div className='pt-10'>
+    <div className='pt-10 mx-auto max-w-screen-xl' >
       <Helmet>
     <title>{pet.Name}</title>
     <meta property="og:url" content={window.location.href} />

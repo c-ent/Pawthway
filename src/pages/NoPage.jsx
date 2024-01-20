@@ -2,7 +2,7 @@ import React from 'react'
 
 const NoPage = () => {
   return (
-    <div>NoPage</div>
+    <div className='mx-auto max-w-screen-xl'>NoPage</div>
   )
 }
 

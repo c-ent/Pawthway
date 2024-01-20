@@ -16,7 +16,7 @@ function App() {
   
 
   return (
-    <div className="mx-auto max-w-screen-xl p-4 md:p-5">
+    
     <Routes>
       <Route path="/" element={<Layout  />}>
           <Route index element={<Home />} />
@@ -32,7 +32,7 @@ function App() {
         </Route>
     </Routes>
 
-  </div>
+
  
   );
 }

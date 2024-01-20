@@ -31,8 +31,7 @@ const Layout = () => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <>
-   <header className="flex items-center justify-between relative">
-
+   <header className="flex items-center justify-between relative mx-auto max-w-screen-xl p-4 md:p-5" >
     <Link to="/" className="text-md md:text-lg font-extrabold  hover:text-purple-600 md:pr-5">Pawthway</Link>
 
 
@@ -113,6 +112,20 @@ const Layout = () => {
       </div>
     </header>
     <Outlet />
+
+
+    <footer className="bg-black text-white py-10 mt-10">
+  <div className="text-center">
+    <h2 className="text-2xl font-bold mb-2">PawPathway</h2>
+    <p className="mb-6">Your go-to hub for heartwarming pet reunions.</p>
+    {/* <div className="flex justify-center space-x-4">
+      <a href="#" className="hover:text-gray-300">About Us</a>
+      <a href="#" className="hover:text-gray-300">Contact</a>
+      <a href="#" className="hover:text-gray-300">Privacy Policy</a>
+    </div> */}
+    <p className="mt-6 text-sm text-gray-300">© {new Date().getFullYear()} PawPathway. All rights reserved.</p>
+  </div>
+</footer>
     </>
   );
 };
