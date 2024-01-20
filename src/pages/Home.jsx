@@ -50,7 +50,7 @@ const Home = () => {
        */}
 <section className='flex items-center pt-10 max-w-3xl mx-auto'>
   <div className='flex flex-col px-4 md:px-10'>
-    <h1 className="text-3xl md:text-3xl font-bold mb-4">About PawPathway</h1>
+    <h1 className="text-3xl md:text-2xl font-bold mb-4">About</h1>
     <div className='flex justify-center items-center flex-col-reverse md:flex-row'>
    
     <p className='font-semibold text-xs md:text-sm max-w-4xl text-center pb-5'>
