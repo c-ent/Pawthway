@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { SessionContext } from './SessionContext';
 import { supabase } from '../supabaseClient';
 import { useNavigate } from 'react-router-dom';
+import usericon from '../../images/icons/user-outline.svg';
 const Comments = ({petId,petType}) => {
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState({ user: '', text: '' });
@@ -99,41 +100,62 @@ const Comments = ({petId,petType}) => {
 //   };
 
   return (
-    <div className='p-4 bg-white rounded-md shadow-md mx-auto'>
+    <div className='p-4 mt-10  border-t border-black mx-auto'>
       <h2 className='text-lg font-bold mb-4'>Comments</h2>
       {comments === null && <div className='text-gray-500'>Loading...</div>}
       {comments !== null && comments.length === 0 && <div className='text-gray-500'>No comments yet.</div>}
       {comments && comments.length > 0 && comments.map((comment, index) => (
-        <div key={index} className='mb-2 border-b border-gray-200 pb-2'>
-          <p className='text-sm text-gray-700'>
-            <strong>
-              {comment.users ? comment.users.first_name : 'Guest'}:
-            </strong> 
+      <div key={index} className='flex pb-3'>
+        <div className='flex mr-2 flex-shrink-0'>
+          <img src={usericon} alt='user' className='w-10 h-10 rounded-full' />
+        </div>
+
+        <div className='flex-grow ml-2 items-start mb-2 border-gray-200 pb-2' style={{overflowWrap: 'break-word'}}>
+          <p className='font-bold'>
+            {comment.users ? comment.users.first_name : 'Guest'}:
+          </p> 
+          <p className='text-sm text-gray-700 break-words'>
             {comment.text}
           </p>
         </div>
-      ))}
-      <div className='mt-4'>
-      {session && user ? (
-      <form onSubmit={handleAddComment} className='space-y-2'>
-        <p className='text-sm text-gray-700'>{user.first_name}</p>
-        <textarea 
-          value={newComment.text}
-          onChange={e => setNewComment({ ...newComment, text: e.target.value })}
-          placeholder='Add a comment...'
-          className='w-full p-2 border border-gray-300 rounded-md'
-        />
-        <button type='submit' className='w-full px-4 py-2 bg-blue-500 text-white rounded-md'>Add Comment</button>
-      </form>
-    ) : (
-      <div className='bg-gray-200 p-4 rounded-md'>
-        <p className='mb-4'>Login to add a comment</p>
-        <button onClick={()=> {navigate('/login')}}className='w-full px-4 py-2 bg-blue-500 text-white rounded-md'>Login</button>
       </div>
-)}
+      ))}
+
+      <div className='mt-4'>
+        {session && user ? (
+        <form onSubmit={handleAddComment} className='space-y-2'>
+          <p className='text-sm font-bold text-gray-700'>Comment as {user.first_name}</p>
+          <textarea 
+            value={newComment.text}
+            onChange={e => setNewComment({ ...newComment, text: e.target.value })}
+            placeholder='Add a comment...'
+            className='w-full p-2 border border-gray-300 rounded-md'
+          />
+          <button type='submit' className='w-full px-4 py-2 bg-blue-500 text-white rounded-md'>Add Comment</button>
+        </form>
+      ) : (
+            <div className=' p-4 rounded-md'>
+              {/* <p className='mb-4'></p> */}
+              <button onClick={()=> {navigate('/login')}}className='w-full px-4 py-2 bg-violet-500 text-white rounded-md'> Login to add a comment</button>
+            </div>
+      )}
       </div>
     </div>
   );
 };
 
 export default Comments;
+
+{/* <div className='grid grid-cols-6 gap-4 pb-3'>
+<div className='col-span-1 flex items-center'>
+  <img src={usericon} alt='user' className='w-10 h-10 rounded-full' />
+  <p className='ml-2'>
+    {comment.users ? comment.users.first_name : 'Guest'}:
+  </p> 
+</div>
+<div className='col-span-5 items-start mb-2 border-gray-200 pb-2'>
+  <p className='text-sm text-gray-700 break-words'>
+    {comment.text}
+  </p>
+</div>
+</div> */}

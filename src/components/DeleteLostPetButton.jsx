@@ -1,7 +1,9 @@
 import React from 'react'
 import { supabase } from '../supabaseClient';
 import { useNavigate } from 'react-router-dom';
-const DeleteButton = ({pet_user_id, pet_Id, session}) => {
+import { useState } from 'react';
+const DeleteLostPetButton = ({pet_user_id, pet_Id, session}) => {
+  const [showButton, setShowButton] = useState(false);
   let user_id;
   if (session && session.user) {
     user_id = session.user.id;
@@ -23,11 +25,18 @@ const DeleteButton = ({pet_user_id, pet_Id, session}) => {
 
   if (pet_user_id === user_id) {
     return (
-      <button onClick={deletePet}>Delete Pet</button>
+      <div className='pt-5'>
+      <p className='text-xs text-red-500' onClick={() => setShowButton(true)}>Pet has been found? <span className='font-bold'>Click Here</span></p>
+      {showButton && 
+        <button onClick={deletePet} className="text-xs bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded">
+          Delete
+        </button>
+      }
+    </div>
     )
   } else {
     return null; // Don't render anything if the user_ids don't match
   }
 }
 
-export default DeleteButton
+export default DeleteLostPetButton

@@ -70,7 +70,7 @@ const UserProfile = () => {
             }
           }
     return (
-        <div className='mx-auto max-w-screen-xl'>
+        <div className='p-4 md:p-0 mx-auto max-w-screen-xl'>
         <div className='flex items-center justify-between pt-10'>
             <div>
             <h1 className="text-2xl md:text-5xl font-bold pb-5">

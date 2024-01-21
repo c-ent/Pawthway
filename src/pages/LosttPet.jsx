@@ -2,9 +2,9 @@ import React, { useState, useEffect, useContext } from 'react'
 import Comments from '@components/Comments'
 import { useParams } from 'react-router-dom'
 import { supabase } from '../supabaseClient';
-import DeleteButton from '../components/DeleteButton';
+import DeleteLostPetButton from '../components/DeleteLostPetButton';
 import { SessionContext } from '../components/SessionContext';
-import dogplaceholder from '../../images/icons/origami-dog.svg';
+import dogplaceholder from '../../images/images/dogplaceholder.png';
 import { Helmet } from 'react-helmet';
 
 const LosttPet = () => {
@@ -33,7 +33,7 @@ const LosttPet = () => {
   }
 
   return (
-    <div className='pt-10 mx-auto max-w-screen-xl' >
+    <div className='pt-10 p-4 md:p-0 mx-auto max-w-screen-xl' >
       <Helmet>
     <title>{pet.Name}</title>
     <meta property="og:url" content={window.location.href} />
@@ -43,10 +43,11 @@ const LosttPet = () => {
     <meta property="og:image" content={pet.imageURL} />
     </Helmet>
 
-       <DeleteButton pet_user_id={pet.user_id}  pet_Id={pet.id}  session={session}/>
+       
        <div className='flex flex-col md:flex-row'>
           <div className='flex-1 py-5'>
             <img src={pet.imageURL? pet.imageURL : dogplaceholder} alt={pet.name} className='w-full h-96 object-cover'  onClick={() => setMainImage(pet.image)} />
+            <DeleteLostPetButton pet_user_id={pet.user_id} pet_Id={pet.id} session={session}/> 
           </div>
 
         <div className='flex-1 p-0 md:p-7'>
@@ -149,12 +150,13 @@ const LosttPet = () => {
           </div>
 
 
-          <hr className='border-black border-t-1' />
-          <div className='pt-5'>
-            <p className='text-center text-sm'><span className='text-3xl font-bold'>“</span>{pet.description}<span className='text-3xl font-bold'>”</span></p>
+          <hr className='border-gray-300 border-t-1' />
+          <div className='pt-3'>
+            <h1 className='font-bold'>Description</h1>
+            <p className=' text-sm'>{pet.description}</p>
           </div>
 
-          <button 
+          {/* <button 
             className="flex items-center bg-blue-600 text-white px-3  py-1 rounded-md"
             onClick={() => window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`, '_blank')}
           >
@@ -163,12 +165,13 @@ const LosttPet = () => {
             <path d="M18.4014 2.58374H15.4014C14.0753 2.58374 12.8035 3.11052 11.8658 4.04821C10.9282 4.98589 10.4014 6.25766 10.4014 7.58374V10.5837H7.40137V14.5837H10.4014V22.5837H14.4014V14.5837H17.4014L18.4014 10.5837H14.4014V7.58374C14.4014 7.31852 14.5067 7.06417 14.6943 6.87663C14.8818 6.6891 15.1362 6.58374 15.4014 6.58374H18.4014V2.58374Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
             Share
-          </button>
+          </button> */}
 
           
 
-      
-         
+   
+
+        
         </div>
 
       </div>

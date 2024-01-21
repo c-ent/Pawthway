@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import dogplaceholder from '../../images/icons/origami-dog.svg';
+import dogplaceholder from '../../images/images/dogplaceholder.png';
 const LostPetcard = ({ pet }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [isFormVisible, setIsFormVisible] = useState(false);

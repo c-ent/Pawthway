@@ -48,6 +48,7 @@ const AllFoundPets = () => {
 
   return (
     <div className='pt-10 mx-auto max-w-screen-xl' >
+      
       <div className='flex items-center justify-between'>
         <h1 className="text-5xl font-bold pb-5">Found Pets</h1>
         <FoundPetForm setFormSubmitted={setFormSubmitted}/>
