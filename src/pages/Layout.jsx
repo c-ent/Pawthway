@@ -1,4 +1,4 @@
-import { Outlet, Link } from "react-router-dom";
+import { Outlet, Link ,useLocation} from "react-router-dom";
 import { supabase } from '../supabaseClient';
 import { Auth } from '@supabase/auth-ui-react'
 import { ThemeSupa } from '@supabase/auth-ui-shared'
@@ -23,6 +23,7 @@ const Layout = () => {
     { to: '/login', name: 'Login', show: !session },
     { to: '/profile', name: 'Profile', show: session },
   ];
+  const { pathname } = useLocation();
 
   async function handleLogout() {
     const { error } = await supabase.auth.signOut()
@@ -44,10 +45,20 @@ const Layout = () => {
       <nav className="flex-1 flex justify-center ">
          <ul className="flex text-sm md:text-md space-x-2 md:space-x-10 items-center">
          <li>
-            <Link to="/lostpets" className="text-md  font-bold	 hover:text-purple-600">Lost Pets</Link>
+         <Link 
+          to="/lostpets" 
+          className={`text-md font-bold hover:text-purple-600 ${pathname === '/lostpets' ? 'text-violet-600' : ''}`}
+        >
+          Lost Pets
+        </Link>
           </li>
           <li>
-            <Link to="/foundpets" className="text-md    font-bold	 hover:text-purple-600">Found Pets</Link>
+            <Link 
+              to="/foundpets" 
+              className={`text-md font-bold hover:text-purple-600 ${pathname === '/foundpets' ? 'text-violet-600' : ''}`}
+            >
+                Found Pets
+            </Link>
           </li>
           </ul>
       </nav>

@@ -1,6 +1,6 @@
 import React, { Suspense, useState, useEffect, useContext } from 'react'
 import LostPetcard from '@components/LostPetcard'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import LostPetForm from '@components/LostPetForm'
 import loadingimg from '../../images/icons/loading.svg'
 import { supabase } from '../supabaseClient'
@@ -13,7 +13,8 @@ const AllLostPets = () => {
   const [sortDirection, setSortDirection] = useState(false); // Initialize as boolean true
   const [formsubmited, setFormSubmitted] = useState(false); // Initialize as boolean true
   const session = useContext(SessionContext);
-  
+
+
   useEffect(() => {
     getmissingPets().then(() => setIsLoading(false));
   }, [sortOption, sortDirection,formsubmited]) // Add sortDirection as a dependency
