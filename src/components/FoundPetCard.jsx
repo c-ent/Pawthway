@@ -14,13 +14,13 @@ const FoundPetCard = ({ pet }) => {
       <div className='p-3'>
             <div className="">
            
-                <div className='flex items-center space-x-2'>
+                <div className='flex  space-x-2'>
                   <p>Where:</p>
                   <p className='font-bold'>{pet.found_location}</p>
                 </div>
 
                 <div className='flex items-center space-x-2'>
-                  <p>Found Date:</p>
+                  <p>Date Found:</p>
                   <p className='font-bold'>{pet.found_date}</p>
                 </div>
          

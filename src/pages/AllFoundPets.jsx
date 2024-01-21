@@ -47,7 +47,7 @@ const AllFoundPets = () => {
   }
 
   return (
-    <div className='pt-10 mx-auto max-w-screen-xl' >
+    <div className='pt-10 mx-auto max-w-screen-xl p-4 md:p-0' >
       
       <div className='flex items-center justify-between'>
         <h1 className="text-5xl font-bold pb-5">Found Pets</h1>
@@ -60,7 +60,7 @@ const AllFoundPets = () => {
         </div>
       }
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {foundPets.map((pet) => (
           <Link key={pet.id} to={`/foundpets/${pet.id}`}>
             <FoundPetCard pet={pet} />

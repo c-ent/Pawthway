@@ -100,7 +100,7 @@ const Comments = ({petId,petType}) => {
 //   };
 
   return (
-    <div className='p-4 mt-10  border-t border-black mx-auto'>
+    <div className='mt-10  border-t border-black mx-auto'>
       <h2 className='text-lg font-bold mb-4'>Comments</h2>
       {comments === null && <div className='text-gray-500'>Loading...</div>}
       {comments !== null && comments.length === 0 && <div className='text-gray-500'>No comments yet.</div>}
