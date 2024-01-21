@@ -20,7 +20,7 @@ const Home = () => {
           <h1 className="text-3xl md:text-5xl font-bold text-center">
             Helping Lost Pets <br></br> Finds Their Way Home
           </h1>
-          <img src={paw} alt="description" className="absolute top-1 left-[-12px] w-8 md:w-10 h-10 transform -rotate-45" />
+          <img src={paw} alt="description" className="md:block hidden absolute top-1 left-[-12px] w-8 md:w-10 h-10 transform -rotate-45" />
         </div>
         <div className=' space-x-1 md:space-x-3 flex'>
           <button className="bg-black hover:bg-purple-700 text-white font-bold py-2 px-2 md:px-4 rounded-full text-sm md:text-md">

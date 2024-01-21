@@ -42,7 +42,7 @@ const Layout = () => {
       {/* Nav items */}
 
       {/* Nav Links Static */}
-      <nav className="flex-1 flex justify-center ">
+      <nav className="md:flex-1 flex-2 flex justify-center ">
          <ul className="flex text-sm md:text-md space-x-2 md:space-x-10 items-center">
          <li>
          <Link 
@@ -63,10 +63,10 @@ const Layout = () => {
           </ul>
       </nav>
       {/* Nav Links Dynamic */}
-      <nav className="flex-1 flex justify-end">
+      <nav className="flex-1 justify-end hidden md:flex">
         <ul className="flex text-sm md:text-md space-x-2 md:space-x-10 items-center">
           {/* Search Bar */}
-          <div className="hidden md:block">
+          <div className="">
             <input type="search" placeholder="Search" className="px-3 py-1 rounded-full border border-black" />
           </div>
 
@@ -106,8 +106,8 @@ const Layout = () => {
         </ul>
       </nav>
       
-      {/* Mobile Button NavBar */}
-      <button onClick={() => setIsOpen(!isOpen)} className="md:hidden flex-1">
+      {/* Button NavBar (Mobile) */}
+      <button onClick={() => setIsOpen(!isOpen)} className="md:hidden flex-1 flex justify-end">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="h-6 w-6">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
         </svg>

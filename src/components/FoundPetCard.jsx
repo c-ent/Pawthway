@@ -26,7 +26,7 @@ const FoundPetCard = ({ pet }) => {
          
 
               <div className='flex items-center space-x-2'>
-                  <p>#</p>
+                  <p>Contact</p>
                 <p className='font-bold'>{pet.contact_number}</p>
               </div>
             </div>
