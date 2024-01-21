@@ -16,11 +16,9 @@ const LostPetcard = ({ pet }) => {
   <div className="rounded-md  bg-[#F5F5F5] space-y-2 text-sm group  hover:bg-[#C1C1C1]">
       <div className="relative">
       <img loading="lazy" src={pet.imageURL ? pet.imageURL : dogplaceholder} alt={pet.name} className="w-full h-40 md:h-64 object-cover" />
-
         {/* <button className="absolute top-[-10px] left-[-10px] bg-red-600 text-white px-3 py-1 font-bold rounded-md">
           Missing
         </button> */}
-          
       </div>
 
       <div className='px-2 pb-2 space-y-1'>

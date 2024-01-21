@@ -1,10 +1,10 @@
 import React from 'react'
 import logo from '../../images/icons/logo-blck.svg'
 import map from '../../images/icons/map-blck.svg'
-import doggif from '../../images/images/dog-bouncing.gif'
-import pet1 from  '../../images/images/dog-banner1.png'
-import pet2 from  '../../images/images/pet-banner-2.png'
-import pet3 from  '../../images/images/pet-banner-3.png'
+// import doggif from '../../images/images/dog-bouncing.gif'
+import pet1 from  '../../images/images/dog-banner1.webp'
+import pet2 from  '../../images/images/pet-banner-2.webp'
+import pet3 from  '../../images/images/pet-banner-3.webp'
 import paw from '../../images/icons/paw-black.svg'
 import { Link } from 'react-router-dom'
 
@@ -68,7 +68,7 @@ const Home = () => {
       <path d="M31.7305 9.4491C32.7242 8.51692 32.9138 10.1485 33.0941 11.0457" stroke="black" stroke-opacity="0.9" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
     </svg> */}
     
-    <image src={doggif} alt="logo"  />
+    {/* <image src={doggif} alt="logo"  /> */}
     </div>
    
    
