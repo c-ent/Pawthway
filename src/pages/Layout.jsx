@@ -6,23 +6,9 @@ import { useContext, useEffect, useState } from 'react';
 import { SessionContext } from "../components/SessionContext";
 import usericon  from '../../images/icons/user.svg';
 
-const NavItem = ({ to, children }) => (
-  <li>
-    <Link to={to} className="text-md font-bold hover:text-purple-600">{children}</Link>
-  </li>
-);
-
-
 const Layout = () => {
   const session = useContext(SessionContext);
   const [toggleDropdown, setToggleDropdown] = useState(false);
-  const navItems = [
-    { to: '/lostpets', name: 'Lost Pets' },
-    { to: '/foundpets', name: 'Found Pets' },
-    { to: '/signup', name: 'Sign Up', show: !session },
-    { to: '/login', name: 'Login', show: !session },
-    { to: '/profile', name: 'Profile', show: session },
-  ];
   const { pathname } = useLocation();
 
   async function handleLogout() {
@@ -44,27 +30,27 @@ const Layout = () => {
       {/* Nav Links Static */}
       <nav className="md:flex-1 flex-2 flex justify-center ">
          <ul className="flex text-sm md:text-md space-x-2 md:space-x-10 items-center">
-         <li>
+         <div>
          <Link 
           to="/lostpets" 
           className={`text-md font-bold hover:text-purple-600 ${pathname === '/lostpets' ? 'text-violet-600' : ''}`}
         >
           Lost Pets
         </Link>
-          </li>
-          <li>
+          </div>
+          <div>
             <Link 
               to="/foundpets" 
               className={`text-md font-bold hover:text-purple-600 ${pathname === '/foundpets' ? 'text-violet-600' : ''}`}
             >
                 Found Pets
             </Link>
-          </li>
+          </div>
           </ul>
       </nav>
       {/* Nav Links Dynamic */}
       <nav className="flex-1 justify-end hidden md:flex">
-        <ul className="flex text-sm md:text-md space-x-2 md:space-x-10 items-center">
+        <div className="flex text-sm md:text-md space-x-2 md:space-x-10 items-center">
           {/* Search Bar */}
           <div className="">
             <input type="search" placeholder="Search" className="px-3 py-1 rounded-full border border-black" />
@@ -79,22 +65,22 @@ const Layout = () => {
                   <div className="flex text-sm md:text-md space-x-2 md:space-x-10 items-center">
                     {session ? (
                       <>
-                        <li>
+                        <div>
                           <Link to="/profile" className="text-md font-bold hover:text-purple-600">Profile</Link>
-                        </li>
-                        <li>
+                        </div>
+                        <div>
                           <button onClick={handleLogout} className="text-md font-bold hover:text-purple-600">Logout</button>
-                        </li>
+                        </div>
                       </>
                     ) : (
                       !session && (
                         <div className="flex text-sm md:text-md space-x-2 md:space-x-10 items-center">
-                          <li>
+                          <div>
                             <Link to="/signup" className="text-md font-bold hover:text-purple-600">Sign Up</Link>
-                          </li>
-                          <li>
+                          </div>
+                          <div>
                             <Link to="/login" className="text-md font-bold hover:text-purple-600">Login</Link>
-                          </li>
+                          </div>
                         </div>
                       )
                     )}
@@ -103,7 +89,7 @@ const Layout = () => {
               )}
             </div>
           </div>
-        </ul>
+        </div>
       </nav>
       
       {/* Button NavBar (Mobile) */}
@@ -120,28 +106,28 @@ const Layout = () => {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
-          <ul>
+          <div>
             {!session && (
               <>
-                <li>
+                <div>
                   <Link to="/signup" className="text-md font-bold hover:text-purple-600">Sign Up</Link>
-                </li>
-                <li>
+                </div>
+                <div>
                   <Link to="/login" className="text-md font-bold hover:text-purple-600">Login</Link>
-                </li>
+                </div>
               </>
             )}
             {session && (
               <>
-                <li>
+                <div>
                   <Link to="/profile" className="text-md font-bold hover:text-purple-600">Profile</Link>
-                </li>
-                <li>
+                </div>
+                <div>
                   <button onClick={handleLogout} className="text-md font-bold hover:text-purple-600">Logout</button>
-                </li>
+                </div>
               </>
             )}
-          </ul>
+          </div>
         </div>
 
     </header>
