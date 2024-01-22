@@ -6,7 +6,7 @@ import DeleteLostPetButton from '../components/DeleteLostPetButton';
 import { SessionContext } from '../components/SessionContext';
 import dogplaceholder from '../../images/images/dogplaceholder.png';
 import { Helmet } from 'react-helmet';
-import LostPetEditForm from '../components/LostPetEditForm';
+import MissingPetEditForm from '../components/MissingPetEditForm';
 
 const LosttPet = () => {
   const { petId } = useParams();
@@ -47,7 +47,7 @@ const LosttPet = () => {
 
        
        <div className='flex flex-col md:flex-row'>
-        <LostPetEditForm setFormSubmitted={setFormSubmitted} pet={pet} />
+        <MissingPetEditForm setFormSubmitted={setFormSubmitted} pet={pet} />
           <div className='flex-1 py-5'>
             <img src={pet.imageURL? pet.imageURL : dogplaceholder} alt={pet.name} className='w-full h-96 object-cover'  onClick={() => setMainImage(pet.image)} />
             <DeleteLostPetButton pet_user_id={pet.user_id} pet_Id={pet.id} session={session}/> 

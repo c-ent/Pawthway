@@ -10,8 +10,8 @@ const DeleteLostPetButton = ({pet_user_id, pet_Id, session}) => {
   }
 
   const navigate = useNavigate();
-  console.log("pet_user_id: ", pet_user_id);
-  console.log("user_id: ", user_id);
+  // console.log("pet_user_id: ", pet_user_id);
+  // console.log("user_id: ", user_id);
 
   const deletePet = async () => {
     const { error } = await supabase
