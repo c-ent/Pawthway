@@ -93,11 +93,25 @@ const UserProfile = () => {
           </div>
 
           {activeTab === 'missing' && (
-            <UsersMissingPets missingPets={missingPets} />
+            <>
+              { missingPets.length === 0 && 
+                <div className='flex justify-center items-center mt-20'>
+                  <h1 className='text-2xl font-bold'>No Pets Found</h1>
+                </div>
+              }
+              <UsersMissingPets missingPets={missingPets} />
+            </>
           )}
 
           {activeTab === 'found' && (
-            <UsersFoundPets foundPets={foundPets} />
+            <>
+              { foundPets.length === 0 && 
+                <div className='flex justify-center items-center mt-20'>
+                  <h1 className='text-2xl font-bold'>No Pets Found</h1>
+                </div>
+              }
+              <UsersFoundPets foundPets={foundPets} />
+            </>
           )}
         </div>
     )
