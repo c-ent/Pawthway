@@ -6,17 +6,19 @@ import DeleteLostPetButton from '../components/DeleteLostPetButton';
 import { SessionContext } from '../components/SessionContext';
 import dogplaceholder from '../../images/images/dogplaceholder.png';
 import { Helmet } from 'react-helmet';
+import LostPetEditForm from '../components/LostPetEditForm';
 
 const LosttPet = () => {
   const { petId } = useParams();
   const [pet, setPet] = useState([])
   const session = useContext(SessionContext);
+  const [formsubmited, setFormSubmitted] = useState(false); // Initialize as boolean true
 
 
     
   useEffect(() => {
     getPet();
-  }, [petId]); // add id as a dependency
+  }, [petId,formsubmited]); // add id as a dependency
 
   async function getPet() {
     let { data: missingPet, error } = await supabase
@@ -45,6 +47,7 @@ const LosttPet = () => {
 
        
        <div className='flex flex-col md:flex-row'>
+        <LostPetEditForm setFormSubmitted={setFormSubmitted} pet={pet} />
           <div className='flex-1 py-5'>
             <img src={pet.imageURL? pet.imageURL : dogplaceholder} alt={pet.name} className='w-full h-96 object-cover'  onClick={() => setMainImage(pet.image)} />
             <DeleteLostPetButton pet_user_id={pet.user_id} pet_Id={pet.id} session={session}/> 

@@ -5,9 +5,11 @@ import Comments from '../components/Comments';
 import dogplaceholder from '../../images/images/dogplaceholder.png';
 import DeleteFoundPetButton from '../components/DeleteFoundPetButton';
 import { SessionContext } from '../components/SessionContext';
+import FoundPetEditForm from '../components/FoundPetEditForm';
 const FoundPet = () => {
   const { petId } = useParams();
   const [pet, setPet] = useState(null);
+  const [formsubmited, setFormSubmitted] = useState(false); // Initialize as boolean true
 
   const session = useContext(SessionContext);
   useEffect(() => {
@@ -25,7 +27,7 @@ const FoundPet = () => {
     };
 
     fetchPet();
-  }, [petId]);
+  }, [petId,formsubmited]);
 
   if (!pet) {
     return <div>Loading...</div>;
@@ -35,6 +37,7 @@ const FoundPet = () => {
 
   return (
     <div className='pt-10 p-4 md:p-0  mx-auto max-w-screen-xl '>
+      <FoundPetEditForm pet={pet} setFormSubmitted={setFormSubmitted} />
       <div className='flex flex-col md:flex-row'>
       <div className='flex-1 py-5'>
         <img src={pet.imageURL?pet.imageURL : dogplaceholder} alt={pet.description} className='w-full h-96 object-cover' />

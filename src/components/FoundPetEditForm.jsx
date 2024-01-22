@@ -7,7 +7,7 @@ import { useContext,useState,useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SessionContext } from './SessionContext';
 
-const FoundPetForm = ({setFormSubmitted}) => {
+const FoundPetEditForm = ({setFormSubmitted,pet}) => {
   const [open, setOpen] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
   const [preview, setPreview] = useState(null);
@@ -16,25 +16,58 @@ const FoundPetForm = ({setFormSubmitted}) => {
   const handleClose = () => setOpen(false);
   const [isLoading, setIsLoading] = useState(false);
   const [showOptional, setShowOptional] = useState(false);
-
   const navigate = useNavigate();
   const handleFileChange = (e) => setSelectedFile(e.target.files[0]);
 
 
+  if (!pet) {
+    return <div>Loading...</div>;
+  }
+
+  const [formValues, setFormValues] = useState({
+    color: pet.color,
+    size: pet.size,
+    found_date: pet.found_date,
+    found_location: pet.found_location,
+    description: pet.description,
+    status: pet.status,
+    contact_number: pet.contact_number,
+  });
+
+  console.log(pet.imageURL)
+
+  console.log(formValues.color)
+  const handleChange = (event) => {
+    setFormValues({
+      ...formValues,
+      [event.target.name]: event.target.value,
+    });
+  };
+  
+
   const handleFilePreview = () => {
     if (selectedFile) {
       const reader = new FileReader();
-      reader.onloadend = () => setPreview(reader.result);
+      reader.onloadend = () => {
+        setPreview(reader.result);
+        setFormValues({
+          ...formValues,
+          imageURL: reader.result,
+        });
+      };
       reader.readAsDataURL(selectedFile);
     } else {
       setPreview(null);
+      setFormValues({
+        ...formValues,
+        imageURL: pet.imageURL,
+      });
     }
-  }
+  };
 
   useEffect(() => {
     handleFilePreview();
   }, [selectedFile]);
-
 
   const uploadFile = async () => {
     let fileURL = null;
@@ -52,8 +85,24 @@ const FoundPetForm = ({setFormSubmitted}) => {
       if (uploadError) {
         console.error('Error uploading image: ', uploadError);
       } else {
-        console.log(uploadData)
-        fileURL = uploadData.path;
+        // Extract the 'petImages/foundPets/1705910443327.png' part from pet.imageURL
+        const url = new URL(pet.imageURL);
+        let existingImagePath = url.pathname.split('/public/')[1];
+      
+        // Remove 'petImages/' from the start of the string
+        existingImagePath = existingImagePath.replace('petImages/', '');
+      
+        // Delete old image
+        const { data, error } = await supabase
+          .storage
+          .from('petImages')
+          .remove([existingImagePath]);
+      
+        if (error) {
+          console.error('Error deleting image: ', error);
+        } else {
+          fileURL = uploadData.path;
+        }
       }
     }
     return fileURL;
@@ -61,35 +110,34 @@ const FoundPetForm = ({setFormSubmitted}) => {
 
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    const { color, size, found_date, found_location, description, status, contact_number } = e.target.elements;
-    const fileURL = await uploadFile();
+  e.preventDefault();
+  const fileURL = await uploadFile();
 
-    const BUCKET_BASE_URL = "https://porojjoxqjqbgxlkxzmy.supabase.co/storage/v1/object/public/petImages/";
-    const user_id = session.user.id;
-    const { data, error } = await supabase
+  const BUCKET_BASE_URL = "https://porojjoxqjqbgxlkxzmy.supabase.co/storage/v1/object/public/petImages/";
+  const user_id = session.user.id;
+  const { data, error } = await supabase
     .from('foundpets') // Make sure 'foundPets' table exists
-    .insert([
-      { 
-        finder_id: user_id ? user_id : null,
-        imageURL: fileURL ? `${BUCKET_BASE_URL}${fileURL}` : null,
-        color: color ? color.value : null, 
-        size: size ? size.value : null,
-        found_date: found_date ? found_date.value : null,
-        found_location: found_location ? found_location.value : null,
-        description: description ? description.value : null,
-        status: status ? status.value : null,
-        contact_number: contact_number ? contact_number.value : null,
-      },
-    ]);
-    if (error) {
-      console.error('Error inserting data:', error);
-    } else {
-      setIsLoading(false);
-      handleClose();
-      setFormSubmitted(prevState => !prevState); 
-    }
+    .update({ 
+      finder_id: user_id ? user_id : null,
+      imageURL: fileURL ? `${BUCKET_BASE_URL}${fileURL}` : null,
+      color: formValues.color, 
+      size: formValues.size,
+      found_date: formValues.found_date,
+      found_location: formValues.found_location,
+      description: formValues.description,
+      status: formValues.status,
+      contact_number: formValues.contact_number,
+    })
+    .eq('id', pet.id); // Replace 'id' and pet.id with your actual column name and value
+
+  if (error) {
+    console.error('Error updating data:', error);
+  } else {
+    setIsLoading(false);
+    handleClose();
+    setFormSubmitted(prevState => !prevState); 
   }
+}
   
     return (
       <div>
@@ -100,7 +148,7 @@ const FoundPetForm = ({setFormSubmitted}) => {
             <path d="M20.7389 28.0835C20.3618 30.1367 14.5485 44.1219 20.5668 45.3134C31.7438 46.91 30.4023 34.1961 30.4023 26.2505" stroke="white" strokeOpacity="0.9" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"/>
             <path d="M36.002 26.1003V26.8503" stroke="white" strokeOpacity="0.9" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
-            Post
+            EDIT
         </button>
         <Modal
           open={open}
@@ -113,11 +161,21 @@ const FoundPetForm = ({setFormSubmitted}) => {
             <div className="flex md:flex-row flex-col bg-white p-4 rounded-md gap-0 md:gap-20">
                 <div className='flex-1  flex items-center'>
                   <label className='w-full inline-block text-center cursor-pointer'>
-                    {!preview && (
-                      <img src={uploadimgicon} alt='uploadimgicon' className='w-full h-full' />
+                    {!preview && !formValues.imageURL && (
+                      <img 
+                        src={uploadimgicon} 
+                        alt='uploadimgicon' 
+                        className='w-full h-full' 
+                      />
                     )}
 
-                    {preview && <img src={preview} alt="preview" className='w-full h-full object-contain' />}
+                    {(preview || pet.imageURL) && (
+                      <img 
+                        src={preview || pet.imageURL} 
+                        alt="preview" 
+                        className='w-full h-full object-contain' 
+                      />
+                    )}
                     <input 
                       type="file" 
                       accept="image/*" 
@@ -133,105 +191,73 @@ const FoundPetForm = ({setFormSubmitted}) => {
                   </h2>
 
                   <form className="space-y-2 md:space-y-4" onSubmit={handleSubmit}>
-  <div className='flex gap-2'>
-  <label>
-              Color:
-              <input type="text" name="color" required />
-            </label>
+                    <div className='flex gap-2'>
+                        <label>
+                          Color:
+                          <input type="text" name="color" value={formValues.color} onChange={handleChange} />
+                        </label>
+                        <label>
+                          Size:
+                          <input type="text" name="size" value={formValues.size} onChange={handleChange} />
+                        </label>
+                    </div>
 
- <label>
-              Size:
-              <input type="text" name="size" required />
-            </label>
-  </div>
+                    <div className='flex gap-2'>
+                      <label>
+                        Found Date:
+                        <input 
+                          type="date" 
+                          name="found_date" 
+                          value={formValues.found_date} 
+                          onChange={handleChange} 
+                        />
+                      </label>
 
-  <div className='flex gap-2'>
-  <label>
-              Found Date:
-              <input type="date" name="found_date" required />
-            </label>
+                      <label>
+                        Found Location:
+                        <input 
+                          type="text" 
+                          name="found_location" 
+                          value={formValues.found_location} 
+                          onChange={handleChange} 
+                        />
+                      </label>
 
-  <label>
-              Found Location:
-              <input type="text" name="found_location" required />
-            </label>
+                    </div>
 
-  </div>
+                    <div className='flex gap-2'>
+                      <label>
+                        Description:
+                        <textarea name="description" value={formValues.description} onChange={handleChange}  required />
+                      </label>
 
-  <div className='flex gap-2'>
-<label>
-              Description:
-              <textarea name="description" required />
-            </label>
+                      <label>
+                        Status:
+                        <input 
+                          type="text" 
+                          name="status" 
+                          value={formValues.status} 
+                          onChange={handleChange} 
+                        />
+                      </label>
+                    </div>
 
-  <label>
-              Status:
-              <input type="text" name="status" required />
-            </label>
-  </div>
-
-  <label>
-              Contact Number:
-              <input type="text" name="contact_number" required />
-            </label>
-
-  <div>
-    <input
-      type="checkbox"
-      id="optional"
-      name="optional"
-      checked={showOptional}
-      onChange={() => setShowOptional(!showOptional)}
-    />
-    <label htmlFor="optional">Show optional fields</label>
-  </div>
-
-  {showOptional && (
-    <div className='flex gap-2'>
-      <label>
-        Breed
-        <input
-          name="breed"
-          placeholder="Breed"
-          className="w-full p-2 border rounded-md"
-        />
-      </label>
-      <label>
-        Color
-        <input
-          name="color"
-          placeholder="Color"
-          className="w-full p-2 border rounded-md"
-        />
-      </label>
-      <label>
-        Size
-        <input
-          name="size"
-          placeholder="Size"
-          className="w-full p-2 border rounded-md"
-        />
-      </label>
-      <label>
-        Age
-        <input
-          type="number"
-          name="age"
-          placeholder="Age"
-          min="0"
-          className="w-full p-2 border rounded-md"
-        />
-      </label>
-    </div>
-  )}
-
-  <button
-    type="submit"
-    className="w-full py-2 px-4 bg-blue-500 text-white rounded-md"
-  >
-    {isLoading ? 'Posting...' : 'Post'}
-  </button>
-</form>
+                      <label>
+                      Contact Number:
+                      <input 
+                        type="text" 
+                        name="contact_number" 
+                        value={formValues.contact_number} 
+                        onChange={handleChange} 
+                      />
+                    </label>
+                    <button
+                      type="submit"
+                      className="w-full py-2 px-4 bg-blue-500 text-white rounded-md"
+                    >
+                      {isLoading ? 'Updating...' : 'Update'}
+                    </button>
+                  </form>
                 </div>
               </div>
             ) : (
@@ -258,7 +284,6 @@ const FoundPetForm = ({setFormSubmitted}) => {
                 </button>
               </div>
             </div>
-             
             )}
           </Box>
         </Modal>
@@ -266,4 +291,4 @@ const FoundPetForm = ({setFormSubmitted}) => {
     );
 }
 
-export default FoundPetForm
+export default FoundPetEditForm
