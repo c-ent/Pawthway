@@ -65,12 +65,7 @@ const AllLostPets = () => {
 
   return (
     <div className='mx-auto max-w-screen-xl p-4 md:p-0' >
-      {isLoading && 
-        <div className='flex justify-center items-center mt-20'>
-          <img src={loadingimg} className='animate-ping' alt='loading' />
-        </div>
-      }
-
+      
       <div className='flex items-center justify-between pt-10'>
         <div>
           <h1 className="text-4xl md:text-5xl font-bold pb-5">Missing Pets</h1>
@@ -97,6 +92,12 @@ const AllLostPets = () => {
           </Link>
         ))}
       </div>
+      {isLoading && 
+        <div className='flex justify-center items-center mt-20'>
+          <img src={loadingimg} className='animate-ping' alt='loading' />
+        </div>
+      }
+
 
       <Pagination page={page} setPage={setPage} hasNextPage={hasNextPage} />
   </div>
