@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 import FoundPetForm from '@components/FoundPetForm'
 import loadingimg from '../../images/icons/loading.svg'
 import { supabase } from '../supabaseClient'
+import Pagination from '../components/Pagination'
+import SortControls from '../components/SortControls'
 
 const AllFoundPets = () => {
   const [foundPets, setFoundPets] = useState([]) // state to hold the dogs data
@@ -12,31 +14,40 @@ const AllFoundPets = () => {
   const [sortDirection, setSortDirection] = useState(true); // Initialize as boolean true
   const [formsubmited, setFormSubmitted] = useState(false); // Initialize as boolean true
   const [sortField, setSortField] = useState('id');
+  const [page, setPage] = useState(1);
+  const limit = 12;
+  const [hasNextPage, setHasNextPage] = useState(true);
 
   useEffect(() => {
     getFoundPets().then(() => setIsLoading(false));
-  }, [sortOption, sortDirection,formsubmited]) // Add sortDirection as a dependency
+  }, [sortOption, sortDirection, formsubmited, page])
+
 
   async function getFoundPets() {
+    let startIndex = (page - 1) * limit;
+    let endIndex = startIndex + limit - 1;
+  
     let { data: foundPets, error } = await supabase
       .from('foundpets')
       .select('*')
-      .order(sortOption, { ascending: sortDirection }) // Call order function once
+      .order(sortOption, { ascending: sortDirection })
+      .range(startIndex, endIndex)
+  
     if (error) {
       console.error('Error fetching dogs: ', error);
     } else {
-      console.log(foundPets)
       setFoundPets(foundPets)
+      setHasNextPage(foundPets.length === limit);
     }
   }
 
   const handleSortChange = (e) => {
     if (e.target.value === 'highest') {
       setSortOption('reward');
-      setSortDirection(false); // false for descending order
+      setSortDirection(true); // false for descending order
     } else if (e.target.value === 'lowest') {
       setSortOption('reward');
-      setSortDirection(true); // true for ascending order
+      setSortDirection(false); // true for ascending order
     } else {
       setSortOption(e.target.value);
     }
@@ -44,6 +55,11 @@ const AllFoundPets = () => {
 
   const handleSortDirectionChange = (e) => {
     setSortDirection(e.target.value === 'true'); // Convert string to boolean
+  }
+
+  const handleNewestClick = () => {
+    setSortOption('created_at');
+    setSortDirection(false);
   }
 
   return (
@@ -60,6 +76,14 @@ const AllFoundPets = () => {
         </div>
       }
 
+      <SortControls
+        handleNewestClick={handleNewestClick} 
+        handleSortChange={handleSortChange} 
+        handleSortDirectionChange={handleSortDirectionChange} 
+        sortOption={sortOption} 
+        sortDirection={sortDirection}
+        componentType='foundPets'
+      />    
       <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {foundPets.map((pet) => (
           <Link key={pet.id} to={`/foundpets/${pet.id}`}>
@@ -67,6 +91,7 @@ const AllFoundPets = () => {
           </Link>
         ))}
       </div>
+      <Pagination page={page} setPage={setPage} hasNextPage={hasNextPage} />
     </div>
   )
 }
