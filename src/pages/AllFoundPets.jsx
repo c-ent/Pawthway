@@ -64,7 +64,6 @@ const AllFoundPets = () => {
 
   return (
     <div className='pt-10 mx-auto max-w-screen-xl p-4 md:p-0' >
-      
       <div className='flex items-center justify-between'>
         <h1 className="text-5xl font-bold pb-5">Found Pets</h1>
         <FoundPetForm setFormSubmitted={setFormSubmitted}/>
@@ -73,6 +72,14 @@ const AllFoundPets = () => {
       {isLoading && 
         <div className='flex justify-center items-center mt-20'>
           <img src={loadingimg} className='animate-ping' alt='loading' />
+        </div>
+      }
+
+
+      {
+        !isLoading && foundPets.length === 0 && 
+        <div className='flex justify-center items-center mt-20'>
+          <h1 className='text-2xl font-bold'>No Pets Found</h1>
         </div>
       }
 
@@ -91,7 +98,9 @@ const AllFoundPets = () => {
           </Link>
         ))}
       </div>
-      <Pagination page={page} setPage={setPage} hasNextPage={hasNextPage} />
+      {!isLoading && 
+        <Pagination page={page} setPage={setPage} hasNextPage={hasNextPage} />
+      }
     </div>
   )
 }

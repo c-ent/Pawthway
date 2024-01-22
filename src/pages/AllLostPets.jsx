@@ -65,7 +65,6 @@ const AllLostPets = () => {
 
   return (
     <div className='mx-auto max-w-screen-xl p-4 md:p-0' >
-      
       <div className='flex items-center justify-between pt-10'>
         <div>
           <h1 className="text-4xl md:text-5xl font-bold pb-5">Missing Pets</h1>
@@ -91,6 +90,7 @@ const AllLostPets = () => {
             <LostPetcard pet={pet} />
           </Link>
         ))}
+        
       </div>
       {isLoading && 
         <div className='flex justify-center items-center mt-20'>
@@ -98,8 +98,15 @@ const AllLostPets = () => {
         </div>
       }
 
-
-      <Pagination page={page} setPage={setPage} hasNextPage={hasNextPage} />
+      {
+        !isLoading && missingPets.length === 0 && 
+        <div className='flex justify-center items-center mt-20'>
+          <h1 className='text-2xl font-bold'>No Pets Found</h1>
+        </div>
+      }
+      {!isLoading && 
+        <Pagination page={page} setPage={setPage} hasNextPage={hasNextPage} />
+      }
   </div>
   )
 }
