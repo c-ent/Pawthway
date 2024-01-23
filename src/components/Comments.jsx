@@ -100,8 +100,11 @@ const Comments = ({petId,petType}) => {
 //   };
 
   return (
-    <div className='mt-10  border-t border-black mx-auto'>
-      <h2 className='text-lg font-bold mb-4'>Comments</h2>
+    <div className='mt-10  mx-auto'>
+      <div className='bg-[#484848] mb-10 rounded-full w-32 flex justify-center items-center text-center'>
+        <h2 className='text-lg font-bold py-1 text-white'>Comments</h2>
+      </div>
+    
       {comments === null && <div className='text-gray-500'>Loading...</div>}
       {comments !== null && comments.length === 0 && <div className='text-gray-500'>No comments yet.</div>}
       {comments && comments.length > 0 && comments.map((comment, index) => (
