@@ -14,7 +14,6 @@ import UserProfile from './pages/UserProfile';
 
 function App() {
   
-
   return (
     <Routes>
       <Route path="/" element={<Layout  />}>
