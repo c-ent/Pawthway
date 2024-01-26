@@ -57,7 +57,7 @@ const LosttPet = () => {
   
 
   return (
-    <div className='pt-10 p-4 md:p-0 mx-auto max-w-screen-lg' >
+    <div className='p-4 mx-auto max-w-screen-lg' >
       <div className='text-center  my-10'>
         <h1 className='font-bold text-5xl'>{pet.name}</h1>
       </div>
@@ -77,14 +77,17 @@ const LosttPet = () => {
 
         <div className='flex-1 p-0 md:p-7 flex justify-center items-center'>
           <div className='flex w-full  my-5 h-full text-[#5F5F5F] flex-col md:flex-row'>
-            <div className='w-full md:w-1/2 my-0 md:my-12  pb-4 md:pb-0 flex flex-col gap-4 justify-between '>
+            <div className='w-full  my-0 md:my-12  pb-4 md:pb-0 flex flex-col gap-4 justify-between '>
             
              {/* Location */}
              {pet.placeLost && (    
               <p className='text-md flex items-center gap-3 font-semibold'>
                 <img src={pin} alt="pin" className='w-8 h-8' />
-                <p className='text-md text-[#363636]'>Place:</p>
+                <div className='flex gap-3'>
+                {/* <p className='text-md text-[#363636]'>Place:</p> */}
                 {pet.placeLost}
+                </div>
+               
               </p>
                )}
 
@@ -99,8 +102,9 @@ const LosttPet = () => {
 
                 {/* Location */}
             {pet.contact && (    
-              <p className='text-md flex items-center gap-3 font-semibold'>
+              <p className='text-md flex  gap-3 font-semibold'>
                <img src={phone} alt="phone" className='w-8 h-8' />
+               <p className='text-md text-[#363636]'>#</p>
                 {pet.contact}
               </p>
                )}
@@ -122,7 +126,7 @@ const LosttPet = () => {
 
             </div>
 
-            <div className='w-full md:w-1/2 my-0 md:my-12 flex flex-col gap-4 justify-between '>
+            <div className='w-full  my-0 md:my-12 flex flex-col gap-4 justify-between '>
                {/* Animal Type */}
             {pet.animalType && (
                <p className='text-md flex items-center gap-3 font-semibold'>
