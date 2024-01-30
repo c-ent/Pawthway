@@ -9,7 +9,7 @@ import { SessionContext } from './SessionContext';
 
 const FoundPetEditForm = ({setFormSubmitted,pet}) => {
   const [open, setOpen] = useState(false);
-  const [selectedFile, setSelectedFile] = useState(pet.imageURL);
+  const [selectedFile, setSelectedFile] = useState(null);
   const [preview, setPreview] = useState(null);
   const session = useContext(SessionContext);
   const handleOpen = () => setOpen(true);
@@ -17,7 +17,11 @@ const FoundPetEditForm = ({setFormSubmitted,pet}) => {
   const [isLoading, setIsLoading] = useState(false);
   const [showOptional, setShowOptional] = useState(false);
   const navigate = useNavigate();
+
+
   const handleFileChange = (e) => setSelectedFile(e.target.files[0]);
+
+
 
 
   if (!pet) {

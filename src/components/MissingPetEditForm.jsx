@@ -9,7 +9,7 @@ import { SessionContext } from './SessionContext';
 
 const MissingPetEditForm = ({setFormSubmitted,pet}) => {
   const [open, setOpen] = useState(false);
-  const [selectedFile, setSelectedFile] = useState(pet.imageURL);
+  const [selectedFile, setSelectedFile] = useState(null);
   const [preview, setPreview] = useState(null);
   const session = useContext(SessionContext);
   const handleOpen = () => setOpen(true);
