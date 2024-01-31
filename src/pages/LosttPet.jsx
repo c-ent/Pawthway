@@ -13,7 +13,7 @@ const LosttPet = () => {
   const [pet, setPet] = useState([])
   const session = useContext(SessionContext);
   const [formsubmited, setFormSubmitted] = useState(false); // Initialize as boolean true
-
+  const [isLoading, setIsLoading] = useState(true);
 
     
   useEffect(() => {
@@ -21,18 +21,30 @@ const LosttPet = () => {
   }, [petId,formsubmited]); // add id as a dependency
 
   async function getPet() {
+    setIsLoading(true);
     let { data: missingPet, error } = await supabase
-    .from('missingPets') // select the 'missingPets' table
-    .select('*') // select all columns
-    .eq('id', petId) // where the 'id' column equals the provided id
-
+      .from('missingPets') // select the 'missingPets' table
+      .select('*') // select all columns
+      .eq('id', petId); // where the 'id' column equals the provided id
 
     if (error) {
       console.error('Error fetching pet: ', error);
     } else {
-      setPet(missingPet[0])
+      setPet(missingPet[0]);
     }
+    setIsLoading(false);
   }
+
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (!pet) {
+    return <div>Pet not found</div>;
+  }
+
+  
 
   return (
     <div className='pt-10 p-4 md:p-0 mx-auto max-w-screen-xl' >
@@ -47,7 +59,14 @@ const LosttPet = () => {
 
        
        <div className='flex flex-col md:flex-row'>
-        <MissingPetEditForm setFormSubmitted={setFormSubmitted} pet={pet} />
+
+          {
+            pet.user_id === session.user.id ? 
+              <MissingPetEditForm setFormSubmitted={setFormSubmitted} pet={pet} />
+            : null
+          }
+
+       
           <div className='flex-1 py-5'>
             <img src={pet.imageURL? pet.imageURL : dogplaceholder} alt={pet.name} className='w-full h-96 object-cover'  onClick={() => setMainImage(pet.image)} />
             <DeleteLostPetButton pet_user_id={pet.user_id} pet_Id={pet.id} session={session}/> 

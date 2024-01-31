@@ -9,7 +9,7 @@ import { SessionContext } from './SessionContext';
 
 const MissingPetEditForm = ({setFormSubmitted,pet}) => {
   const [open, setOpen] = useState(false);
-  const [selectedFile, setSelectedFile] = useState(pet.imageURL);
+  const [selectedFile, setSelectedFile] = useState(null);
   const [preview, setPreview] = useState(null);
   const session = useContext(SessionContext);
   const handleOpen = () => setOpen(true);
@@ -128,6 +128,13 @@ const MissingPetEditForm = ({setFormSubmitted,pet}) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Check if session user id is equal to pet user id
+    if (session.user.id !== pet.user_id) {
+      console.error('User is not authorized to edit this pet');
+      return; // Return from the function if user is not authorized
+    }
+
     const fileURL = await uploadFile();
   
     const BUCKET_BASE_URL = "https://porojjoxqjqbgxlkxzmy.supabase.co/storage/v1/object/public/petImages/";
