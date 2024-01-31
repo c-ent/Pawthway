@@ -48,16 +48,6 @@ const LosttPet = () => {
 
   return (
     <div className='pt-10 p-4 md:p-0 mx-auto max-w-screen-xl' >
-      <Helmet>
-    <title>{pet.Name}</title>
-    <meta property="og:url" content={window.location.href} />
-    <meta property="og:type" content="missingdog" />
-    <meta property="og:title" content={pet.Name} />
-    <meta property="og:description" content={pet.description} />
-    <meta property="og:image" content={pet.imageURL} />
-    </Helmet>
-
-       
        <div className='flex flex-col md:flex-row'>
 
           {
