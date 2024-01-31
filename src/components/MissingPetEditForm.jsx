@@ -9,7 +9,7 @@ import { SessionContext } from './SessionContext';
 
 const MissingPetEditForm = ({setFormSubmitted,pet}) => {
   const [open, setOpen] = useState(false);
-  const [selectedFile, setSelectedFile] = useState(null);
+  const [selectedFile, setSelectedFile] = useState(pet.imageURL);
   const [preview, setPreview] = useState(null);
   const session = useContext(SessionContext);
   const handleOpen = () => setOpen(true);
@@ -18,7 +18,7 @@ const MissingPetEditForm = ({setFormSubmitted,pet}) => {
   const [showOptional, setShowOptional] = useState(false);
   const navigate = useNavigate();
   const handleFileChange = (e) => setSelectedFile(e.target.files[0]);
-
+  
 
 
   
@@ -80,6 +80,7 @@ const MissingPetEditForm = ({setFormSubmitted,pet}) => {
   }, [selectedFile]);
 
   const uploadFile = async () => {
+    
     let fileURL = null;
     if (selectedFile) {
       const uniqueName = `${Date.now()}.${selectedFile.name.split('.').pop()}`; // Generate a unique name
@@ -113,26 +114,27 @@ const MissingPetEditForm = ({setFormSubmitted,pet}) => {
             console.error('Error deleting image: ', error);
           }
         }
-      
+        
+       
         // Proceed with the upload regardless of whether the image was deleted or not
         fileURL = uploadData.path;
       }
     }
-    console.log(fileURL)
+
+    console.log(fileURL,'fileURL')
     return fileURL;
   }
 
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
-  const fileURL = await uploadFile();
-
-  const BUCKET_BASE_URL = "https://porojjoxqjqbgxlkxzmy.supabase.co/storage/v1/object/public/petImages/";
-  const user_id = session.user.id;
-  const { data, error } = await supabase
-    .from('missingPets') // Make sure 'missingPets' table exists
-    .update({
-      imageURL: fileURL ? `${BUCKET_BASE_URL}${fileURL}` : null,
+    e.preventDefault();
+    const fileURL = await uploadFile();
+  
+    const BUCKET_BASE_URL = "https://porojjoxqjqbgxlkxzmy.supabase.co/storage/v1/object/public/petImages/";
+    const user_id = session.user.id;
+  
+    // Prepare the data to update
+    let updateData = {
       name: formValues.name,
       animalType: formValues.animalType,
       placeLost: formValues.placeLost,
@@ -145,17 +147,26 @@ const MissingPetEditForm = ({setFormSubmitted,pet}) => {
       color: formValues.color,
       size: formValues.size,
       age: formValues.age,
-    })
-    .eq('id', pet.id); // Replace 'id' and pet.id with your actual column name and value
-
-  if (error) {
-    console.error('Error updating data:', error);
-  } else {
-    setIsLoading(false);
-    handleClose();
-    setFormSubmitted(prevState => !prevState); 
+    };
+  
+    // Only include imageURL in the update data if fileURL is not null
+    if (fileURL) {
+      updateData.imageURL = `${BUCKET_BASE_URL}${fileURL}`;
+    }
+  
+    const { data, error } = await supabase
+      .from('missingPets') // Make sure 'missingPets' table exists
+      .update(updateData)
+      .eq('id', pet.id); // Replace 'id' and pet.id with your actual column name and value
+  
+    if (error) {
+      console.error('Error updating data:', error);
+    } else {
+      setIsLoading(false);
+      handleClose();
+      setFormSubmitted(prevState => !prevState); 
+    }
   }
-}
   
     return (
       <div>

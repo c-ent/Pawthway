@@ -114,16 +114,15 @@ const FoundPetEditForm = ({setFormSubmitted,pet}) => {
 
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
-  const fileURL = await uploadFile();
-
-  const BUCKET_BASE_URL = "https://porojjoxqjqbgxlkxzmy.supabase.co/storage/v1/object/public/petImages/";
-  const user_id = session.user.id;
-  const { data, error } = await supabase
-    .from('foundpets') // Make sure 'foundPets' table exists
-    .update({ 
+    e.preventDefault();
+    const fileURL = await uploadFile();
+  
+    const BUCKET_BASE_URL = "https://porojjoxqjqbgxlkxzmy.supabase.co/storage/v1/object/public/petImages/";
+    const user_id = session.user.id;
+  
+    // Prepare the data to update
+    let updateData = {
       finder_id: user_id ? user_id : null,
-      imageURL: fileURL ? `${BUCKET_BASE_URL}${fileURL}` : null,
       color: formValues.color, 
       size: formValues.size,
       found_date: formValues.found_date,
@@ -131,17 +130,26 @@ const FoundPetEditForm = ({setFormSubmitted,pet}) => {
       description: formValues.description,
       status: formValues.status,
       contact_number: formValues.contact_number,
-    })
-    .eq('id', pet.id); // Replace 'id' and pet.id with your actual column name and value
-
-  if (error) {
-    console.error('Error updating data:', error);
-  } else {
-    setIsLoading(false);
-    handleClose();
-    setFormSubmitted(prevState => !prevState); 
+    };
+  
+    // Only include imageURL in the update data if fileURL is not null
+    if (fileURL) {
+      updateData.imageURL = `${BUCKET_BASE_URL}${fileURL}`;
+    }
+  
+    const { data, error } = await supabase
+      .from('foundpets') // Make sure 'foundPets' table exists
+      .update(updateData)
+      .eq('id', pet.id); // Replace 'id' and pet.id with your actual column name and value
+  
+    if (error) {
+      console.error('Error updating data:', error);
+    } else {
+      setIsLoading(false);
+      handleClose();
+      setFormSubmitted(prevState => !prevState); 
+    }
   }
-}
   
     return (
       <div>
