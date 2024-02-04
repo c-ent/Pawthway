@@ -64,10 +64,8 @@ const LosttPet = () => {
             <img src={pet.imageURL? pet.imageURL : dogplaceholder} alt={pet.name} className='w-full h-96 object-cover rounded-xl'  onClick={() => setMainImage(pet.image)} />
           </div>
 
-        <div className='flex-1 p-0 md:p-7'>
-
-
-          <div className='flex pb-7'>
+        <div className='flex-1 p-0 md:p-7 flex justify-center items-center'>
+          <div className='flex pb-7 w-full  '>
             <div className='w-1/2 space-y-3'>
             
              {/* Location */}
