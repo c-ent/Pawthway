@@ -9,7 +9,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   
   <React.StrictMode>
     <BrowserRouter>
-      <SessionProvider> {/* Wrap App with SessionProvider */}
+      <SessionProvider> 
           <App />
       </SessionProvider>
     </BrowserRouter>
