@@ -46,36 +46,29 @@ const LosttPet = () => {
   
 
   return (
-    <div className='pt-10 p-4 md:p-0 mx-auto max-w-screen-xl' >
+    <div className='pt-10 p-4 md:p-0 mx-auto max-w-screen-lg' >
+      <div className='text-center  my-4'>
+        <h1 className='font-bold text-5xl'>{pet.name}</h1>
+      </div>
        <div className='flex flex-col md:flex-row'>
-
+{/* 
           {
             pet.user_id === session.user.id ? 
               <MissingPetEditForm setFormSubmitted={setFormSubmitted} pet={pet} />
             : null
-          }
+          } */}
 
-       
-          <div className='flex-1 py-5'>
-            <img src={pet.imageURL? pet.imageURL : dogplaceholder} alt={pet.name} className='w-full h-96 object-cover'  onClick={() => setMainImage(pet.image)} />
-            <DeleteLostPetButton pet_user_id={pet.user_id} pet_Id={pet.id} session={session}/> 
+           {/* <DeleteLostPetButton pet_user_id={pet.user_id} pet_Id={pet.id} session={session}/>  */}
+
+          <div className='flex-1'>
+            <img src={pet.imageURL? pet.imageURL : dogplaceholder} alt={pet.name} className='w-full h-96 object-cover rounded-xl'  onClick={() => setMainImage(pet.image)} />
           </div>
 
         <div className='flex-1 p-0 md:p-7'>
+
+          {/* Reward */}
           <div className='flex justify-between pb-7'>
-            <div>
-              <h1 className='font-bold text-4xl'>{pet.name}</h1>
-            </div>
             <div className='flex justify-between space-x-3'>
-              {/* <button className="flex  items-center bg-purple-700 text-white px-3  rounded-md ">
-                <svg xmlns="http://www.w3.org/2000/svg" width="33" height="33" viewBox="0 0 33 33" fill="none">
-                <path d="M4 17.4619C6.06627 11.7358 10.7515 7.18843 16.5992 8.9732C20.6796 10.2186 18.9678 12.5394 20.5535 14.0652C21.4481 14.7535 23.877 13.8296 24.5052 14.689C25.0606 15.449 24.6593 16.8354 24.5052 17.7456C23.8973 21.3343 19.7833 21.8626 16.2979 21.8626" stroke="white" strokeOpacity="0.9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M24.7076 16.005C24.4203 15.4599 23.7648 14.9502 22.9751 14.52" stroke="white" strokeOpacity="0.9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M8.80477 14.9505C8.59737 16.0798 5.40009 23.7717 8.71014 24.427C14.8575 25.3051 14.1197 18.3125 14.1197 13.9424" stroke="white" strokeOpacity="0.9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M17.2002 13.8599V14.2724" stroke="white" strokeOpacity="0.9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-                Found
-              </button> */}
               <button className="bg-red-600 text-white px-3 font-bold py-1 rounded-md">Reward: ₱ {pet.reward}</button>
             </div>
           </div>
@@ -83,6 +76,7 @@ const LosttPet = () => {
           <div className='flex pb-7'>
             <div className='w-1/2 space-y-3'>
               
+            {/* Animal Type */}
             {pet.animalType && (
               <p className='text-sm flex items-center gap-2 font-semibold'>
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 28 26" fill="none">
@@ -93,6 +87,7 @@ const LosttPet = () => {
               </p>
             )}
 
+            {/* Pet Color */}
             {pet.color && (
               <p className='text-sm flex items-center gap-2 font-semibold'>
               <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 31 23" fill="none">
@@ -103,6 +98,7 @@ const LosttPet = () => {
               </p>
             )}
 
+            {/* Pet Age */}
             {pet.age && (
               <p className='text-sm flex items-center gap-2 font-semibold'>
               <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 27 27" fill="none">
@@ -113,6 +109,8 @@ const LosttPet = () => {
               </p>
             )}
 
+
+            {/* Pet Size */}
             {pet.size && (
               <p className='text-sm flex items-center gap-2 font-semibold'>
               <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
@@ -123,6 +121,7 @@ const LosttPet = () => {
               </p>
             )}
 
+            {/* Date Lost */}
               {pet.dateLost && (    
               <p className='text-sm flex items-center gap-2 font-semibold'>
               <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 41 41" fill="none">
@@ -136,19 +135,10 @@ const LosttPet = () => {
                )}
 
             </div>
+
             <div className='w-1/2 space-y-3'>
-            {/* {pet.lastSeenLocation && (              
-              <p className='text-sm flex items-center gap-2 font-semibold'>
-              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 39 39" fill="none">
-                <path d="M34.125 16.25C34.125 27.625 19.5 37.375 19.5 37.375C19.5 37.375 4.875 27.625 4.875 16.25C4.875 12.3712 6.41584 8.65128 9.15856 5.90856C11.9013 3.16584 15.6212 1.625 19.5 1.625C23.3788 1.625 27.0987 3.16584 29.8414 5.90856C32.5842 8.65128 34.125 12.3712 34.125 16.25Z" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M19.5 21.125C22.1924 21.125 24.375 18.9424 24.375 16.25C24.375 13.5576 22.1924 11.375 19.5 11.375C16.8076 11.375 14.625 13.5576 14.625 16.25C14.625 18.9424 16.8076 21.125 19.5 21.125Z" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-                {pet.lastSeenLocation}
-              </p>
-               )} */}
 
-
-
+            {/* Location */}
             {pet.contact && (    
               <p className='text-sm flex items-center gap-2 font-semibold'>
               <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 41 40" fill="none">
@@ -159,32 +149,15 @@ const LosttPet = () => {
                )}
             </div>
           </div>
-
-
-          <hr className='border-gray-300 border-t-1' />
-          <div className='pt-3'>
-            <h1 className='font-bold'>Description</h1>
-            <p className=' text-sm'>{pet.description}</p>
-          </div>
-
-          {/* <button 
-            className="flex items-center bg-blue-600 text-white px-3  py-1 rounded-md"
-            onClick={() => window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`, '_blank')}
-          >
-
-          <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
-            <path d="M18.4014 2.58374H15.4014C14.0753 2.58374 12.8035 3.11052 11.8658 4.04821C10.9282 4.98589 10.4014 6.25766 10.4014 7.58374V10.5837H7.40137V14.5837H10.4014V22.5837H14.4014V14.5837H17.4014L18.4014 10.5837H14.4014V7.58374C14.4014 7.31852 14.5067 7.06417 14.6943 6.87663C14.8818 6.6891 15.1362 6.58374 15.4014 6.58374H18.4014V2.58374Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-            Share
-          </button> */}
-
-          
-
-   
+        </div>
+        
 
         
-        </div>
+      </div>
 
+      <div className='pt-3 text-center'>
+        <h1 className='font-bold'>Description</h1>
+        <p className=' text-sm'>{pet.description}</p>
       </div>
 
 
