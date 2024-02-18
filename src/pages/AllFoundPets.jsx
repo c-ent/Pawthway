@@ -91,6 +91,7 @@ const AllFoundPets = () => {
           </Link>
         ))}
       </div>
+      
       {!isLoading && 
         <Pagination page={page} setPage={setPage} hasNextPage={hasNextPage} />
       }

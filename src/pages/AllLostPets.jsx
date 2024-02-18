@@ -8,6 +8,7 @@ import { SessionContext } from '../components/SessionContext'
 import Pagination from '../components/Pagination';
 import SortControls from '../components/SortControls';
 
+
 const AllLostPets = () => {
   const session = useContext(SessionContext);
   const [missingPets, setmissingPets] = useState([]) // state to hold the dogs data
@@ -87,6 +88,7 @@ const AllLostPets = () => {
       />
      
 </div>
+
      
 
 
@@ -102,6 +104,7 @@ const AllLostPets = () => {
       {isLoading && 
         <div className='flex justify-center items-center mt-20 min-h-[300px]'>
           <img src={loadingimg} className='animate-ping' alt='loading' />
+        
         </div>
       }
 
