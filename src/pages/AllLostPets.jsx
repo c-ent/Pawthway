@@ -107,7 +107,7 @@ const AllLostPets = () => {
 
       {
         !isLoading && missingPets.length === 0 && 
-        <div className='flex justify-center items-center mt-20'>
+        <div className='flex justify-center items-center my-20'>
           <h1 className='text-2xl font-bold'>No Pets Found</h1>
         </div>
       }
