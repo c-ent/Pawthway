@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react'
 import LostPetcard from '@components/LostPetcard'
 import { Link } from 'react-router-dom';
 import LostPetForm from '@components/LostPetForm'
-import loadingimg from '../../images/icons/loading.svg'
+import loadingimg from '../../images/icons/dogvector.svg'
 import { supabase } from '../supabaseClient'
 import { SessionContext } from '../components/SessionContext'
 import Pagination from '../components/Pagination';
@@ -100,7 +100,7 @@ const AllLostPets = () => {
         
       </div>
       {isLoading && 
-        <div className='flex justify-center items-center mt-20'>
+        <div className='flex justify-center items-center mt-20 min-h-[300px]'>
           <img src={loadingimg} className='animate-ping' alt='loading' />
         </div>
       }
