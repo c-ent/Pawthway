@@ -54,7 +54,8 @@ const AllLostPets = () => {
   }
 
   const handleSortDirectionChange = (e) => {
-    setSortDirection(e.target.value === 'true'); // Convert string to boolean
+    // setSortDirection(e.target.value === 'true'); // Convert string to boolean
+    setSortDirection(!sortDirection);
   }
 
   const handleNewestClick = () => {
@@ -64,12 +65,14 @@ const AllLostPets = () => {
   
 
   return (
-    <div className='mx-auto max-w-screen-xl p-4 md:p-0' >
-      <div className='flex items-center p-10 text-center'>
+    <div className='mx-auto max-w-screen-xl p-4' >
+      <div className='flex flex-col items-center p-10 text-center'>
        
           <h1 className="text-4xl md:text-6xl font-bold pb-5 text-center m-auto">Missing Pets</h1>
 
-        
+          <div className=''>
+          <LostPetForm  setFormSubmitted={setFormSubmitted}/>
+        </div>
        
       </div>
 
@@ -82,9 +85,7 @@ const AllLostPets = () => {
         sortDirection={sortDirection} 
         componentType='missingPets'
       />
-      <div className='flex flex-col justify-end'>
-          <LostPetForm  setFormSubmitted={setFormSubmitted}/>
-        </div>
+     
 </div>
      
 
