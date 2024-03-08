@@ -149,6 +149,8 @@ const LostPetForm = ({setFormSubmitted}) => {
                 </div>
 
                 <div className='flex-1'>
+
+
                   <h2 id="modal-modal-title" className="text-2xl font-bold mb-2">
                     Post a missing pet
                   </h2>

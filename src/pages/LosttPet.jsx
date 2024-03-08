@@ -1,11 +1,10 @@
-import React, { useState, useEffect, useContext } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import Comments from '@components/Comments'
 import { useParams } from 'react-router-dom'
 import { supabase } from '../supabaseClient';
 import DeleteLostPetButton from '../components/DeleteLostPetButton';
 import { SessionContext } from '../components/SessionContext';
 import dogplaceholder from '../../images/images/dogplaceholder.png';
-import { Helmet } from 'react-helmet';
 import MissingPetEditForm from '../components/MissingPetEditForm';
 
 const LosttPet = () => {
@@ -39,7 +38,7 @@ const LosttPet = () => {
   if (isLoading) {
     return <div>Loading...</div>;
   }
-
+ 
   if (!pet) {
     return <div>Pet not found</div>;
   }
