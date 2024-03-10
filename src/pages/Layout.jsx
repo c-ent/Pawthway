@@ -18,43 +18,45 @@ const Layout = () => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="flex flex-col min-h-screen">
-   <header className="flex items-center justify-between relative  p-4 md:p-5">
+   <header className="max-w-screen-2xl m-auto w-full flex items-center justify-between relative  p-4 md:p-5">
         {/* Logo */}
         <div className="flex-1">
-          <Link to="/" className="text-md md:text-lg font-extrabold  hover:text-purple-600 md:pr-5">Pawthway</Link>
+          <Link to="/" className="text-md md:text-lg font-extrabold  hover:text-purple-600 md:pr-5">pawthway</Link>
         </div>
         
 
       {/* Nav items */}
 
       {/* Nav Links Static */}
-      <nav className="md:flex-1 flex-2 flex justify-center ">
-         <ul className="flex text-sm md:text-md space-x-2 md:space-x-10 items-center">
+     
+      {/* Nav Links Dynamic */}
+      <nav className="flex-1 justify-end hidden md:flex">
+        <div className="flex text-sm md:text-md space-x-2 md:space-x-10 items-center">
+        <nav className="md:flex-1 flex-2 flex justify-center ">
+         <ul className="flex text-sm md:text-md space-x-2 md:space-x-3 items-center">
          <div>
-         <Link 
-          to="/lostpets" 
-          className={`text-md font-bold hover:text-purple-600 ${pathname === '/lostpets' ? 'text-violet-600' : ''}`}
-        >
-          Lost Pets
-        </Link>
+            <Link 
+              to="/lostpets" 
+            >
+              <button className={`w-[110px] border-black border-2  bg-black text-white py-[4px]  rounded-full text-md font-bold hover:text-purple-600 ${pathname === '/lostpets' ? 'text-violet-600' : ''}`}>
+              Lost Pets
+              </button>
+              
+            </Link>
           </div>
           <div>
             <Link 
               to="/foundpets" 
-              className={`text-md font-bold hover:text-purple-600 ${pathname === '/foundpets' ? 'text-violet-600' : ''}`}
+              className={` `}
             >
-                Found Pets
+              <button className={` w-[110px] border-black border-2 py-[4px]   rounded-full text-md font-bold hover:text-purple-600 ${pathname === '/foundpets' ? 'text-violet-600' : ''}`}>
+              Found Pets
+              </button>
+                
             </Link>
           </div>
           </ul>
       </nav>
-      {/* Nav Links Dynamic */}
-      <nav className="flex-1 justify-end hidden md:flex">
-        <div className="flex text-sm md:text-md space-x-2 md:space-x-10 items-center">
-          {/* Search Bar */}
-          <div className="">
-            <input type="search" placeholder="Search" className="px-3 py-1 rounded-full border border-black" />
-          </div>
 
           {/* Nav Links for  User Dropdown */}
           <div className="hidden md:block">
@@ -138,7 +140,7 @@ const Layout = () => {
      </main>
 
 
-    <footer className="bg-black text-white py-10 mt-10">
+    <footer className="bg-black text-white py-10">
       <div className="text-center">
         <h2 className="text-2xl font-bold mb-2">PawPathway</h2>
         <p className="mb-6">Your go-to hub for heartwarming pet reunions.</p>

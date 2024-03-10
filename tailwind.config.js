@@ -4,9 +4,13 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
-  theme: {
-    extend: {},
+  theme: {  
+    extend: {
+      fontFamily: {
+        'Inter': ['Inter', 'sans-serif'],
+      }
   },
   plugins: [],
+}
 }
 

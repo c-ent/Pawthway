@@ -4,4 +4,32 @@
 
 body {
   font-family: 'Inter', sans-serif;
+  margin: 0;
+}
+
+.orange-svg {
+  position: relative;
+  overflow: hidden; /* Ensure the pseudo-element doesn't extend outside the parent */
+}
+
+.orange-svg::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: url('../images/images/orangesvg.svg');
+  background-repeat: no-repeat;
+  background-size: 400px 400px;
+  background-position: -10% 100%;
+  filter: blur(300px);
+  -webkit-filter: blur(120px);
+  z-index: -99;
+}
+
+@media (max-width: 768px) {
+  .orange-svg::before {
+    background-position: 350% 50%; /* Adjust as needed */
+  }
 }

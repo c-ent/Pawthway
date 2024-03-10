@@ -1,54 +1,54 @@
 import React from 'react'
 import logo from '../../images/icons/logo-blck.svg'
-import map from '../../images/icons/map-blck.svg'
+import plane from '../../images/icons/plane.svg'
 // import doggif from '../../images/images/dog-bouncing.gif'
 import pet1 from  '../../images/images/dog-banner1.webp'
 import pet2 from  '../../images/images/pet-banner-2.webp'
 import pet3 from  '../../images/images/pet-banner-3.webp'
-import paw from '../../images/icons/paw-black.svg'
+import yarn from '../../images/icons/yarn.svg'
 import { Link } from 'react-router-dom'
 
  
 const Home = () => {
   return (
-    <div> 
-    <section className='h-full flex flex-col items-center space-y-7'>
-        <div className='pt-16'>
+    <div className='orange-svg'> 
+    <section className=' flex flex-col items-center  justify-center space-y-5 h-[650px] p-2'>
+      <div className='absolute left-[15%] top-0 md:visible invisible'>
+        <img src={yarn} alt="logo" className="w-20 h-20 md:w-16 md:h-28"/>
+      </div>
+
+      <div className='absolute right-[15%] bottom-[20%] md:visible invisible'>
+        <img src={plane} alt="logo" className="w-20 h-20 md:w-16 md:h-28"/>
+      </div>
+        {/* <div className='pt-16'>
           <img src={logo} alt="logo" className="w-20 h-20 md:w-28 md:h-28"/>
-        </div>
+        </div> */}
         <div className="relative">
-          <h1 className="text-3xl md:text-5xl font-bold text-center">
-            Helping Lost Pets <br></br> Finds Their Way Home
+          <h1 className="text-4xl md:text-6xl font-bold text-center max-w-2xl">
+            Helping Lost <span className='text-[#DE692C]'>Pets </span> <span className='text-[#DE692C]'>Finds </span> Their Way Home
           </h1>
-          <img src={paw} alt="description" className="md:block hidden absolute top-1 left-[-12px] w-8 md:w-10 h-10 transform -rotate-45" />
+        </div>
+
+        <div>
+         <p className='text-sm p-2 text-center'> pawthway easily find lost pets with  free service</p>
         </div>
         <div className=' space-x-1 md:space-x-3 flex'>
           <button className="bg-black hover:bg-purple-700 text-white font-bold py-2 px-2 md:px-4 rounded-full text-sm md:text-md">
             <Link to="/lostpets">Post a Missing Pet</Link>
           </button>
-          <button className="bg-white hover:bg-purple-700 text-black font-bold py-2 px-2 md:px-4 border border-black rounded-full text-sm md:text-md">
+          <button className="bg-transparent hover:bg-purple-700 text-black font-bold py-2 px-2 md:px-4 border border-black rounded-full text-sm md:text-md">
             <Link to="/foundpets">List of Lost Pets</Link>
           </button>
         </div>
         <div className='flex '>
-          <img src={pet1} alt="logo"  className="h-20 sm:h-40"/>
-          <img src={pet2} alt="logo"  className="h-20 sm:h-40"/>
-          <img src={pet3} alt="logo"  className="h-20 sm:h-40"/>
+        <img src={pet3} alt="logo"  className="h-20 sm:h-44"/>
+          <img src={pet2} alt="logo"  className="h-20 sm:h-44"/>
+          
+          <img src={pet1} alt="logo"  className="h-20 sm:h-44"/>
         </div>
       </section> 
 
-      {/* <section className='flex-col md:flex-row flex items-center space-x-0 md:space-x-16 space-y-4 pt-20'>
-        <div className='flex-1 flex items-center justify-center space-x-5'>
-          <img src={map} alt="logo"  className="h-10 md:h-20 "/>
-          <h2 className="text-lg md:text-2xl font-bold">PawPathway: <br></br>A Community-Powered Reunion Hub</h2>
-        </div>
-
-        <div className='flex-1'>
-          <p className='font-semibold'>Discover and share information with our community, making heartwarming reunions a reality.</p>
-        
-        </div>
-      </section>
-       */}
+   
 <section className='flex items-center pt-10 max-w-3xl mx-auto'>
   <div className='flex flex-col px-4 md:px-10'>
     {/* <h1 className="text-3xl md:text-2xl font-bold mb-4">About</h1>
