@@ -14,12 +14,12 @@ import { motion } from 'framer-motion';
 const Home = () => {
   return (
     <div className='overflow-hidden'> 
-    <section className=' flex flex-col items-center  justify-center space-y-5 h-[650px] p-2'>
+    <section className=' flex flex-col items-center  justify-center space-y-5 h-[700px] p-2'>
       {/* <div className='absolute left-[15%] top-0 md:visible invisible'>
         <img src={yarn} alt="logo" className="w-20 h-20 md:w-16 md:h-28"/>
       </div> */}
 
-      <div className='absolute left-[15%] top-20 md:visible invisible'>
+      <div className='absolute left-[15%] top-[10%] md:visible invisible'>
       <motion.img 
         src={plane1} 
         alt="logo" 
@@ -44,13 +44,14 @@ const Home = () => {
           <img src={logo} alt="logo" className="w-20 h-20 md:w-28 md:h-28"/>
         </div> */}
         <div className="relative">
-          <h1 className="text-[#1D1D1F] text-4xl md:text-7xl font-bold text-center max-w-[800px]">
+          <motion.h1 
+            className="text-[#1D1D1F] text-4xl md:text-7xl font-bold text-center max-w-[800px]">
             Helping Lost <span className=' bg-gradient-to-r from-[#DE692C] to-[#DE972C] bg-clip-text text-transparent'>Pets </span> <span className='bg-gradient-to-r from-[#DE692C] to-[#DE972C] bg-clip-text text-transparent'>Finds </span> Their Way Home
-          </h1>
+          </motion.h1>
         </div>
 
         <div>
-         <p className='text-sm p-2 text-center'> pawthway easily find lost pets with  free service</p>
+         <p className='text-xl p-2 text-center'> pawthway easily find lost pets with  free service</p>
         </div>
         <div className=' space-x-1 md:space-x-3 flex'>
           <button className="bg-[#1D1D1F] hover:bg-purple-700 text-white font-bold py-2 px-2 md:px-4 rounded-full text-sm md:text-md">
@@ -68,6 +69,12 @@ const Home = () => {
         </div>
       </section> 
 
+
+<section className='p-20'>
+<p className="max-w-[600px] text-center m-auto text-3xl ">
+    {"["} Utilize our user-friendly interface to quickly upload information about your missing pet, reaching a broad audience eager to help. {"]"}
+  </p>
+</section>
    
 <section className='flex items-center pt-10 max-w-3xl mx-auto'>
   <div className='flex flex-col px-4 md:px-10'>
