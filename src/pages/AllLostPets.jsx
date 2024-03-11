@@ -65,17 +65,16 @@ const AllLostPets = () => {
 
   return (
     <div className='mx-auto max-w-screen-xl p-4 md:p-0' >
-      <div className='flex items-center justify-between pt-10'>
-        <div>
-          <h1 className="text-4xl md:text-5xl font-bold pb-5">Missing Pets</h1>
-        </div>
+      <div className='flex items-center p-10 text-center'>
+       
+          <h1 className="text-4xl md:text-6xl font-bold pb-5 text-center m-auto">Missing Pets</h1>
+
         
-        <div className='flex flex-col justify-end'>
-          <LostPetForm  setFormSubmitted={setFormSubmitted}/>
-        </div>
+       
       </div>
 
-      <SortControls
+<div className='flex justify-between'>
+<SortControls
         handleNewestClick={handleNewestClick} 
         handleSortChange={handleSortChange} 
         handleSortDirectionChange={handleSortDirectionChange} 
@@ -83,6 +82,13 @@ const AllLostPets = () => {
         sortDirection={sortDirection} 
         componentType='missingPets'
       />
+      <div className='flex flex-col justify-end'>
+          <LostPetForm  setFormSubmitted={setFormSubmitted}/>
+        </div>
+</div>
+     
+
+
 
       <div className="grid grid-cols-2  md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
         {missingPets.map((pet) => (

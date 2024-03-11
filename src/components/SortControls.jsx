@@ -5,7 +5,7 @@ const SortControls = ({ componentType, handleNewestClick, handleSortChange, hand
     <div className='flex gap-2 md:gap-5 pb-4'>
       <button 
         onClick={handleNewestClick} 
-        className='px-2 py-2 bg-violet-500 text-white text-xs md:text-md rounded'
+        className='px-3 h-[35px] bg-[#121212] text-white text-xs md:text-md rounded-full'
       >
         Show Newest
       </button>
@@ -13,7 +13,7 @@ const SortControls = ({ componentType, handleNewestClick, handleSortChange, hand
       <select 
         value={sortOption} 
         onChange={handleSortChange} 
-        className=' py-2 bg-violet-500 text-white rounded text-xs md:text-md'
+        className=' py-0 px-2 h-[35px] bg-[#121212] text-white rounded-full text-xs md:text-md'
       >
         <option value="id">Sort by ID</option>
         <option value="name">Sort by Name</option>
@@ -24,7 +24,7 @@ const SortControls = ({ componentType, handleNewestClick, handleSortChange, hand
       <select 
         value={sortDirection} 
         onChange={handleSortDirectionChange} 
-        className='px-2 py-2 bg-violet-500 text-white rounded text-xs md:text-md'
+        className='px-3 py-0  h-[35px] bg-[#121212] text-white rounded-full text-xs md:text-md'
       >
         <option value="false">Ascending</option>
         <option value="true">Descending</option>
