@@ -24,7 +24,7 @@ const Home = () => {
           <img src={logo} alt="logo" className="w-20 h-20 md:w-28 md:h-28"/>
         </div> */}
         <div className="relative">
-          <h1 className="text-4xl md:text-6xl font-bold text-center max-w-2xl">
+          <h1 className="text-4xl md:text-7xl font-bold text-center max-w-4xl">
             Helping Lost <span className='text-[#DE692C]'>Pets </span> <span className='text-[#DE692C]'>Finds </span> Their Way Home
           </h1>
         </div>
