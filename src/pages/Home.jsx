@@ -1,31 +1,51 @@
 import React from 'react'
 import logo from '../../images/icons/logo-blck.svg'
 import plane from '../../images/icons/plane.svg'
+import plane1 from '../../images/icons/plane1.svg'
 // import doggif from '../../images/images/dog-bouncing.gif'
 import pet1 from  '../../images/images/dog-banner1.webp'
 import pet2 from  '../../images/images/pet-banner-2.webp'
 import pet3 from  '../../images/images/pet-banner-3.webp'
 import yarn from '../../images/icons/yarn.svg'
 import { Link } from 'react-router-dom'
+import { motion } from 'framer-motion';
 
- 
+
 const Home = () => {
   return (
-    <div className='orange-svg'> 
+    <div className='overflow-hidden'> 
     <section className=' flex flex-col items-center  justify-center space-y-5 h-[650px] p-2'>
-      <div className='absolute left-[15%] top-0 md:visible invisible'>
+      {/* <div className='absolute left-[15%] top-0 md:visible invisible'>
         <img src={yarn} alt="logo" className="w-20 h-20 md:w-16 md:h-28"/>
-      </div>
+      </div> */}
 
-      <div className='absolute right-[15%] bottom-[20%] md:visible invisible'>
-        <img src={plane} alt="logo" className="w-20 h-20 md:w-16 md:h-28"/>
-      </div>
+      <div className='absolute left-[15%] top-20 md:visible invisible'>
+      <motion.img 
+        src={plane1} 
+        alt="logo" 
+        className="w-20 h-20 md:w-20"
+        initial={{ x: -300 , y: -100}} // start from the right
+        animate={{ x: 0, y: 0 }} // animate to original position
+        transition={{ duration: 1.5 }} // animation duration
+      />
+    </div>
+
+      <div className='absolute right-[15%] bottom-[30%] md:visible invisible'>
+      <motion.img 
+        src={plane} 
+        alt="logo" 
+        className="w-20 h-20 md:w-20"
+        initial={{ x: 300 , y: 100}} // start from the right
+        animate={{ x: 0, y: 0 }} // animate to original position
+        transition={{ duration: 1.5 }} // animation duration
+      />
+    </div>
         {/* <div className='pt-16'>
           <img src={logo} alt="logo" className="w-20 h-20 md:w-28 md:h-28"/>
         </div> */}
         <div className="relative">
-          <h1 className="text-4xl md:text-7xl font-bold text-center max-w-[800px]">
-            Helping Lost <span className='text-[#DE692C]'>Pets </span> <span className='text-[#DE692C]'>Finds </span> Their Way Home
+          <h1 className="text-[#1D1D1F] text-4xl md:text-7xl font-bold text-center max-w-[800px]">
+            Helping Lost <span className=' bg-gradient-to-r from-[#DE692C] to-[#DE972C] bg-clip-text text-transparent'>Pets </span> <span className='bg-gradient-to-r from-[#DE692C] to-[#DE972C] bg-clip-text text-transparent'>Finds </span> Their Way Home
           </h1>
         </div>
 
@@ -33,10 +53,10 @@ const Home = () => {
          <p className='text-sm p-2 text-center'> pawthway easily find lost pets with  free service</p>
         </div>
         <div className=' space-x-1 md:space-x-3 flex'>
-          <button className="bg-black hover:bg-purple-700 text-white font-bold py-2 px-2 md:px-4 rounded-full text-sm md:text-md">
+          <button className="bg-[#1D1D1F] hover:bg-purple-700 text-white font-bold py-2 px-2 md:px-4 rounded-full text-sm md:text-md">
             <Link to="/lostpets">Post a Missing Pet</Link>
           </button>
-          <button className="bg-transparent hover:bg-purple-700 text-black font-bold py-2 px-2 md:px-4 border border-black rounded-full text-sm md:text-md">
+          <button className="bg-transparent hover:bg-purple-700 text-[#1D1D1F] font-bold py-2 px-2 md:px-4 border border-[#1D1D1F] rounded-full text-sm md:text-md">
             <Link to="/foundpets">List of Lost Pets</Link>
           </button>
         </div>

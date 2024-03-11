@@ -18,7 +18,7 @@ const Layout = () => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="flex flex-col min-h-screen">
-   <header className="max-w-screen-2xl m-auto w-full flex items-center justify-between relative  p-4 md:p-5">
+   <header className="bg-transparent max-w-screen-2xl m-auto w-full flex items-center justify-between relative  p-4 md:p-5">
         {/* Logo */}
         <div className="flex-1">
           <Link to="/" className="text-md md:text-lg font-extrabold  hover:text-purple-600 md:pr-5">pawthway</Link>
@@ -38,7 +38,7 @@ const Layout = () => {
             <Link 
               to="/lostpets" 
             >
-              <button className={`w-[110px] border-black border-2  bg-black text-white py-[4px]  rounded-full text-md font-bold hover:text-purple-600 ${pathname === '/lostpets' ? 'text-violet-600' : ''}`}>
+              <button className={`w-[110px] border-[#1D1D1F] border-2  bg-[#1D1D1F] text-white py-[4px]  rounded-full text-md font-bold hover:text-purple-600 ${pathname === '/lostpets' ? 'text-violet-600' : ''}`}>
               Lost Pets
               </button>
               
@@ -49,7 +49,7 @@ const Layout = () => {
               to="/foundpets" 
               className={` `}
             >
-              <button className={` w-[110px] border-black border-2 py-[4px]   rounded-full text-md font-bold hover:text-purple-600 ${pathname === '/foundpets' ? 'text-violet-600' : ''}`}>
+              <button className={` w-[110px] border-[#1D1D1F] border-2 py-[4px]   rounded-full text-md font-bold hover:text-purple-600 ${pathname === '/foundpets' ? 'text-violet-600' : ''}`}>
               Found Pets
               </button>
                 
@@ -140,7 +140,7 @@ const Layout = () => {
      </main>
 
 
-    <footer className="bg-black text-white py-10">
+    <footer className="bg-[#1D1D1F] text-white py-10">
       <div className="text-center">
         <h2 className="text-2xl font-bold mb-2">PawPathway</h2>
         <p className="mb-6">Your go-to hub for heartwarming pet reunions.</p>
