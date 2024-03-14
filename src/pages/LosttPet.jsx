@@ -94,10 +94,10 @@ const LosttPet = () => {
                  {/* Location */}
 
             {pet.placeLost && (
-              <p className='text-md flex font-semibold'>
+              <p className='text-md flex gap-3 font-semibold'>
                 <img src={pin} alt="pin" className='w-8 h-8' />
                 <div className='flex gap-2  text-[#5F5F5F]'>
-                  <p className='text-md text-[#363636]'>Place:</p>
+                  {/* <p className='text-md text-[#363636]'>Place:</p> */}
                   {pet.placeLost}
                 </div>
               </p>
