@@ -73,15 +73,19 @@ const LosttPet = () => {
     )} */}
 
 </div>
-       <div className='flex flex-col md:flex-row'>
-{/* 
-          {
-            pet.user_id === session.user.id ? 
-              <MissingPetEditForm setFormSubmitted={setFormSubmitted} pet={pet} />
-            : null
-          } */}
 
-           {/* <DeleteLostPetButton pet_user_id={pet.user_id} pet_Id={pet.id} session={session}/>  */}
+      <div className='flex'>
+        {
+        pet.user_id === session.user.id ? 
+        <MissingPetEditForm setFormSubmitted={setFormSubmitted} pet={pet} />: null
+        }
+        <DeleteLostPetButton pet_user_id={pet.user_id} pet_Id={pet.id} session={session}/> 
+      </div>
+
+
+       <div className='flex flex-col md:flex-row'>
+
+         
 
           <div className='flex-1'>
             <img src={pet.imageURL? pet.imageURL : dogplaceholder} alt={pet.name} className='w-full h-96 object-cover rounded-xl'  onClick={() => setMainImage(pet.image)} />

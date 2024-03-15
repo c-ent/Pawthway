@@ -2,6 +2,7 @@ import React from 'react'
 import { supabase } from '../supabaseClient';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import trash from '../../images/icons/trash.svg';
 const DeleteFoundPetButton = ({finder_id, pet_Id, session}) => {
   const [showButton, setShowButton] = useState(false);
   let user_id;
