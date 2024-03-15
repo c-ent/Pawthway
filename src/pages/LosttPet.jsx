@@ -59,7 +59,7 @@ const LosttPet = () => {
   return (
     <div className='p-4 mx-auto max-w-screen-lg' >
      <div className='text-center flex flex-col justify-center items-center my-10 space-y-3'>
-  <h1 className='font-bold text-5xl'>{pet.name}</h1>
+        <h1 className='font-bold text-5xl'>{pet.name}</h1>
 
     {/* Location */}
     {/* {pet.placeLost && (
