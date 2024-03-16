@@ -111,9 +111,14 @@ const FoundPet = () => {
             </div>
  
         </div>
+        
       </div>
 
-
+      <div className='py-14  gap-8 text-center'>
+        
+        <p className=' text-sm text-[#5F5F5F]'>{pet.description}</p>
+        <h1 className='font-bold'>-Founder</h1>
+      </div>
     <Comments petType={"found"}petId={petId} />
   </div>
 
