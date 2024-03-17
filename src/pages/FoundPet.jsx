@@ -42,12 +42,12 @@ const FoundPet = () => {
   }, [petId,formsubmited]);
 
   if (!pet) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
   return (
     <div className='p-4 mx-auto max-w-screen-lg' >
           {
-            pet.finder_id === session.user.id ? 
+           session && session.user && pet.finder_id === session.user.id ? 
             <FoundPetEditForm pet={pet} setFormSubmitted={setFormSubmitted} /> 
             : null
           }

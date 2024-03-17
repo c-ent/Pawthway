@@ -6,6 +6,7 @@ import loadingimg from '../../images/icons/dogvector.svg'
 import { supabase } from '../supabaseClient'
 import Pagination from '../components/Pagination'
 import SortControls from '../components/SortControls'
+import Loading from '../components/Loading'
 
 const AllFoundPets = () => {
   const [foundPets, setFoundPets] = useState([]) // state to hold the dogs data
@@ -63,7 +64,7 @@ const AllFoundPets = () => {
   }
 
   return (
-    <div className='pt-10 mx-auto max-w-screen-xl p-4 md:p-0' >
+    <div className='mx-auto max-w-screen-xl p-4' >
       <div className='flex flex-col items-center p-10 text-center'>
        
        <h1 className="text-4xl md:text-6xl font-bold pb-4 text-center m-auto">Found Pets</h1>
@@ -97,9 +98,7 @@ const AllFoundPets = () => {
       }
 
       {isLoading && 
-        <div className='flex justify-center items-center mt-20 min-h-[300px]'>
-          <img src={loadingimg} className='animate-ping' alt='loading' />
-        </div>
+       <Loading />
       }
 
 
