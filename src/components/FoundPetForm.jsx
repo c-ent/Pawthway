@@ -93,8 +93,7 @@ const FoundPetForm = ({setFormSubmitted}) => {
   
     return (
       <div>
-         <button className="flex  h-[35px] items-center bg-[#DE692C] rounded-full  px-7 py-2 text-white font-semibold mb-5"onClick={handleOpen} >
-
+         <button className="flex md:h-[35px] items-center bg-[#DE692C] rounded-full  px-7 py-2 text-white font-semibold mb-5"onClick={handleOpen} >
             Post a pet you found
         </button>
         <Modal

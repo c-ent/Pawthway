@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import dogplaceholder from '../../images/images/dogplaceholder.png';
 import { formatDistance, parseISO } from 'date-fns';
+import pin from '../../images/icons/petInfo/pin.svg';
+import phone from '../../images/icons/petInfo/phone.svg';
+import calendar from '../../images/icons/petInfo/calendar.svg';
 
 const FoundPetCard = ({ pet }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -30,22 +33,23 @@ const FoundPetCard = ({ pet }) => {
       {/* <h2 className="text-2xl font-bold">{pet.description}</h2> */}
 
       <div className='p-3'>
-            <div className="">
+            <div className="text-[#525252] space-y-2">
            
                 <div className='flex  space-x-2'>
-                  <p>Place:</p>
-                  <p className='font-bold'>{pet.found_location}</p>
+                  <img src={pin} alt="pin" className='w-4 h-4' />
+                  <p className='text-xs md:text-sm'>{pet.found_location}</p>
                 </div>
 
                 <div className='flex items-center space-x-2'>
-                  <p>Date Found:</p>
-                  <p className='font-bold'>{pet.found_date}</p>
+                  {/* <p>Date Found:</p> */}
+                  <img src={calendar} alt="calendar" className='w-4 h-4' />
+                  <p className='text-xs md:text-sm'>{pet.found_date}</p>
                 </div>
          
 
               <div className='flex items-center space-x-2'>
-                  <p>Contact</p>
-                <p className='font-bold'>{pet.contact_number}</p>
+                <img src={phone} alt="phone" className='w-4 h-4' />
+                <p className='text-xs md:text-sm'>{pet.contact_number}</p>
               </div>
             </div>
 

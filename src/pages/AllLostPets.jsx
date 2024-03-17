@@ -68,7 +68,7 @@ const AllLostPets = () => {
 
   return (
     <div className='mx-auto max-w-screen-xl p-4' >
-      <div className='flex flex-col items-center p-10 text-center'>
+      <div className='flex flex-col items-center p-5 md:p-10 text-center'>
        
           <h1 className="text-4xl md:text-6xl font-bold pb-4 text-center m-auto">Missing Pets</h1>
           <p className='pb-4'>Seeking a lost pet? We're here to assist in your search.</p>

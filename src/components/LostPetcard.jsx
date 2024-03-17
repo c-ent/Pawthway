@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import dogplaceholder from '../../images/images/dogplaceholder.png';
 import { formatDistance, parseISO } from 'date-fns';
-
+import pin from '../../images/icons/petInfo/pin.svg';
 
 
 const LostPetcard = ({ pet }) => {
@@ -31,14 +31,19 @@ const LostPetcard = ({ pet }) => {
          {formatDate(pet.dateLost)}
         </button>
       </div>
+      
 
       <div className='px-2 pb-2 space-y-0 '>
+      <h2 className="text-md md:text-2xl font-bold overflow-hidden whitespace-nowrap text-overflow-ellipsis">{pet.name}</h2>
+
               <div className='flex flex-col md:flex-row justify-between space-y-1 '>
-              <div className='text-[#525252] text-xs md:text-sm flex items-center space-x-2'>
-                <p>{pet.placeLost}</p>
+                
+              <div className='text-[#525252] flex items-center space-x-2'>
+                 <img src={pin} alt="pin" className='w-4 h-' />
+                  <p className='text-xs md:text-sm '>{pet.placeLost}</p>
               </div>
 
-                <div className=' text-[#525252]  text-xs md:text-sm flex items-center space-x-2'>
+                <div className=' text-[#525252] flex items-center space-x-2'>
                   
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M12.3337 8.43311V10.8998C12.3337 12.9798 10.3937 14.6664 8.00033 14.6664C5.60699 14.6664 3.66699 12.9798 3.66699 10.8998V8.43311C3.66699 10.5131 5.60699 11.9998 8.00033 11.9998C10.3937 11.9998 12.3337 10.5131 12.3337 8.43311Z" stroke="#525252" stroke-linecap="round" stroke-linejoin="round"/>
@@ -46,14 +51,14 @@ const LostPetcard = ({ pet }) => {
                   <path d="M12.3337 5.10016V8.4335C12.3337 10.5135 10.3937 12.0002 8.00033 12.0002C5.60699 12.0002 3.66699 10.5135 3.66699 8.4335V5.10016C3.66699 3.02016 5.60699 1.3335 8.00033 1.3335C9.20033 1.3335 10.2803 1.7535 11.067 2.4335C11.847 3.12016 12.3337 4.06016 12.3337 5.10016Z" stroke="#525252" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
 
-                  <p> {pet.reward}</p>
+                  <p className=' text-xs md:text-sm '> {pet.reward}</p>
                 </div>
               </div>
 
               {/* <div className='flex flex-col md:flex-row justify-between space-y-3  md:space-y-0 md:space-x-3'>
                
               </div> */}
-               <h2 className="text-md md:text-2xl font-bold overflow-hidden whitespace-nowrap text-overflow-ellipsis">{pet.name}</h2>
+              
       </div>
       
   </div>

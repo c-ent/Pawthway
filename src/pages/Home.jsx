@@ -45,7 +45,7 @@ const Home = () => {
         </div> */}
         <div className="relative">
           <motion.h1 
-            className="text-[#1D1D1F] text-4xl md:text-7xl font-bold text-center max-w-[800px]">
+            className="text-[#1D1D1F] text-5xl md:text-7xl font-bold text-center max-w-[800px]">
             Helping Lost <span className=' bg-gradient-to-r from-[#DE692C] to-[#DE972C] bg-clip-text text-transparent'>Pets </span> <span className='bg-gradient-to-r from-[#DE692C] to-[#DE972C] bg-clip-text text-transparent'>Finds </span> Their Way Home
           </motion.h1>
         </div>
@@ -64,14 +64,13 @@ const Home = () => {
         <div className='flex '>
         <img src={pet3} alt="logo"  className="h-20 sm:h-44"/>
           <img src={pet2} alt="logo"  className="h-20 sm:h-44"/>
-          
           <img src={pet1} alt="logo"  className="h-20 sm:h-44"/>
         </div>
       </section> 
 
 
-<section className='p-20'>
-<p className="max-w-[600px] text-center m-auto text-3xl ">
+<section className='p-12 md:p-20'>
+<p className="max-w-[600px] text-center m-auto text-xl md:text-2xl ">
     {"["} Utilize our user-friendly interface to quickly upload information about your missing pet, reaching a broad audience eager to help. {"]"}
   </p>
 </section>
