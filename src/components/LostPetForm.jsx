@@ -106,13 +106,7 @@ const LostPetForm = ({setFormSubmitted}) => {
   
     return (
       <div>
-        <button className="flex  h-[35px] items-center bg-[#DE692C] rounded-full  px-7 py-2 text-white font-semibold mb-5"onClick={handleOpen} >
-            {/* <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 61 61" fill="none">
-            <path d="M12.002 32.6492C15.7588 22.2382 24.2774 13.9702 34.9095 17.2153C42.3285 19.4797 39.2162 23.6993 42.0992 26.4734C43.7258 27.7249 48.1419 26.0452 49.2842 27.6076C50.294 28.9894 49.5644 31.5103 49.2842 33.1651C48.1788 39.6901 40.6989 40.6505 34.3617 40.6505" stroke="white" strokeOpacity="0.9" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M49.652 30.0003C49.1297 29.0091 47.9378 28.0824 46.502 27.3003" stroke="white" strokeOpacity="0.9" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M20.7389 28.0835C20.3618 30.1367 14.5485 44.1219 20.5668 45.3134C31.7438 46.91 30.4023 34.1961 30.4023 26.2505" stroke="white" strokeOpacity="0.9" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M36.002 26.1003V26.8503" stroke="white" strokeOpacity="0.9" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg> */}
+        <button className="flex  h-[35px] items-center bg-[#DE692C] rounded-full  px-7 py-2 text-white font-semibold mb-5"onClick={handleOpen} >  
             Post a missing pet
         </button>
 
@@ -122,7 +116,7 @@ const LostPetForm = ({setFormSubmitted}) => {
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
         >
-           <Box className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 md:w-10/12 bg-white shadow-2xl p-4  max-h-[800px] overflow-y-auto">
+           <Box className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 md:w-10/12 bg-white shadow-2xl p-4  max-h-[800px] overflow-y-auto rounded-3xl">
             {session ? (
             <div className="flex md:flex-row flex-col bg-white p-4 rounded-md gap-0 md:gap-20">
                 <div className='flex-1  flex items-center'>
@@ -144,89 +138,94 @@ const LostPetForm = ({setFormSubmitted}) => {
                 <div className='flex-1'>
 
 
-                  <h2 id="modal-modal-title" className="text-2xl font-bold mb-2">
-                    Post a missing pet
+                  <h2 id="modal-modal-title" className="text-3xl text-center font-bold mb-2">
+                    Missing pet
                   </h2>
 
                   <form className="space-y-2 md:space-y-4" onSubmit={handleSubmit}>
-  <div className='flex gap-2'>
-    <label>
-      Pet's Name
-      <input
-        name="name"
-        placeholder="James"
-        className="w-full p-2 border rounded-md"
-      />
-    </label>
-    <label>
-      Animal Type
-      <select
-        name="animalType"
-        className="w-full p-2 border rounded-md"
-      >
-        <option value="Dog" selected>Dog</option>
-        <option value="Cat">Cat</option>
-        <option value="Fish">Fish</option>
-        <option value="Bird">Bird</option>
-        <option value="Rabbit">Rabbit</option>
-        <option value="Hamster">Hamster</option>
-        <option value="Guinea Pig">Guinea Pig</option>
-        <option value="Turtle">Turtle</option>
-        <option value="Other">Others</option>
-      </select>
-    </label>
-  </div>
+                    <div className='flex gap-2 '>
+                      <label className='w-full'>
+                        <p className='font-semibold'> Pet's Name</p>
+                        <input
+                          name="name"
+                          placeholder="James"
+                          className="w-full p-2 border rounded-md text-[#5F5F5F]"
+                        />
+                      </label>
+                      <label className='w-full'>
+                        <p className='font-semibold'> Animal Type</p>
+                        <select
+                          name="animalType"
+                          className="w-full p-2 border rounded-md text-[#5F5F5F]"
+                        >
+                          <option value="Dog" selected>Dog</option>
+                          <option value="Cat">Cat</option>
+                          <option value="Fish">Fish</option>
+                          <option value="Bird">Bird</option>
+                          <option value="Rabbit">Rabbit</option>
+                          <option value="Hamster">Hamster</option>
+                          <option value="Guinea Pig">Guinea Pig</option>
+                          <option value="Turtle">Turtle</option>
+                          <option value="Other">Others</option>
+                        </select>
+                      </label>
+                    </div>
 
   <div className='flex gap-2'>
-    <label>
-      Place Lost
+  <label className='w-full'>
+      
+      <p className='font-semibold'>Place Lost</p>
       <input
         name="placeLost"
         placeholder="Purok 2, Brgy. San Jose"
-        className="w-full p-2 border rounded-md"
+        className="w-full p-2 border rounded-md text-[#5F5F5F]"
       />
     </label>
-    <label className=''>
-      Date Lost
+    <label className='w-full'>
+     
+      <p className='font-semibold'>Date Lost</p>
       <input
         type="date"
         name="dateLost"
-        className="w-full p-2 border rounded-md"
+        className="w-full p-2 border rounded-md text-[#5F5F5F]"
       />
     </label>
   </div>
 
   <div className='flex gap-2'>
-    <label>
-      Contact
+  <label className='w-full'>
+     
+      <p className='font-semibold'>Contact</p>
       <input
         type="tel"
         name="contact"
         placeholder="09123456789"
-        className="w-full p-2 border rounded-md"
+        className="w-full p-2 border rounded-md text-[#5F5F5F]"
       />
     </label>
-    <label>
-      Pet's Reward
+    <label className='w-full'>
+      
+      <p className='font-semibold'>Pet's Reward</p>
       <input
         type="number"
         name="reward"
         placeholder="1000"
-        className="w-full p-2 border rounded-md"
+        className="w-full p-2 border rounded-md text-[#5F5F5F]"
       />
     </label>
   </div>
 
   <label>
-    Description
+   
+    <p className='font-semibold'>Description</p>
     <textarea
       name="description"
       placeholder="Description"
-      className="w-full p-2 border rounded-md"
+      className="w-full p-2 border rounded-md text-[#5F5F5F]"
     />
   </label>
 
-  <div>
+  <div className='space-x-2'>
     <input
       type="checkbox"
       id="optional"
@@ -240,37 +239,41 @@ const LostPetForm = ({setFormSubmitted}) => {
   {showOptional && (
     <div className='flex gap-2'>
       <label>
-        Breed
+        
+        <p className='font-semibold'>Breed</p>
         <input
           name="breed"
           placeholder="Breed"
-          className="w-full p-2 border rounded-md"
+          className="w-full p-2 border rounded-md text-[#5F5F5F]"
         />
       </label>
       <label>
-        Color
+       
+        <p className='font-semibold'>Color</p>
         <input
           name="color"
           placeholder="Color"
-          className="w-full p-2 border rounded-md"
+          className="w-full p-2 border rounded-md text-[#5F5F5F]"
         />
       </label>
       <label>
-        Size
+        
+        <p className='font-semibold'>Size</p>
         <input
           name="size"
           placeholder="Size"
-          className="w-full p-2 border rounded-md"
+          className="w-full p-2 border rounded-md text-[#5F5F5F]"
         />
       </label>
       <label>
-        Age
+        
+        <p className='font-semibold'>Age</p>
         <input
           type="number"
           name="age"
           placeholder="Age"
           min="0"
-          className="w-full p-2 border rounded-md"
+          className="w-full p-2 border rounded-md text-[#5F5F5F]"
         />
       </label>
     </div>
@@ -278,7 +281,7 @@ const LostPetForm = ({setFormSubmitted}) => {
 
   <button
     type="submit"
-    className="w-full py-2 px-4 bg-blue-500 text-white rounded-md"
+    className="w-full py-2 px-4 bg-[#DE692C] text-white rounded-full"
   >
     {isLoading ? 'Posting...' : 'Post'}
   </button>
