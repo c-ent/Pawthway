@@ -14,23 +14,23 @@ import { motion } from 'framer-motion';
 const Home = () => {
   return (
     <div className='overflow-hidden'> 
-    <section className=' flex flex-col items-center  justify-center space-y-5 h-[700px] p-2'>
+    <section className=' flex flex-col items-center  justify-center space-y-5 h-[700px] p-2 '>
       {/* <div className='absolute left-[15%] top-0 md:visible invisible'>
         <img src={yarn} alt="logo" className="w-20 h-20 md:w-16 md:h-28"/>
       </div> */}
 
-      <div className='absolute left-[15%] top-[10%] md:visible invisible'>
+      <div className='absolute left-[15%] top-[13%] md:top-[10%]   lg:visible invisible '>
       <motion.img 
         src={plane1} 
         alt="logo" 
-        className="w-20 h-20 md:w-20"
+        className="w-16 h-auto md:w-20"
         initial={{ x: -300 , y: -100}} // start from the right
         animate={{ x: 0, y: 0 }} // animate to original position
         transition={{ duration: 1.5 }} // animation duration
       />
     </div>
 
-      <div className='absolute right-[15%] bottom-[30%] md:visible invisible'>
+      <div className='absolute right-[15%] bottom-[30%] lg:visible invisible '>
       <motion.img 
         src={plane} 
         alt="logo" 
@@ -43,7 +43,7 @@ const Home = () => {
         {/* <div className='pt-16'>
           <img src={logo} alt="logo" className="w-20 h-20 md:w-28 md:h-28"/>
         </div> */}
-        <div className="relative">
+        <div className="">
           <motion.h1 
             className="text-[#1D1D1F] text-5xl md:text-7xl font-bold text-center max-w-[800px]">
             Helping Lost <span className=' bg-gradient-to-r from-[#DE692C] to-[#DE972C] bg-clip-text text-transparent'>Pets </span> <span className='bg-gradient-to-r from-[#DE692C] to-[#DE972C] bg-clip-text text-transparent'>Finds </span> Their Way Home
@@ -54,10 +54,10 @@ const Home = () => {
          <p className='text-xl p-2 text-center'> pawthway easily find lost pets with  free service</p>
         </div>
         <div className=' space-x-1 md:space-x-3 flex'>
-          <button className="bg-[#1D1D1F] hover:bg-purple-700 text-white font-bold py-2 px-2 md:px-4 rounded-full text-sm md:text-md">
+          <button className="bg-[#1D1D1F] hover:bg-purple-700 text-white font-bold py-2 px-3 md:px-4 rounded-full text-sm md:text-md">
             <Link to="/lostpets">Post a Missing Pet</Link>
           </button>
-          <button className="bg-transparent hover:bg-purple-700 text-[#1D1D1F] font-bold py-2 px-2 md:px-4 border border-[#1D1D1F] rounded-full text-sm md:text-md">
+          <button className="bg-transparent hover:bg-purple-700 text-[#1D1D1F] font-bold py-2 px-3 md:px-4 border border-[#1D1D1F] rounded-full text-sm md:text-md">
             <Link to="/foundpets">List of Lost Pets</Link>
           </button>
         </div>
