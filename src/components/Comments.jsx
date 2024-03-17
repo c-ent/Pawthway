@@ -142,7 +142,7 @@ const Comments = ({petId,petType}) => {
       ))}
 
       <div className='mt-4'>
-        {session && user ? (
+        {session ? (
         <form onSubmit={handleAddComment} className='space-y-2'>
           {/* <p className='text-md font-semibold text-gray-700'>Comment as {user.first_name}</p> */}
           <textarea 
