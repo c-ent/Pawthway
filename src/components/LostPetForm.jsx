@@ -120,12 +120,12 @@ const LostPetForm = ({setFormSubmitted}) => {
             {session ? (
             <div className="flex md:flex-row flex-col bg-white p-4 rounded-md gap-0 md:gap-20">
                 <div className='flex-1  flex items-center'>
-                  <label className='w-full inline-block text-center cursor-pointer'>
+                  <label className='w-full flex items-center justify-center text-center cursor-pointer'>
                     {!preview && (
-                      <img src={uploadimgicon} alt='uploadimgicon' className='w-full h-full' />
+                      <img src={uploadimgicon} alt='uploadimgicon' className='w-20' />
                     )}
 
-                    {preview && <img src={preview} alt="preview" className='w-full h-full object-contain' />}
+                    {preview && <img src={preview} alt="preview" className='h-52 md:h-full object-contain' />}
                     <input 
                       type="file" 
                       accept="image/*" 
