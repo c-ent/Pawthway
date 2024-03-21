@@ -216,7 +216,7 @@ const MissingPetEditForm = ({setFormSubmitted,pet}) => {
               </div>
 
               <div className='flex-1'>
-                <h2 id="modal-modal-title" className="text-2xl font-bold mb-2">
+                <h2 id="modal-modal-title" className="text-3xl text-center font-bold mb-2">
                   Edit Missing Pet
                 </h2>
 

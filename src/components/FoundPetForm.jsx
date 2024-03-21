@@ -15,7 +15,6 @@ const FoundPetForm = ({setFormSubmitted}) => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [showOptional, setShowOptional] = useState(false);
 
   const navigate = useNavigate();
   const handleFileChange = (e) => setSelectedFile(e.target.files[0]);
@@ -62,6 +61,7 @@ const FoundPetForm = ({setFormSubmitted}) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     const { color, size, found_date, found_location, description, status, contact_number } = e.target.elements;
     const fileURL = await uploadFile();
 
@@ -153,7 +153,7 @@ const FoundPetForm = ({setFormSubmitted}) => {
                       <label className='w-full'>
                         <p className='font-semibold'>Found Date</p>
                         <input 
-                          type="text" 
+                          type="date"
                           name="found_date" 
                           className="w-full p-2 border rounded-md text-[#5F5F5F]"
                           required 
