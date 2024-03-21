@@ -102,16 +102,16 @@ const FoundPetForm = ({setFormSubmitted}) => {
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
         >
-           <Box className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 md:w-10/12 bg-white border-2 border-black shadow-2xl p-4  max-h-[800px] overflow-y-auto">
+           <Box className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 md:w-10/12 bg-white shadow-2xl p-4  max-h-[800px] overflow-y-auto rounded-3xl">
             {session ? (
             <div className="flex md:flex-row flex-col bg-white p-4 rounded-md gap-0 md:gap-20">
                 <div className='flex-1  flex items-center'>
-                  <label className='w-full inline-block text-center cursor-pointer'>
+                <label className='w-full flex items-center justify-center text-center cursor-pointer'>
                     {!preview && (
-                      <img src={uploadimgicon} alt='uploadimgicon' className='w-full h-full' />
+                      <img src={uploadimgicon} alt='uploadimgicon' className='w-20' />
                     )}
 
-                    {preview && <img src={preview} alt="preview" className='w-full h-full object-contain' />}
+                    {preview && <img src={preview} alt="preview" className='h-52 md:h-full object-contain' />}
                     <input 
                       type="file" 
                       accept="image/*" 
@@ -122,110 +122,87 @@ const FoundPetForm = ({setFormSubmitted}) => {
                 </div>
 
                 <div className='flex-1'>
-                  <h2 id="modal-modal-title" className="text-2xl font-bold mb-2">
-                    Post a found pet
+                  <h2 id="modal-modal-title" className="text-3xl text-center font-bold mb-2">
+                    Found Pet
                   </h2>
 
                   <form className="space-y-2 md:space-y-4" onSubmit={handleSubmit}>
-  <div className='flex gap-2'>
-  <label>
-              Color:
-              <input type="text" name="color" required />
-            </label>
+                    <div className='flex  gap-2'>
+                      <label className='w-full'>
+                        <p className='font-semibold'> Color</p>
+                        <input 
+                          type="text" 
+                          name="color" 
+                          className="w-full p-2 border rounded-md text-[#5F5F5F]"
+                          required 
+                        />
+                      </label>
 
- <label>
-              Size:
-              <input type="text" name="size" required />
-            </label>
-  </div>
+                      <label className='w-full'>
+                        <p className='font-semibold'> Size</p>
+                        <input 
+                          type="text" 
+                          name="size" 
+                          className="w-full p-2 border rounded-md text-[#5F5F5F]"
+                          required 
+                        />
+                      </label>
+                    </div>
 
-  <div className='flex gap-2'>
-  <label>
-              Found Date:
-              <input type="date" name="found_date" required />
-            </label>
+                    <div className='flex gap-2'>
+                      <label className='w-full'>
+                        <p className='font-semibold'>Found Date</p>
+                        <input 
+                          type="text" 
+                          name="found_date" 
+                          className="w-full p-2 border rounded-md text-[#5F5F5F]"
+                          required 
+                        />
+                      </label>
 
-  <label>
-              Found Location:
-              <input type="text" name="found_location" required />
-            </label>
+                      <label className='w-full'>
+                        <p className='font-semibold'>Found Location:</p>
+                        <input 
+                          type="text" 
+                          name="found_location" 
+                          className="w-full p-2 border rounded-md text-[#5F5F5F]"
+                          required 
+                        />
+                      </label>
 
-  </div>
+                    </div>
 
-  <div className='flex gap-2'>
-<label>
-              Description:
-              <textarea name="description" required />
-            </label>
+                    <div className='flex gap-2'>
+                      <label className=' w-full'>
+                        <p className='font-semibold'>Description</p>
+                        <textarea 
+                          name="description" 
+                          className="w-full p-2 border rounded-md text-[#5F5F5F]"
+                          required 
+                        />
+                      </label>
+                    </div>
 
-  <label>
-              Status:
-              <input type="text" name="status" required />
-            </label>
-  </div>
+                    <label>
+                      <p className='font-semibold'>Contact Number</p>
+                      <input 
+                          type="text" 
+                          name="contact_number" 
+                          className="w-full p-2 border rounded-md text-[#5F5F5F]"
+                          required 
+                        />
+                    </label>
 
-  <label>
-              Contact Number:
-              <input type="text" name="contact_number" required />
-            </label>
 
-  <div>
-    <input
-      type="checkbox"
-      id="optional"
-      name="optional"
-      checked={showOptional}
-      onChange={() => setShowOptional(!showOptional)}
-    />
-    <label htmlFor="optional">Show optional fields</label>
-  </div>
 
-  {showOptional && (
-    <div className='flex gap-2'>
-      <label>
-        Breed
-        <input
-          name="breed"
-          placeholder="Breed"
-          className="w-full p-2 border rounded-md"
-        />
-      </label>
-      <label>
-        Color
-        <input
-          name="color"
-          placeholder="Color"
-          className="w-full p-2 border rounded-md"
-        />
-      </label>
-      <label>
-        Size
-        <input
-          name="size"
-          placeholder="Size"
-          className="w-full p-2 border rounded-md"
-        />
-      </label>
-      <label>
-        Age
-        <input
-          type="number"
-          name="age"
-          placeholder="Age"
-          min="0"
-          className="w-full p-2 border rounded-md"
-        />
-      </label>
-    </div>
-  )}
 
-  <button
-    type="submit"
-    className="w-full py-2 px-4 bg-blue-500 text-white rounded-md"
-  >
-    {isLoading ? 'Posting...' : 'Post'}
-  </button>
-</form>
+                    <button
+                      type="submit"
+                      className="w-full py-2 px-4 bg-[#DE692C] text-white rounded-full"
+                    >
+                      {isLoading ? 'Posting...' : 'Post'}
+                    </button>
+                  </form>
                 </div>
               </div>
             ) : (

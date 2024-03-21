@@ -130,7 +130,7 @@ const LostPetForm = ({setFormSubmitted}) => {
                       type="file" 
                       accept="image/*" 
                       onChange={handleFileChange}
-                      className="hidden"
+                      className="hidden"  
                     />
                   </label>
                 </div>
@@ -173,7 +173,6 @@ const LostPetForm = ({setFormSubmitted}) => {
 
   <div className='flex gap-2'>
   <label className='w-full'>
-      
       <p className='font-semibold'>Place Lost</p>
       <input
         name="placeLost"
@@ -247,8 +246,8 @@ const LostPetForm = ({setFormSubmitted}) => {
           className="w-full p-2 border rounded-md text-[#5F5F5F]"
         />
       </label>
+      
       <label>
-       
         <p className='font-semibold'>Color</p>
         <input
           name="color"

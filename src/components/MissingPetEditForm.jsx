@@ -190,20 +190,20 @@ const MissingPetEditForm = ({setFormSubmitted,pet}) => {
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
         >
-        <Box className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 md:w-10/12 bg-white shadow-2xl p-4  max-h-[800px] overflow-y-auto">
+        <Box className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 md:w-10/12 bg-white shadow-2xl p-4  max-h-[800px] overflow-y-auto rounded-3xl">
           {session ? (
             <div className="flex md:flex-row flex-col bg-white p-4 rounded-md gap-0 md:gap-20">
               <div className='flex-1  flex items-center'>
-                <label className='w-full inline-block text-center cursor-pointer'>
+                <label className='w-full flex items-center justify-center text-center cursor-pointer'>
                   {!preview &&  !pet.imageURL && (
-                    <img src={uploadimgicon} alt='uploadimgicon' className='w-full h-full' />
+                    <img src={uploadimgicon} alt='uploadimgicon' className='w-20' />
                   )}
 
                     {(preview || pet.imageURL) && (
                       <img 
                         src={preview || pet.imageURL} 
                         alt="preview" 
-                        className='w-full h-full object-contain' 
+                        className='h-52 md:h-full object-contain'
                       />
                     )}
                     <input 
@@ -217,26 +217,26 @@ const MissingPetEditForm = ({setFormSubmitted,pet}) => {
 
               <div className='flex-1'>
                 <h2 id="modal-modal-title" className="text-2xl font-bold mb-2">
-                  Post a missing pet
+                  Edit Missing Pet
                 </h2>
 
                 <form className="space-y-2 md:space-y-4" onSubmit={handleSubmit}>
                   <div className='flex gap-2'>
-                    <label>
-                      Pet's Name
-                      <input
-                        name="name"
-                        placeholder="James"
-                        className="w-full p-2 border rounded-md"
+                    <label className='w-full'>
+                      <p className='font-semibold'> Pet's Name</p>
+                        <input
+                          name="name"
+                          placeholder="James"
+                          className="w-full p-2 border rounded-md text-[#5F5F5F]"
                         value={formValues.name} onChange={handleChange} 
                       />
                     </label>
-                    <label>
-                      Animal Type
-                      <select
-                        name="animalType"
-                        className="w-full p-2 border rounded-md"
-                      >
+                    <label className='w-full'>
+                        <p className='font-semibold'> Animal Type</p>
+                        <select
+                          name="animalType"
+                          className="w-full p-2 border rounded-md text-[#5F5F5F]"
+                        >
                         <option value="Dog" selected>Dog</option>
                         <option value="Cat">Cat</option>
                         <option value="Fish">Fish</option>
@@ -251,21 +251,21 @@ const MissingPetEditForm = ({setFormSubmitted,pet}) => {
                   </div>
 
                   <div className='flex gap-2'>
-                    <label>
-                      Place Lost
-                      <input
-                        name="placeLost"
-                        placeholder="Purok 2, Brgy. San Jose"
-                        className="w-full p-2 border rounded-md"
+                  <label className='w-full'>
+                    <p className='font-semibold'>Place Lost</p>
+                    <input
+                      name="placeLost"
+                      placeholder="Purok 2, Brgy. San Jose"
+                      className="w-full p-2 border rounded-md text-[#5F5F5F]"
                         value={formValues.placeLost} onChange={handleChange} 
                       />
                     </label>
-                    <label className=''>
-                      Date Lost
+                    <label className='w-full'>
+                      <p className='font-semibold'>Date Lost</p>
                       <input
                         type="date"
                         name="dateLost"
-                        className="w-full p-2 border rounded-md"
+                        className="w-full p-2 border rounded-md text-[#5F5F5F]"
                         value={formValues.dateLost} onChange={handleChange} 
                         
                       />
@@ -273,39 +273,39 @@ const MissingPetEditForm = ({setFormSubmitted,pet}) => {
                   </div>
 
                   <div className='flex gap-2'>
-                    <label>
-                      Contact
-                      <input
-                        type="tel"
-                        name="contact"
-                        placeholder="09123456789"
-                        className="w-full p-2 border rounded-md"
+                  <label className='w-full'>
+                    <p className='font-semibold'>Contact</p>
+                    <input
+                      type="tel"
+                      name="contact"
+                      placeholder="09123456789"
+                      className="w-full p-2 border rounded-md text-[#5F5F5F]"
                         value={formValues.contact} onChange={handleChange} 
                       />
                     </label>
-                    <label>
-                      Pet's Reward
+                    <label className='w-full'>
+                      <p className='font-semibold'>Pet's Reward</p>
                       <input
                         type="number"
                         name="reward"
                         placeholder="1000"
-                        className="w-full p-2 border rounded-md"
-                        value={formValues.reward} onChange={handleChange} 
-                      />
+                        className="w-full p-2 border rounded-md text-[#5F5F5F]"
+                          value={formValues.reward} onChange={handleChange} 
+                        />
                     </label>
                   </div>
 
                   <label>
-                    Description
+                    <p className='font-semibold'>Description</p>
                     <textarea
                       name="description"
                       placeholder="Description"
-                      className="w-full p-2 border rounded-md"
+                      className="w-full p-2 border rounded-md text-[#5F5F5F]"
                       value={formValues.description} onChange={handleChange} 
                     />
                   </label>
 
-                  <div>
+                  <div className='space-x-2'>
                     <input
                       type="checkbox"
                       id="optional"
@@ -319,40 +319,40 @@ const MissingPetEditForm = ({setFormSubmitted,pet}) => {
                   {showOptional && (
                     <div className='flex gap-2'>
                       <label>
-                        Breed
+                        <p className='font-semibold'>Breed</p>
                         <input
                           name="breed"
                           placeholder="Breed"
-                          className="w-full p-2 border rounded-md"
+                          className="w-full p-2 border rounded-md text-[#5F5F5F]"
                           value={formValues.breed} onChange={handleChange} 
                         />
                       </label>
                       <label>
-                        Color
+                        <p className='font-semibold'>Color</p>
                         <input
                           name="color"
                           placeholder="Color"
-                          className="w-full p-2 border rounded-md"
+                          className="w-full p-2 border rounded-md text-[#5F5F5F]"
                           value={formValues.color} onChange={handleChange} 
                         />
                       </label>
                       <label>
-                        Size
+                        <p className='font-semibold'>Size</p>
                         <input
                           name="size"
                           placeholder="Size"
-                          className="w-full p-2 border rounded-md"
+                          className="w-full p-2 border rounded-md text-[#5F5F5F]"
                           value={formValues.size} onChange={handleChange} 
                         />
                       </label>
                       <label>
-                        Age
-                        <input
-                          type="number"
-                          name="age"
-                          placeholder="Age"
-                          min="0"
-                          className="w-full p-2 border rounded-md"
+                          <p className='font-semibold'>Age</p>
+                          <input
+                            type="number"
+                            name="age"
+                            placeholder="Age"
+                            min="0"
+                            className="w-full p-2 border rounded-md text-[#5F5F5F]"
                           value={formValues.age} onChange={handleChange} 
                         />
                       </label>
@@ -361,7 +361,7 @@ const MissingPetEditForm = ({setFormSubmitted,pet}) => {
 
                   <button
                     type="submit"
-                    className="w-full py-2 px-4 bg-blue-500 text-white rounded-md"
+                    className="w-full py-2 px-4 bg-[#DE692C] text-white rounded-full"
                   >
                     {isLoading ? 'Updating...' : 'Update'}
                   </button>
