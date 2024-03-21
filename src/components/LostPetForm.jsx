@@ -112,7 +112,7 @@ const LostPetForm = ({setFormSubmitted}) => {
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
         >
-           <Box className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 md:w-10/12 bg-white shadow-2xl p-8 max-h-[800px] overflow-y-auto rounded-3xl">
+           <Box className={`${session ? 'w-96 md:w-10/12' : ''} absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white shadow-2xl p-8 max-h-[800px] overflow-y-auto rounded-3xl`}>
             {session ? (
             <div className="flex md:flex-row flex-col bg-white p-4 rounded-md gap-0 md:gap-20">
                 <div className='flex-1  flex items-center'>
@@ -167,137 +167,138 @@ const LostPetForm = ({setFormSubmitted}) => {
                       </label>
                     </div>
 
-  <div className='flex gap-2'>
-  <label className='w-full'>
-      <p className='font-semibold'>Place Lost</p>
-      <input
-        name="placeLost"
-        placeholder="Purok 2, Brgy. San Jose"
-        className="w-full p-2 border rounded-md text-[#5F5F5F]"
-      />
-    </label>
-    <label className='w-full'>
-     
-      <p className='font-semibold'>Date Lost</p>
-      <input
-        type="date"
-        name="dateLost"
-        className="w-full p-2 border rounded-md text-[#5F5F5F]"
-      />
-    </label>
-  </div>
+                    <div className='flex gap-2'>
+                    <label className='w-full'>
+                        <p className='font-semibold'>Place Lost</p>
+                        <input
+                          name="placeLost"
+                          placeholder="Purok 2, Brgy. San Jose"
+                          className="w-full p-2 border rounded-md text-[#5F5F5F]"
+                        />
+                      </label>
+                      <label className='w-full'>
+                      
+                        <p className='font-semibold'>Date Lost</p>
+                        <input
+                          type="date"
+                          name="dateLost"
+                          className="w-full p-2 border rounded-md text-[#5F5F5F]"
+                        />
+                      </label>
+                    </div>
 
-  <div className='flex gap-2'>
-  <label className='w-full'>
-     
-      <p className='font-semibold'>Contact</p>
-      <input
-        type="tel"
-        name="contact"
-        placeholder="09123456789"
-        className="w-full p-2 border rounded-md text-[#5F5F5F]"
-      />
-    </label>
-    <label className='w-full'>
-      
-      <p className='font-semibold'>Pet's Reward</p>
-      <input
-        type="number"
-        name="reward"
-        placeholder="1000"
-        className="w-full p-2 border rounded-md text-[#5F5F5F]"
-      />
-    </label>
-  </div>
+                    <div className='flex gap-2'>
+                    <label className='w-full'>
+                      
+                        <p className='font-semibold'>Contact</p>
+                        <input
+                          type="tel"
+                          name="contact"
+                          placeholder="09123456789"
+                          className="w-full p-2 border rounded-md text-[#5F5F5F]"
+                        />
+                      </label>
+                      <label className='w-full'>
+                        
+                        <p className='font-semibold'>Pet's Reward</p>
+                        <input
+                          type="number"
+                          name="reward"
+                          placeholder="1000"
+                          className="w-full p-2 border rounded-md text-[#5F5F5F]"
+                        />
+                      </label>
+                    </div>
 
-  <label>
-   
-    <p className='font-semibold'>Description</p>
-    <textarea
-      name="description"
-      placeholder="Description"
-      className="w-full p-2 border rounded-md text-[#5F5F5F]"
-    />
-  </label>
+                    <label>
+                    
+                      <p className='font-semibold'>Description</p>
+                      <textarea
+                        name="description"
+                        placeholder="Description"
+                        className="w-full p-2 border rounded-md text-[#5F5F5F]"
+                      />
+                    </label>
 
-  <div className='space-x-2'>
-    <input
-      type="checkbox"
-      id="optional"
-      name="optional"
-      checked={showOptional}
-      onChange={() => setShowOptional(!showOptional)}
-    />
-    <label htmlFor="optional">Show optional fields</label>
-  </div>
+                    <div className='space-x-2'>
+                      <input
+                        type="checkbox"
+                        id="optional"
+                        name="optional"
+                        checked={showOptional}
+                        onChange={() => setShowOptional(!showOptional)}
+                      />
+                      <label htmlFor="optional">Show optional fields</label>
+                    </div>
 
-  {showOptional && (
-    <div className='flex gap-2'>
-      <label>
-        
-        <p className='font-semibold'>Breed</p>
-        <input
-          name="breed"
-          placeholder="Breed"
-          className="w-full p-2 border rounded-md text-[#5F5F5F]"
-        />
-      </label>
-      
-      <label>
-        <p className='font-semibold'>Color</p>
-        <input
-          name="color"
-          placeholder="Color"
-          className="w-full p-2 border rounded-md text-[#5F5F5F]"
-        />
-      </label>
-      <label>
-        
-        <p className='font-semibold'>Size</p>
-        <input
-          name="size"
-          placeholder="Size"
-          className="w-full p-2 border rounded-md text-[#5F5F5F]"
-        />
-      </label>
-      <label>
-        
-        <p className='font-semibold'>Age</p>
-        <input
-          type="number"
-          name="age"
-          placeholder="Age"
-          min="0"
-          className="w-full p-2 border rounded-md text-[#5F5F5F]"
-        />
-      </label>
-    </div>
-  )}
+                    {showOptional && (
+                      <div className='flex gap-2'>
+                        <label>
+                          
+                          <p className='font-semibold'>Breed</p>
+                          <input
+                            name="breed"
+                            placeholder="Breed"
+                            className="w-full p-2 border rounded-md text-[#5F5F5F]"
+                          />
+                        </label>
+                        
+                        <label>
+                          <p className='font-semibold'>Color</p>
+                          <input
+                            name="color"
+                            placeholder="Color"
+                            className="w-full p-2 border rounded-md text-[#5F5F5F]"
+                          />
+                        </label>
+                        <label>
+                          
+                          <p className='font-semibold'>Size</p>
+                          <input
+                            name="size"
+                            placeholder="Size"
+                            className="w-full p-2 border rounded-md text-[#5F5F5F]"
+                          />
+                        </label>
+                        <label>
+                          
+                          <p className='font-semibold'>Age</p>
+                          <input
+                            type="number"
+                            name="age"
+                            placeholder="Age"
+                            min="0"
+                            className="w-full p-2 border rounded-md text-[#5F5F5F]"
+                          />
+                        </label>
+                      </div>
+                    )}
 
-  <button
-    type="submit"
-    className="w-full py-2 px-4 bg-[#DE692C] text-white rounded-full"
-  >
-    {isLoading ? 'Posting...' : 'Post'}
-  </button>
-</form>
+                    <button
+                      type="submit"
+                      className="w-full py-2 px-4 bg-[#DE692C] text-white rounded-full"
+                    >
+                      {isLoading ? 'Posting...' : 'Post'}
+                    </button>
+                  </form>
                 </div>
               </div>
+              
             ) : (
               
-              <div className="flex bg-white p-4 rounded-md gap-20">
-              <div className='flex-1 flex flex-col items-center justify-center space-y-4'>
-                {/* <p className='text-lg font-bold'>Log In to post</p> */}
-              
+              <div className="flex bg-white rounded-md gap-20">
+                <div className='flex-1 flex flex-col items-center justify-center space-y-4'>
+                  <p className='text-lg text-center font-regular'>Login  to post your missing pet</p>
+                
 
-                <button 
-                  onClick={() => navigate('/login')} 
-                  className='bg-blue-700 py-1 px-4 text-white rounded-md text-lg'
-                >
-                  Log in
-                </button>
+                  <button 
+                    onClick={() => navigate('/login')} 
+                    className='bg-[#DE692C] py-1 px-4 text-white rounded-full text-lg'
+                  >
+                    Log in
+                  </button>
+                </div>
               </div>
-            </div>
              
             )}
           </Box>
