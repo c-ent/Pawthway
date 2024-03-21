@@ -190,7 +190,7 @@ const MissingPetEditForm = ({setFormSubmitted,pet}) => {
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
         >
-        <Box className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 md:w-10/12 bg-white shadow-2xl p-4  max-h-[800px] overflow-y-auto rounded-3xl">
+        <Box className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 md:w-10/12 bg-white shadow-2xl p-8  max-h-[800px] overflow-y-auto rounded-3xl">
           {session ? (
             <div className="flex md:flex-row flex-col bg-white p-4 rounded-md gap-0 md:gap-20">
               <div className='flex-1  flex items-center'>
@@ -216,9 +216,9 @@ const MissingPetEditForm = ({setFormSubmitted,pet}) => {
               </div>
 
               <div className='flex-1'>
-                <h2 id="modal-modal-title" className="text-3xl text-center font-bold mb-2">
+                {/* <h2 id="modal-modal-title" className="text-3xl text-center font-bold mb-2">
                   Edit Missing Pet
-                </h2>
+                </h2> */}
 
                 <form className="space-y-2 md:space-y-4" onSubmit={handleSubmit}>
                   <div className='flex gap-2'>
@@ -250,7 +250,7 @@ const MissingPetEditForm = ({setFormSubmitted,pet}) => {
                     </label>
                   </div>
 
-                  <div className='flex gap-2'>
+                  <div className='flex-col md:flex-row flex gap-2'>
                   <label className='w-full'>
                     <p className='font-semibold'>Place Lost</p>
                     <input

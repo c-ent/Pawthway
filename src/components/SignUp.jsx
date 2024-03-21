@@ -18,7 +18,6 @@ const SignUp = () => {
         });
         if (error) console.error(error);
         else {
-          console.log(data);
           navigate('/'); // navigate to dashboard
         }
       };

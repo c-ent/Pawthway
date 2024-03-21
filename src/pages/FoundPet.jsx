@@ -46,17 +46,20 @@ const FoundPet = () => {
   }
   return (
     <div className='p-4 mx-auto max-w-screen-lg' >
+ 
+      
+        <div className='flex'>
           {
-           session && session.user && pet.finder_id === session.user.id ? 
-            <FoundPetEditForm pet={pet} setFormSubmitted={setFormSubmitted} /> 
-            : null
+             session && session.user && pet.finder_id === session.user.id ? 
+            <FoundPetEditForm pet={pet} setFormSubmitted={setFormSubmitted} /> : null
           }
+            <DeleteFoundPetButton finder_id={pet.finder_id} pet_Id={pet.id} session={session}/> 
+        </div>
 
 
       <div className='flex flex-col md:flex-row pb-5'>
       <div className='flex-1 py-5'>
         <img src={pet.imageURL?pet.imageURL : dogplaceholder} alt={pet.description} className='w-full h-96 object-cover rounded-xl' />
-        <DeleteFoundPetButton finder_id={pet.finder_id} pet_Id={pet.id} session={session}/> 
         </div>
      
         <div className='flex-1 p-0 md:p-7 flex items-center'>

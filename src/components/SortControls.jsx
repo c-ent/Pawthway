@@ -25,14 +25,14 @@ const SortControls = ({ componentType, handleNewestClick, handleSortChange, hand
       {sortDirection ? (
         
 <svg width="35" height="21" viewBox="0 0 35 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M19.1436 10.4998H33.1436M19.1436 3.33317H33.1436M19.1436 17.6665H33.1436M6.89355 1.5415V19.4582M6.89355 19.4582L1.64355 14.0832M6.89355 19.4582L12.1436 14.0832" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M19.1436 10.4998H33.1436M19.1436 3.33317H33.1436M19.1436 17.6665H33.1436M6.89355 1.5415V19.4582M6.89355 19.4582L1.64355 14.0832M6.89355 19.4582L12.1436 14.0832" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
 </svg>
 
       ) : (
       
 
 <svg width="34" height="21" viewBox="0 0 34 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M18.75 10.5002H32.75M18.75 17.6668H32.75M18.75 3.3335H32.75M6.5 19.4585V1.54183M6.5 1.54183L1.25 6.91683M6.5 1.54183L11.75 6.91683" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M18.75 10.5002H32.75M18.75 17.6668H32.75M18.75 3.3335H32.75M6.5 19.4585V1.54183M6.5 1.54183L1.25 6.91683M6.5 1.54183L11.75 6.91683" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
 </svg>
 
 

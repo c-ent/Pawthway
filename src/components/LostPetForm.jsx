@@ -65,15 +65,11 @@ const LostPetForm = ({setFormSubmitted}) => {
       lastSeenLocation, placeLost, dateLost, contact, description 
     } = e.target.elements;
 
-    console.log("submitting start")
-    
-    console.log("now uploading image")
     const fileURL = await uploadFile();
     
 
     const BUCKET_BASE_URL = "https://porojjoxqjqbgxlkxzmy.supabase.co/storage/v1/object/public/petImages/";
     const user_id = session.user.id;
-    console.log("now uploading data")
     const { data, error } = await supabase
           .from('missingPets')
           .insert([
@@ -116,7 +112,7 @@ const LostPetForm = ({setFormSubmitted}) => {
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
         >
-           <Box className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 md:w-10/12 bg-white shadow-2xl p-4  max-h-[800px] overflow-y-auto rounded-3xl">
+           <Box className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 md:w-10/12 bg-white shadow-2xl p-8 max-h-[800px] overflow-y-auto rounded-3xl">
             {session ? (
             <div className="flex md:flex-row flex-col bg-white p-4 rounded-md gap-0 md:gap-20">
                 <div className='flex-1  flex items-center'>
