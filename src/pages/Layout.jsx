@@ -5,7 +5,7 @@ import { ThemeSupa } from '@supabase/auth-ui-shared'
 import { useContext, useEffect, useState } from 'react';
 import { SessionContext } from "../components/SessionContext";
 import usericon  from '../../images/icons/user.svg';
-
+import logosvg from '../../images/icons/pawthway.svg';
 const Layout = () => {
   const session = useContext(SessionContext);
   const [toggleDropdown, setToggleDropdown] = useState(false);
@@ -18,10 +18,12 @@ const Layout = () => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="flex flex-col min-h-screen overflow-hidden ">
-   <header className="bg-transparent max-w-screen-2xl m-auto w-full flex items-center justify-between relative   p-4 md:p-5">
+   <header className="bg-transparent max-w-screen-2xl m-auto w-full flex items-center justify-between relative    p-4 md:p-5">
         {/* Logo */}
         <div className="flex-1">
-          <Link to="/" className="text-md md:text-lg font-extrabold  hover:text-purple-600 md:pr-5">pawthway</Link>
+          <Link to="/" className="text-md md:text-lg font-extrabold text-orange-400  hover:text-orange-600 md:pr-5">
+            Pawthway
+          </Link>
         </div>
         
 
@@ -140,11 +142,15 @@ const Layout = () => {
      </main>
 
 
-    <footer className="bg-[#1D1D1F] text-white py-10">
+    <footer className="bg-[#DE692C] text-white py-2">
       <div className="text-center">
-        <h2 className="text-2xl font-bold mb-2">pawthway</h2>
-        <p className="mb-6">Your go-to hub for heartwarming pet reunions.</p>
-        <p className="mt-6 text-sm text-gray-300">© {new Date().getFullYear()} PawPathway. All rights reserved.</p>
+     
+          {/* <Link to="/" className="text-md md:text-xl font-extrabold text-white hover:text-orange-600 mb-2 md:pr-5">
+            Pawthway
+          </Link>
+        
+        <p className="mb-6">Your go-to hub for heartwarming pet reunions.</p> */}
+        <p className=" text-sm text-gray-300">© {new Date().getFullYear()} Pawthway. All rights reserved.</p>
       </div>
     </footer>
 

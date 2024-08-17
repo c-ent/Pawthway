@@ -153,8 +153,9 @@ const LostPetForm = ({setFormSubmitted}) => {
                         <select
                           name="animalType"
                           className="w-full p-2 border rounded-md text-[#5F5F5F]"
-                        >
-                          <option value="Dog" selected>Dog</option>
+                          defaultValue="Dog"
+                        > 
+                          <option value="Dog">Dog</option>
                           <option value="Cat">Cat</option>
                           <option value="Fish">Fish</option>
                           <option value="Bird">Bird</option>
